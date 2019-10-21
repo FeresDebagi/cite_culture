@@ -18,7 +18,8 @@ public class Stand {
     
     //Constructors
 
-    public Stand(int id_stand, String titre_stand, String proprietaire_stand, String type_marchandise, String date_debut_stand, String date_fin_stand) {
+    public Stand(int id_stand, String titre_stand, String proprietaire_stand, String type_marchandise, 
+            String date_debut_stand, String date_fin_stand) {
         this.id_stand = id_stand;
         this.titre_stand = titre_stand;
         this.proprietaire_stand = proprietaire_stand;

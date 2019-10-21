@@ -40,7 +40,8 @@ public class ServiceReservation {
     ResultSet res=ste.executeQuery("select * from reservation");
     Reservation reserv=null;
     while (res.next()) {            
-      reserv=new Reservation(res.getInt(1), res.getInt(2),res.getInt(3),res.getString(4),res.getString(5),res.getString(6)
+      reserv=new Reservation(res.getInt(1), res.getInt(2),res.getInt(3),res.getString(4),
+              res.getString(5),res.getString(6)
       ,res.getString(7),res.getString(8),res.getInt(9),res.getString(10),res.getString(11));
       list.add(reserv);
         }
@@ -84,14 +85,27 @@ public class ServiceReservation {
     
     
     
-    public void ModifierReservation(int id_reservation, String titre_reservation ) throws SQLException{
+    public void ModifierReservation(int id_reservation, int id_salle, int id_evenement ,String 	date_debut,
+            String date_fin, String etat, String description, String mail, int tel, 
+            String image_reservation, String titre_reservation ) throws SQLException{
          try
     {
      
-      String query = "update reservation set titre_reservation = ? where id_reservation = ?";
+      String query = "update reservation set id_salle = ?,id_evenement= ?,date_debut= ?,date_fin= ?,"
+              + "etat= ?,description= ?,mail= ?,tel= ?,image_reservation= ?,titre_reservation = ?"
+              + " where id_reservation = ?";
       PreparedStatement preparedStmt = con.prepareStatement(query);
-      preparedStmt.setString   (1, titre_reservation);
-      preparedStmt.setInt(2, id_reservation);
+      preparedStmt.setInt   (1, id_salle);
+      preparedStmt.setInt   (2, id_evenement);
+      preparedStmt.setString   (3, date_debut);
+      preparedStmt.setString    (4, date_fin);
+      preparedStmt.setString   (5, etat);
+      preparedStmt.setString    (6, description);
+      preparedStmt.setString   (7, mail);
+      preparedStmt.setInt   (8, tel);
+      preparedStmt.setString   (9, image_reservation);
+      preparedStmt.setString    (10, titre_reservation);
+      preparedStmt.setInt    (11, id_reservation);
 
       // execute the java preparedstatement
       preparedStmt.executeUpdate();

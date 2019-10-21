@@ -41,11 +41,33 @@ public class ServiceStand {
     ResultSet res=ste.executeQuery("select * from stand");
     Stand st=null;
     while (res.next()) {            
-      st=new Stand(res.getInt(1), res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getString(6));
+      st=new Stand(res.getInt(1), res.getString(2),res.getString(3),res.getString(4),res.getString(5),
+              res.getString(6));
       list.add(st);
         }
     return list;
     } 
+    
+    
+    public List<Stand> readAllStand1() throws SQLException {
+    String req = "select *  from stand ";
+    ArrayList<Stand> mylist = new ArrayList<Stand>();
+      ResultSet rs = ste.executeQuery(req);
+      while (rs.next()) {
+        Stand s = new Stand();
+        s.setId_stand(rs.getInt(1));
+        s.setTitre_stand(rs.getString(2));
+        s.setProprietaire_stand(rs.getString(3));
+        s.setType_marchandise(rs.getString(4));
+        s.setDate_debut_stand(rs.getString(5));
+        s.setDate_fin_stand(rs.getString(6));
+        
+        mylist.add(s);
+      } 
+     
+    return mylist;
+  }
+    
     
     
     public void AjouterStand(Stand s) throws SQLException{  
