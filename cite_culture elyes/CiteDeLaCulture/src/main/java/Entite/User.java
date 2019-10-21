@@ -9,7 +9,7 @@ import java.sql.Date;
 
 /**
  *
- * @author sana
+ * @author Elyes
  */
 public class User {
     private int id_user,cin_user,num_tel_user;
