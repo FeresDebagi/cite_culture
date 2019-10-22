@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2019 at 07:34 PM
+-- Generation Time: Oct 22, 2019 at 02:17 PM
 -- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,13 +35,44 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `description_event` varchar(255) DEFAULT NULL,
   `image_event` varchar(255) DEFAULT NULL,
   `titre_event` varchar(255) DEFAULT NULL,
-  `date_event` date DEFAULT NULL,
-  `heure_event` time DEFAULT NULL,
+  `date_event` varchar(255) DEFAULT NULL,
+  `heure_event` varchar(255) DEFAULT NULL,
   `prix_event` int(11) DEFAULT NULL,
   `salle_event` varchar(255) DEFAULT NULL,
   `user_name_event` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_event`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `evenement`
+--
+
+INSERT INTO `evenement` (`id_event`, `type_event`, `description_event`, `image_event`, `titre_event`, `date_event`, `heure_event`, `prix_event`, `salle_event`, `user_name_event`) VALUES
+(5, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(2, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 2, 'test2', 'test2'),
+(3, 'i m a god', 'test2', 'test2', 'test2', 'test2', 'test2', 2, 'test2', 'test2'),
+(4, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(6, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(7, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(8, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(9, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(10, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(11, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(12, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(13, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(14, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(15, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(16, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(17, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(18, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(19, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(20, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(21, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(22, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(23, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(24, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(25, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
+(26, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979');
 
 -- --------------------------------------------------------
 
@@ -85,8 +116,8 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `id_reservation` int(11) NOT NULL AUTO_INCREMENT,
   `id_salle` int(11) DEFAULT NULL,
   `id_evenement` int(11) DEFAULT NULL,
-  `date_debut` date DEFAULT NULL,
-  `date_fin` date DEFAULT NULL,
+  `date_debut` varchar(255) DEFAULT NULL,
+  `date_fin` varchar(255) DEFAULT NULL,
   `etat` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
@@ -94,22 +125,28 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `image_reservation` varchar(255) DEFAULT NULL,
   `titre_reservation` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_reservation`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
--- Table structure for table `salle`
+-- Dumping data for table `reservation`
 --
 
-DROP TABLE IF EXISTS `salle`;
-CREATE TABLE IF NOT EXISTS `salle` (
-  `id_salle` int(11) NOT NULL AUTO_INCREMENT,
-  `num_salle` int(11) DEFAULT NULL,
-  `capacite_salle` int(11) DEFAULT NULL,
-  `type_salle` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_salle`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_evenement`, `date_debut`, `date_fin`, `etat`, `description`, `mail`, `tel`, `image_reservation`, `titre_reservation`) VALUES
+(1, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(2, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(3, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(4, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(5, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(6, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(7, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(8, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(9, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(10, 10, 10, 'test10', 'test10', 'test10', 'test10', 'test10', 10, 'test10', 'test10'),
+(11, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(12, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(13, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(14, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
+(15, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1');
 
 -- --------------------------------------------------------
 
@@ -143,7 +180,27 @@ CREATE TABLE IF NOT EXISTS `stand` (
   `date_debut_stand` varchar(255) NOT NULL,
   `date_fin_stand` varchar(255) NOT NULL,
   PRIMARY KEY (`id_stand`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stand`
+--
+
+INSERT INTO `stand` (`id_stand`, `titre_stand`, `proprietaire_stand`, `type_marchandise`, `date_debut_stand`, `date_fin_stand`) VALUES
+(12, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(3, 'titre12', 'titre12', 'titre12', 'titre12', 'titre12'),
+(4, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(11, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(6, 'yes', 'yes', 'yes', 'yes', 'yes'),
+(7, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(8, 'final', 'final', 'final', 'final', 'final'),
+(9, 'trash', 'trash', 'trash', 'trash', 'trash'),
+(10, 'feres', 'feres', 'feres', 'feres', 'feres'),
+(13, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(15, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(16, 'test1', 'test1', 'test1', 'test1', 'test1'),
+(17, 'plz', 'plz', 'plz', 'plz', 'plz'),
+(18, 'yassertrash', 'yassertrash', 'yassertrash', 'yassertrash', 'yassertrash');
 
 -- --------------------------------------------------------
 
@@ -165,7 +222,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   `photo_profil_user` varchar(255) DEFAULT NULL,
   `role_user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `login_user`, `mdp_user`, `mail_user`, `prenom_user`, `nom_user`, `cin_user`, `date_naissance_user`, `num_tel_user`, `photo_profil_user`, `role_user`) VALUES
+(7, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 97979, 'test97979', 979797, '25/25/25', 'test97979'),
+(2, 'test26', 'test26', 'test26', 'test26', 'test26', 26, 'test26', 26, '26/26/26', 'test26'),
+(4, 'test25', 'test25', 'test25', 'test25', 'test25', 25, 'test25', 25, '25/25/25', 'test25'),
+(5, 'i m a god', 'test25', 'test25', 'test25', 'test25', 25, 'test25', 25, '25/25/25', 'test25'),
+(6, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 97979, 'test97979', 979797, '25/25/25', 'test97979'),
+(35, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
+(34, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
+(31, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 1, 'test1', '1'),
+(30, 'test0', 'test0', 'test0', 'test0', 'test0', 0, 'test0', 0, 'test0', '0'),
+(32, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, 'test'),
+(33, 'Koussay', '123', 'koussay@koussay.kouusay', 'Koussay', 'Koussay', 123, '123/123/123', 123, 'Koussay', 'Member');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

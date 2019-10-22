@@ -22,11 +22,11 @@ import javafx.stage.Stage;
  *
  * @author Elyes
  */
-public class MainWindow extends Application {
+public class Login extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+        URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

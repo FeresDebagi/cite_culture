@@ -6,6 +6,7 @@
 package Entite;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -13,7 +14,8 @@ import java.sql.Date;
  */
 public class Stand {
     private int id_stand;
-    private String titre_stand,proprietaire_stand,type_marchandise,date_debut_stand,date_fin_stand;
+    private String titre_stand,proprietaire_stand,type_marchandise,date_fin_stand,date_debut_stand;
+
     
     
     //Constructors

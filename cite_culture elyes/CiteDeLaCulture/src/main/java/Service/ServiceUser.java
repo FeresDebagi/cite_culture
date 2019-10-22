@@ -103,4 +103,52 @@ public class ServiceUser {
       System.err.println(e.getMessage());
     }
     }
+    
+    public boolean checkUsername(String username) {
+        int i = 0;
+        try {
+            Statement stm = con.createStatement();
+            String req = "select count(id_user) from `user` where `login_user`='" + username + "'   ";
+            ResultSet resultSet = stm.executeQuery(req);
+            while (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public String getRole(String username) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT role_user FROM `user` WHERE  login_user='" + username + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("role_user");
+        }
+        return null;
+    }
+    
+    public boolean checkPassword(String password, String username) {
+        int i = 0;
+        try {
+            Statement stm = con.createStatement();
+            String req = "select count(id_user) from `user` where `login_user`='" + username + "' and mdp_user='" + password + "'";
+            ResultSet resultSet = stm.executeQuery(req);
+            if (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return i > 0;
+    }
+    
+    
 }
