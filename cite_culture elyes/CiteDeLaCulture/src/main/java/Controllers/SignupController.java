@@ -78,14 +78,14 @@ public class SignupController implements Initializable {
     
     
     @FXML
-    private void filechoose(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        File selected = fc.showOpenDialog(null);
-        filename.setText(selected.getName());
-        filepath.setText(selected.getAbsolutePath());
-        File fichier = new File(filepath.getText());
-        Image imag = new Image("file:" + filepath.getText());
-        image1.setImage(imag);
+    private void filechoose(ActionEvent event) {    //hedha el bouton eli bch takhtar bih taswira
+        FileChooser fc = new FileChooser();     //3ayetna lel class hedhi deja mawjouda
+        File selected = fc.showOpenDialog(null);    //hedhi bch n7ot les entete fou9 taswira
+        filename.setText(selected.getName());   //entete loula tekhou esm el fichier
+        filepath.setText(selected.getAbsolutePath());   //entete thenya tekhou esm el path
+        File fichier = new File(filepath.getText());    //hedhi useless ama khalitha fel tuto mawjouda xd
+        Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
+        image1.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
 
     }
 
