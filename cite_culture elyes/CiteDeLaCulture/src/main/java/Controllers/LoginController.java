@@ -89,7 +89,7 @@ public class LoginController implements Initializable {
                 } else {
                     switch (role) {
                         case "Member": {
-                            URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+                            URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
                             Parent root;
                             try {
                                 root = FXMLLoader.load(url);

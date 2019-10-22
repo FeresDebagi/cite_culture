@@ -21,7 +21,7 @@ import javafx.scene.control.Button;
  *
  * @author Elyes
  */
-public class Stand_ReservationController implements Initializable {
+public class Stand_ReservationMController implements Initializable {
 
     @FXML
     private Button tfStand;
@@ -29,8 +29,6 @@ public class Stand_ReservationController implements Initializable {
     private Button tfReservation;
     @FXML
     private Button tfout;
-    @FXML
-    private Button tfmodif;
 
     /**
      * Initializes the controller class.
@@ -42,7 +40,7 @@ public class Stand_ReservationController implements Initializable {
 
     @FXML
     private void Stand(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
+        URL url = new File("src/main/java/Views/AfficherStandM.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
         tfStand.getScene().setRoot(root);
@@ -51,7 +49,7 @@ public class Stand_ReservationController implements Initializable {
 
     @FXML
     private void Reservation(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AfficherReservation.fxml").toURI().toURL();
+        URL url = new File("src/main/java/Views/AfficherReservationM.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
         tfReservation.getScene().setRoot(root);
@@ -62,13 +60,6 @@ public class Stand_ReservationController implements Initializable {
         URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
-        tfout.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void modifUser(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AdminModifUser.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
         tfout.getScene().setRoot(root);
     }
     

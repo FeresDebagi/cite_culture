@@ -70,12 +70,12 @@ public class SingleService {
         }
         
         //Update in table user
-        User usr2= new User();
+        /*User usr2= new User();
         try {
             service.ModifierUser(5,"i m a god");
         } catch (SQLException ex) {
             System.out.println(ex);  
-        }
+        }*/
         
         //Read in table user
         System.out.println(list1);
