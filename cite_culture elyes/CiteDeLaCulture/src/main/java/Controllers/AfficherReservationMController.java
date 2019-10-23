@@ -109,6 +109,9 @@ public class AfficherReservationMController implements Initializable {
         
         
         
+        
+        
+        
          /*       URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         tfRetour.getScene().setRoot(root);*/

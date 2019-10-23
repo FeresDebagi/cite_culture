@@ -47,7 +47,7 @@ public class ModifierMemberController implements Initializable {
     @FXML
     private TextField tfnom_user;
     @FXML
-    private TextField tflogin_user;
+    private Label tflogin_user;
     @FXML
     private Label label_tapez;
     @FXML
@@ -67,6 +67,10 @@ public class ModifierMemberController implements Initializable {
     @FXML
     private ImageView image1;
 
+    void loginMM(String log) {
+        tflogin_user.setText(log);
+    }
+
     /**
      * Initializes the controller class.
      */
@@ -76,15 +80,20 @@ public class ModifierMemberController implements Initializable {
     }
 
     @FXML
-    private void aficherStand(ActionEvent event) throws IOException {
+    private void aficherStand(ActionEvent event) throws IOException, SQLException {
+        ServiceUser SU = new ServiceUser();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
+
+        Stand_ReservationController src = loader.getController();
+        src.login(tflogin_user.getText());
         
         
-        
-        
+        String filepath1 = SU.searchImage(tflogin_user.getText());
+        src.image(filepath1);
+
         /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
@@ -97,29 +106,20 @@ public class ModifierMemberController implements Initializable {
         User u = new User();
         try {
             String Member = tflogin_user.getText();
-            if (!(su.checkUserLogin(Member))) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur Login");
-                alert.setHeaderText(null);
-                alert.setContentText("Login Doesnt Exist!");
-                alert.show();
-                tflogin_user.clear();
-            } else {
-                u.setLogin_user(tflogin_user.getText());
-                u.setMdp_user(tfmdp_user.getText());
-                u.setMail_user(tfmail_user.getText());
-                u.setPrenom_user(tfprenom_user.getText());
-                u.setNom_user(tfnom_user.getText());
-                u.setDate_naissance_user(tfdate_naissance_user.getText());
-                u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
-                u.setPhoto_profil_user(filepath.getText());
-                u.setCin_user(Integer.valueOf(tfcin_user.getText()));
-            }
-            su.ModifierUser(u.getLogin_user(), u.getMdp_user(), u.getMail_user(),
+            u.setMdp_user(tfmdp_user.getText());
+            u.setMail_user(tfmail_user.getText());
+            u.setPrenom_user(tfprenom_user.getText());
+            u.setNom_user(tfnom_user.getText());
+            u.setDate_naissance_user(tfdate_naissance_user.getText());
+            u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
+            u.setPhoto_profil_user(filepath.getText());
+            u.setCin_user(Integer.valueOf(tfcin_user.getText()));
+
+            su.ModifierUser(Member, u.getMdp_user(), u.getMail_user(),
                     u.getPrenom_user(), u.getNom_user(), u.getDate_naissance_user(), u.getNum_tel_user(),
                     u.getPhoto_profil_user(), u.getCin_user());
         } catch (SQLException ex) {
-            Logger.getLogger(ModifierMemberController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModifierMemberMController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
             System.out.println("null pointer");
         }

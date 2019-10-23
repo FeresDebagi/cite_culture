@@ -83,7 +83,7 @@ public class ServiceUser {
         }
     }
 
-    public void ModifierUserRole(int id_user, String role_user) throws SQLException {
+    public void ModifierUserRolebyID(int id_user, String role_user) throws SQLException {
         try {
             String query = "update user set role_user = ? where id_user = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -98,6 +98,25 @@ public class ServiceUser {
             System.err.println(e.getMessage());
         }
     }
+    
+    public void ModifierUserRolebyLogin(String login, String role_user) throws SQLException {
+        try {
+            String query = "update user set role_user = ? where login_user = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, role_user);
+            preparedStmt.setString(2, login);
+
+            // execute the java preparedstatement
+            preparedStmt.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    
+    
+    
 
     public boolean checkUsername(String username) {
         int i = 0;
@@ -106,7 +125,7 @@ public class ServiceUser {
             String req = "select count(id_user) from `user` where `login_user`='" + username + "'   ";
             ResultSet resultSet = stm.executeQuery(req);
             while (resultSet.next()) {
-                i = resultSet.getInt(1);
+               i = resultSet.getInt(1);
             }
 
         } catch (SQLException ex) {
@@ -144,6 +163,18 @@ public class ServiceUser {
         ResultSet resultat = stm.executeQuery(req);
         if (resultat.next()) {
             return resultat.getString("role_user");
+        }
+        return null;
+    }
+    
+
+
+    public String searchImage(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT photo_profil_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("photo_profil_user");
         }
         return null;
     }
@@ -231,8 +262,6 @@ public class ServiceUser {
 
     }
 
-    
-
     public void modifierMdp(String text, String mail) {
         try {
 
@@ -264,5 +293,32 @@ public class ServiceUser {
             Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public List<User> readOneUser(String login_user) throws SQLException {
+        String req = "select * from `user` where `login_user` ='" + login_user + "'";
+        List<User> mylist = new ArrayList<User>();
+        ResultSet rs = ste.executeQuery(req);
+
+        while (rs.next()) {
+            User u = new User();
+            u.setId_user(rs.getInt(1));
+            u.setLogin_user(rs.getString(2));
+            u.setMdp_user(rs.getString(3));
+            u.setMail_user(rs.getString(4));
+            u.setPrenom_user(rs.getString(5));
+            u.setNom_user(rs.getString(6));
+            u.setCin_user(rs.getInt(7));
+            u.setDate_naissance_user(rs.getString(8));
+            u.setNum_tel_user(rs.getInt(9));
+            u.setPhoto_profil_user(rs.getString(10));
+            u.setRole_user(rs.getString(11));
+
+            mylist.add(u);
+        }
+
+        return mylist;
+    }
+    
+    
 
 }

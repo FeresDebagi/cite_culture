@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="Controllers.ModifierMemberMController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberMController">
    <children>
       <Button fx:id="tfRetour" layoutX="14.0" layoutY="382.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
       <TextField fx:id="tfmdp_user" layoutX="195.0" layoutY="123.0" promptText="password" />
@@ -24,7 +23,6 @@
          </font>
       </Label>
       <Separator layoutX="152.0" layoutY="64.0" prefHeight="0.0" prefWidth="384.0" />
-      <TextField fx:id="tflogin_user" layoutX="373.0" layoutY="35.0" promptText="login" />
       <Label fx:id="label_tapez" layoutX="374.0" layoutY="59.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
       <Button fx:id="modifierMember" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="modifier" textFill="#3a76a8">
          <font>
@@ -42,5 +40,6 @@
             <ImageView fx:id="image1" fitHeight="128.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </VBox>
+      <Label fx:id="tflogin_user" layoutX="441.0" layoutY="39.0" />
    </children>
 </AnchorPane>

@@ -61,6 +61,7 @@ public class LoginController implements Initializable {
         User u = new User();
         try {
             String role;
+            String filepath;
             if (tfuser.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur login");
@@ -101,6 +102,14 @@ public class LoginController implements Initializable {
                             try {
                                 root = loader.load();
                                 tfLogin.getScene().setRoot(root);
+
+                                Stand_ReservationMController src = loader.getController();
+                                src.login(tfuser.getText());
+                                
+                                
+                                filepath = SU.searchImage(tfuser.getText());
+                                src.image(filepath);
+
                             } catch (IOException ex) {
                                 System.out.println(ex.getMessage());
                             }
@@ -113,6 +122,16 @@ public class LoginController implements Initializable {
                             try {
                                 root = loader.load();
                                 tfLogin.getScene().setRoot(root);
+
+                                Stand_ReservationController src = loader.getController();
+                                src.login(tfuser.getText());
+                                
+                                
+                                filepath = SU.searchImage(tfuser.getText());
+                                src.image(filepath);
+
+                                
+
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                                 System.out.println(ex.getMessage());
@@ -155,8 +174,7 @@ public class LoginController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/ForgotPass.fxml"));
         Parent root = loader.load();
         tfpassforgot.getScene().setRoot(root);
-        
-        
+
         /*URL url = new File("src/main/java/Views/ForgotPass.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         tfsign.getScene().setRoot(root);*/

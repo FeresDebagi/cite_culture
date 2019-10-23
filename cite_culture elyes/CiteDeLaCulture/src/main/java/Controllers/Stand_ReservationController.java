@@ -15,6 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -33,12 +36,32 @@ public class Stand_ReservationController implements Initializable {
     private Button tfmodif;
     @FXML
     private Button tfmodifp;
+    @FXML
+    private Label tflogin;
+    @FXML
+    private ImageView tfphoto;
+    
+    void login (String log){
+        tflogin.setText(log);
+    }
+    
+    void image (String filepath){
+        Image imag = new Image("file:" + filepath);
+        tfphoto.setImage(imag);
+    }
+
+    
+    
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        
         // TODO
     }    
 
@@ -103,6 +126,8 @@ public class Stand_ReservationController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/ModifierMember.fxml"));
         Parent root = loader.load();
         tfmodifp.getScene().setRoot(root);
+        ModifierMemberController mm = loader.getController();
+        mm.loginMM(tflogin.getText());
         
         
         /*URL url = new File("src/main/java/Views/ModifierMember.fxml").toURI().toURL();
