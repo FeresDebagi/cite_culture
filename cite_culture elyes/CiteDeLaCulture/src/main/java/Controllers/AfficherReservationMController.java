@@ -101,9 +101,17 @@ public class AfficherReservationMController implements Initializable {
 
     @FXML
     private void Back(ActionEvent event) throws IOException {
-                URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Stand_ReservationM.fxml"));
+        Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
+        
+        
+        
+        
+         /*       URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfRetour.getScene().setRoot(root);*/
     }
     
 }

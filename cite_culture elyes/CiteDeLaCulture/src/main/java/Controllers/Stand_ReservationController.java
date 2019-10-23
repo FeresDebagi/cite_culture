@@ -44,42 +44,71 @@ public class Stand_ReservationController implements Initializable {
 
     @FXML
     private void Stand(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
+        Parent root = loader.load();
         tfStand.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfStand.getScene().setRoot(root);*/
         
     }
 
     @FXML
     private void Reservation(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AfficherReservation.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherReservation.fxml"));
+        Parent root = loader.load();
+        tfReservation.getScene().setRoot(root);
+        
+        
+        
+        /*URL url = new File("src/main/java/Views/AfficherReservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
-        tfReservation.getScene().setRoot(root);
+        tfReservation.getScene().setRoot(root);*/
     }
 
     @FXML
     private void tfout(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Login.fxml"));
+        Parent root = loader.load();
         tfout.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfout.getScene().setRoot(root);*/
     }
 
     @FXML
     private void modifUser(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AdminModifUser.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AdminModifUser.fxml"));
+        Parent root = loader.load();
         tfmodif.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/AdminModifUser.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfmodif.getScene().setRoot(root);*/
     }
 
     @FXML
     private void modifProfile(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/ModifierMember.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ModifierMember.fxml"));
+        Parent root = loader.load();
+        tfmodifp.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/ModifierMember.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
-        tfmodifp.getScene().setRoot(root);
+        tfmodifp.getScene().setRoot(root);*/
     }
     
 }

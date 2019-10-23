@@ -103,30 +103,57 @@ public class AfficherReservationController implements Initializable {
 
     @FXML
     private void GoToAdd(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AjouterReservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AjouterReservation.fxml"));
+        Parent root = loader.load();
         tfadd.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/AjouterReservation.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfadd.getScene().setRoot(root);*/
     }
 
     @FXML
     private void GoToEdit(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/ModifierReservation.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ModifierReservation.fxml"));
+        Parent root = loader.load();
+        tfedit.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/ModifierReservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        tfadd.getScene().setRoot(root);
+        tfadd.getScene().setRoot(root);*/
     }
 
     @FXML
     private void GoToDelete(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/SuprimerReservation.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/SuprimerReservation.fxml"));
+        Parent root = loader.load();
+        tfdel.getScene().setRoot(root);
+        
+        
+        
+        /*URL url = new File("src/main/java/Views/SuprimerReservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        tfadd.getScene().setRoot(root);
+        tfadd.getScene().setRoot(root);*/
     }
 
     @FXML
     private void Back(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+        Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
+        
+        
+        
+        
+        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfRetour.getScene().setRoot(root);*/
     }
     
 }

@@ -85,10 +85,16 @@ public class ModifierStandController implements Initializable {
 
     @FXML
     private void aficherStand(ActionEvent event) throws MalformedURLException, IOException {
-         URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
+        Parent root = loader.load();
+        tfRetour.getScene().setRoot(root);
+        
+        
+         /*URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         
-        tfRetour.getScene().setRoot(root);
+        tfRetour.getScene().setRoot(root);*/
     }
     
 }

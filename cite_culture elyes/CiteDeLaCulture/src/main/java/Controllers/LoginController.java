@@ -95,10 +95,11 @@ public class LoginController implements Initializable {
                 } else {
                     switch (role) {
                         case "Member": {
-                            URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(getClass().getResource("/Views/Stand_ReservationM.fxml"));
                             Parent root;
                             try {
-                                root = FXMLLoader.load(url);
+                                root = loader.load();
                                 tfLogin.getScene().setRoot(root);
                             } catch (IOException ex) {
                                 System.out.println(ex.getMessage());
@@ -106,10 +107,11 @@ public class LoginController implements Initializable {
                             break;
                         }
                         case "Admin": {
-                            URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
                             Parent root;
                             try {
-                                root = FXMLLoader.load(url);
+                                root = loader.load();
                                 tfLogin.getScene().setRoot(root);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
@@ -132,11 +134,15 @@ public class LoginController implements Initializable {
 
     @FXML
     private void Signup(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Signup.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Signup.fxml"));
+        Parent root = loader.load();
         tfsign.getScene().setRoot(root);
-    }
 
+        /*URL url = new File("src/main/java/Views/Signup.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfsign.getScene().setRoot(root);*/
+    }
 
     @FXML
     private void passforgot(MouseEvent event) {
@@ -145,8 +151,14 @@ public class LoginController implements Initializable {
 
     @FXML
     private void passForgot(MouseEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/ForgotPass.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ForgotPass.fxml"));
+        Parent root = loader.load();
+        tfpassforgot.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/ForgotPass.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        tfsign.getScene().setRoot(root);
+        tfsign.getScene().setRoot(root);*/
     }
 }

@@ -84,9 +84,17 @@ public class AdminModifUserController implements Initializable {
 
     @FXML
     private void Back(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+                Parent root = loader.load(); 
+                tfback.getScene().setRoot(root);
+
+        
+        
+        
+        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        tfback.getScene().setRoot(root);
+        tfback.getScene().setRoot(root);*/
     }
 
 }

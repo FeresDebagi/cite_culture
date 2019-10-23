@@ -120,9 +120,15 @@ public class SignupController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Login.fxml"));
+        Parent root = loader.load();
         tfretour.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfretour.getScene().setRoot(root);*/
     }
 
 }

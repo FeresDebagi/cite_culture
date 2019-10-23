@@ -109,34 +109,59 @@ public class AfficherStandController implements Initializable {
 
     @FXML
     private void GoToAdd(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/AjouterStand.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AjouterStand.fxml"));
+        Parent root = loader.load();
+        tfadd.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/AjouterStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
 
-        tfadd.getScene().setRoot(root);
+        tfadd.getScene().setRoot(root);*/
 
     }
 
     @FXML
     private void GoToEdit(ActionEvent event) throws MalformedURLException, IOException {
-        URL url = new File("src/main/java/Views/ModifierStand.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ModifierStand.fxml"));
+        Parent root = loader.load();
+        tfedit.getScene().setRoot(root);
+        
+        
+        
+        /*URL url = new File("src/main/java/Views/ModifierStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
 
-        tfedit.getScene().setRoot(root);
+        tfedit.getScene().setRoot(root);*/
     }
 
     @FXML
     private void GoToDelete(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/SuprimerStand.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/SuprimerStand.fxml"));
+        Parent root = loader.load();
+        tfdel.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/SuprimerStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
 
-        tfedit.getScene().setRoot(root);
+        tfdel.getScene().setRoot(root);*/
     }
 
     @FXML
     private void Back(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+        Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
+        
+        
+        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfRetour.getScene().setRoot(root);*/
     }
 
     @FXML

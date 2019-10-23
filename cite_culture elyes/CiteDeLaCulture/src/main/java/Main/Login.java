@@ -23,15 +23,22 @@ import javafx.stage.Stage;
  * @author Elyes
  */
 public class Login extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
+
+
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Main");
-        primaryStage.show();
+        primaryStage.show();*/
     }
 
     /**
@@ -40,5 +47,5 @@ public class Login extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
