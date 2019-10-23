@@ -10,8 +10,16 @@ import utils.DataSource;
 import Entite.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.springframework.boot.web.servlet.server.Session;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -36,7 +44,7 @@ public class ServiceUser {
         User per = null;
         while (res.next()) {
             per = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6),
-                     res.getInt(7), res.getString(8), res.getInt(9), res.getString(10), res.getString(11));
+                    res.getInt(7), res.getString(8), res.getInt(9), res.getString(10), res.getString(11));
             list.add(per);
         }
         return list;
@@ -153,6 +161,108 @@ public class ServiceUser {
             System.out.println(ex.getMessage());
         }
         return i > 0;
+    }
+
+    public boolean checkUserLogin(String name) {
+        int i = 0;
+        try {
+            Statement stm = con.createStatement();
+            String req = "select count(id_user) from `user` where `login_user`='" + name + "'   ";
+            ResultSet resultSet = stm.executeQuery(req);
+            while (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void ModifierUser(String login_user, String mdp_user, String mail_user,
+            String prenom_user, String nom_user, String date_naissance_user, int num_tel_user,
+            String photo_profil_user, int cin_user) throws SQLException {
+        {
+            String req = "update user set mdp_user = ? , mail_user=  ?, prenom_user = ? , nom_user = ? "
+                    + ",cin_user = ? ,date_naissance_user = ? ,num_tel_user = ? ,photo_profil_user = ? "
+                    + "where login_user = ? ";
+
+            try {
+                PreparedStatement ps = con.prepareStatement(req);
+
+                ps.setString(1, mdp_user);
+                ps.setString(2, mail_user);
+                ps.setString(3, prenom_user);
+                ps.setString(4, nom_user);
+                ps.setInt(5, cin_user);
+                ps.setString(6, date_naissance_user);
+                ps.setInt(7, num_tel_user);
+                ps.setString(8, photo_profil_user);
+                ps.setString(9, login_user);
+                ps.execute();
+                System.out.println("User updated");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public boolean checkEmail(String email) {
+        int i = 0;
+        try {
+            System.out.println("Check");
+            Statement stm = con.createStatement();
+            String req = "select count(id) from `user` where `mail_user`='" + email + "' ";
+            ResultSet resultSet = stm.executeQuery(req);
+            while (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    
+
+    public void modifierMdp(String text, String mail) {
+        try {
+
+            System.out.println("connexion");
+
+            String req = "update `user` set `mdp_user`=? where `mail_user`=?  ";
+
+            PreparedStatement pstm = con.prepareStatement(req);
+
+            pstm.setString(1, text);
+            pstm.setString(2, mail);
+            pstm.executeUpdate();
+            System.out.println(" updated!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void ResetPass(String mail, String button) {
+        try {
+
+            String updateQuerry = "UPDATE `user` SET `mdp_user` = ? WHERE mail_user= '" + mail + "'";
+            PreparedStatement pstm = con.prepareStatement(updateQuerry);
+
+            pstm.setString(1, button);
+            pstm.executeUpdate();
+            System.out.println(" updated!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -31,6 +31,8 @@ public class Stand_ReservationController implements Initializable {
     private Button tfout;
     @FXML
     private Button tfmodif;
+    @FXML
+    private Button tfmodifp;
 
     /**
      * Initializes the controller class.
@@ -69,7 +71,15 @@ public class Stand_ReservationController implements Initializable {
     private void modifUser(ActionEvent event) throws IOException {
         URL url = new File("src/main/java/Views/AdminModifUser.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        tfout.getScene().setRoot(root);
+        tfmodif.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void modifProfile(ActionEvent event) throws IOException {
+        URL url = new File("src/main/java/Views/ModifierMember.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        
+        tfmodifp.getScene().setRoot(root);
     }
     
 }

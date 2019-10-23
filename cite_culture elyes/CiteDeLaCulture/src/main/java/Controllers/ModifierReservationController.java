@@ -22,6 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -58,8 +61,15 @@ public class ModifierReservationController implements Initializable {
     private TextField tftel;
     @FXML
     private TextField tftitre_reservation;
-    @FXML
     private TextField tfimage_reservation;
+    @FXML
+    private Button filechose;
+    @FXML
+    private Label filename;
+    @FXML
+    private Label filepath;
+    @FXML
+    private ImageView image1;
 
     /**
      * Initializes the controller class.
@@ -90,7 +100,7 @@ public class ModifierReservationController implements Initializable {
         r.setMail(tfmail.getText());
         r.setTel(Integer.valueOf(tftel.getText()));
         r.setTitre_reservation(tftitre_reservation.getText());
-        r.setImage_reservation(tfimage_reservation.getText());
+        r.setImage_reservation(filepath.getText());
         
         ServiceReservation sr = new ServiceReservation();
         try {
@@ -100,6 +110,17 @@ public class ModifierReservationController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ModifierReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void filechoose(ActionEvent event) {
+        FileChooser fc = new FileChooser();     
+        File selected = fc.showOpenDialog(null);    
+        filename.setText(selected.getName());   
+        filepath.setText(selected.getAbsolutePath());   
+        File fichier = new File(filepath.getText());    
+        Image imag = new Image("file:" + filepath.getText());   
+        image1.setImage(imag);  
     }
     
 }

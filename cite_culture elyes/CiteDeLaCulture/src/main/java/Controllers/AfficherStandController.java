@@ -9,7 +9,6 @@ import Entite.Stand;
 import Controllers.AjouterStandController;
 import Service.ServiceStand;
 import ch.qos.logback.core.db.dialect.DBUtil;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,6 +40,8 @@ import java.net.MalformedURLException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -49,6 +50,7 @@ import javafx.stage.Stage;
  * @author Elyes
  */
 public class AfficherStandController implements Initializable {
+
     private Statement ste;
 
     @FXML
@@ -65,8 +67,8 @@ public class AfficherStandController implements Initializable {
     private TableColumn<Stand, String> tfdate_fin_stand;
     @FXML
     private TableView<Stand> tftableStand;
-    
-    private ObservableList<Stand>data = FXCollections.observableArrayList();
+
+    private ObservableList<Stand> data = FXCollections.observableArrayList();
     List<Stand> st = new ArrayList<>();
     @FXML
     private Button tfadd;
@@ -76,8 +78,11 @@ public class AfficherStandController implements Initializable {
     private Button tfdel;
     @FXML
     private Button tfRetour;
-          
-    
+    @FXML
+    private TextField tfidsearch;
+    @FXML
+    private Button tfsearch;
+
     /**
      * Initializes the controller class.
      */
@@ -85,8 +90,8 @@ public class AfficherStandController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceStand sp = new ServiceStand();
-        try{
-            st=sp.readAllStand();
+        try {
+            st = sp.readAllStand();
             data.addAll(st);
             tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
             tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
@@ -95,27 +100,27 @@ public class AfficherStandController implements Initializable {
             tfdate_debut_stand.setCellValueFactory(new PropertyValueFactory<>("date_debut_stand"));
             tfdate_fin_stand.setCellValueFactory(new PropertyValueFactory<>("date_fin_stand"));
             tftableStand.setItems(data);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AfficherStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-    }    
+
+    }
 
     @FXML
     private void GoToAdd(ActionEvent event) throws IOException {
         URL url = new File("src/main/java/Views/AjouterStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        
+
         tfadd.getScene().setRoot(root);
-        
+
     }
 
     @FXML
     private void GoToEdit(ActionEvent event) throws MalformedURLException, IOException {
         URL url = new File("src/main/java/Views/ModifierStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        
+
         tfedit.getScene().setRoot(root);
     }
 
@@ -123,7 +128,7 @@ public class AfficherStandController implements Initializable {
     private void GoToDelete(ActionEvent event) throws IOException {
         URL url = new File("src/main/java/Views/SuprimerStand.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        
+
         tfedit.getScene().setRoot(root);
     }
 
@@ -132,6 +137,38 @@ public class AfficherStandController implements Initializable {
         URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         tfRetour.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void search(ActionEvent event) {
+        ServiceStand SS = new ServiceStand();
+        Stand s = new Stand();
+        try {
+            String idstand;
+            idstand = tfidsearch.getText();
+            if (!(SS.checkUserId(Integer.valueOf(tfidsearch.getText())))) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur id");
+                alert.setHeaderText(null);
+                alert.setContentText("Id Not Found!");
+                alert.show();
+                tfidsearch.clear();
+            } else {
+                st = SS.readOneStand(Integer.valueOf(tfidsearch.getText()));
+                data.addAll(st);
+                tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
+                tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
+                tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
+                tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
+                tfdate_debut_stand.setCellValueFactory(new PropertyValueFactory<>("date_debut_stand"));
+                tfdate_fin_stand.setCellValueFactory(new PropertyValueFactory<>("date_fin_stand"));
+                tftableStand.setItems(data);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficherStandController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException ex) {
+            System.out.println("null pointer");
+        }
     }
 
 }

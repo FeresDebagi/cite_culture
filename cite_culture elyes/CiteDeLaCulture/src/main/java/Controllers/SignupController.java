@@ -75,8 +75,7 @@ public class SignupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    
+
     @FXML
     private void filechoose(ActionEvent event) {    //hedha el bouton eli bch takhtar bih taswira
         FileChooser fc = new FileChooser();     //3ayetna lel class hedhi deja mawjouda
@@ -86,33 +85,36 @@ public class SignupController implements Initializable {
         File fichier = new File(filepath.getText());    //hedhi useless ama khalitha fel tuto mawjouda xd
         Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
         image1.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
-
     }
 
     @FXML
     private void ajouterUser(ActionEvent event) {
-        User u = new User();
-
-
-        u.setLogin_user(tflogin_user.getText());
-        u.setMdp_user(tfmdp_user.getText());
-        u.setMail_user(tfmail_user.getText());
-        u.setPrenom_user(tfprenom_user.getText());
-        u.setNom_user(tfnom_user.getText());
-        u.setCin_user(Integer.valueOf(tfcin_user.getText()));
-        u.setDate_naissance_user(tfdate_naissance_user.getText());
-        u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
-        u.setRole_user("Member");
-
-
-        u.setPhoto_profil_user(filepath.getText());
-        
-
         ServiceUser su = new ServiceUser();
+        User u = new User();
         try {
+            String login = tflogin_user.getText();
+            if (su.checkUserLogin(login)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Login Exists!");
+                alert.show();
+                tflogin_user.clear();
+            } else {
+                u.setLogin_user(tflogin_user.getText());
+                u.setMdp_user(tfmdp_user.getText());
+                u.setMail_user(tfmail_user.getText());
+                u.setPrenom_user(tfprenom_user.getText());
+                u.setNom_user(tfnom_user.getText());
+                u.setCin_user(Integer.valueOf(tfcin_user.getText()));
+                u.setDate_naissance_user(tfdate_naissance_user.getText());
+                u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
+                u.setRole_user("Member");
+                u.setPhoto_profil_user(filepath.getText());
+            }
             su.ajouterUser(u);
         } catch (SQLException ex) {
-            Logger.getLogger(AjouterStandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -122,7 +124,5 @@ public class SignupController implements Initializable {
         Parent root = FXMLLoader.load(url);
         tfretour.getScene().setRoot(root);
     }
-
-    
 
 }

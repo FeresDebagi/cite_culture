@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterStandController">
+    
+    <children>
+      <Button layoutX="305.0" layoutY="370.0" mnemonicParsing="false" onAction="#ajouterStand" text="Ajouter" />
+      <TextField fx:id="tfproprietaire_stand" layoutX="357.0" layoutY="154.0" promptText="proprietaire" />
+      <TextField fx:id="tftype_marchandise" layoutX="357.0" layoutY="193.0" promptText="type marchandise" />
+      <TextField fx:id="tfdate_debut_stand" layoutX="357.0" layoutY="235.0" promptText="date debut" />
+      <TextField fx:id="tfdate_fin_stand" layoutX="357.0" layoutY="274.0" promptText="date fin" />
+      <TextField fx:id="tftitre_stand" layoutX="357.0" layoutY="112.0" promptText="titre" />
+      <Label layoutX="218.0" layoutY="116.0" text="titre" />
+      <Label layoutX="205.0" layoutY="154.0" text="proprietaire" />
+      <Label layoutX="205.0" layoutY="193.0" text="type marchandise" />
+      <Label layoutX="205.0" layoutY="235.0" text="date debut" />
+      <Label layoutX="209.0" layoutY="278.0" text="date fin" />
+      <Button fx:id="tfRetour" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
+      <Label layoutX="176.0" layoutY="36.0" text="Ajouter Stand" textFill="#66a6de">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="162.0" layoutY="74.0" prefHeight="0.0" prefWidth="384.0" />
+   </children>
+    
+</AnchorPane>

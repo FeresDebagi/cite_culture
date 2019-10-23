@@ -19,10 +19,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import static org.apache.maven.wagon.PathUtils.password;
 
 /**
@@ -40,13 +44,15 @@ public class LoginController implements Initializable {
     private Button tfLogin;
     @FXML
     private Button tfsign;
+    @FXML
+    private Hyperlink tfpassforgot;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
     @FXML
@@ -59,14 +65,14 @@ public class LoginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur login");
                 alert.setHeaderText(null);
-                alert.setContentText("username invalide!");
+                alert.setContentText("Enter a Login!");
                 alert.show();
                 tfuser.clear();
             } else if (!(SU.checkUsername(tfuser.getText()))) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur login");
                 alert.setHeaderText(null);
-                alert.setContentText("username introuvable!");
+                alert.setContentText("Login not found!");
                 alert.show();
                 tfuser.clear();
             } else {
@@ -76,14 +82,14 @@ public class LoginController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erreur login");
                     alert.setHeaderText(null);
-                    alert.setContentText("password incorrect!");
+                    alert.setContentText("Wrong Password!");
                     alert.show();
                     tfpass.clear();
-                } else if (!role.equals("1") && !SU.checkPassword((tfpass.getText()), tfuser.getText())) {
+                } else if (!role.equals("Member") && !SU.checkPassword((tfpass.getText()), tfuser.getText())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erreur login");
                     alert.setHeaderText(null);
-                    alert.setContentText("password incorrect!");
+                    alert.setContentText("Wrong Password!");
                     alert.show();
                     tfpass.clear();
                 } else {
@@ -111,7 +117,8 @@ public class LoginController implements Initializable {
                             }
                             break;
                         }
-                        default: break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -120,6 +127,7 @@ public class LoginController implements Initializable {
         } catch (NullPointerException ex) {
             System.out.println("null pointer");
         }
+
     }
 
     @FXML
@@ -128,5 +136,17 @@ public class LoginController implements Initializable {
         Parent root = FXMLLoader.load(url);
         tfsign.getScene().setRoot(root);
     }
-}
 
+
+    @FXML
+    private void passforgot(MouseEvent event) {
+        //tfpassforgot.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT));
+    }
+
+    @FXML
+    private void passForgot(MouseEvent event) throws IOException {
+        URL url = new File("src/main/java/Views/ForgotPass.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        tfsign.getScene().setRoot(root);
+    }
+}
