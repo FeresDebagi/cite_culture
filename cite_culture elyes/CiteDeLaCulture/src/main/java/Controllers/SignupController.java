@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,8 +55,6 @@ public class SignupController implements Initializable {
     @FXML
     private TextField tfcin_user;
     @FXML
-    private TextField tfdate_naissance_user;
-    @FXML
     private TextField tfnum_tel_user;
     @FXML
     private ImageView image1;
@@ -69,6 +68,8 @@ public class SignupController implements Initializable {
     private Label filepath;
     @FXML
     private Button filechose;
+    @FXML
+    private DatePicker tfdate_naissance_user1;
 
     /**
      * Initializes the controller class.
@@ -128,6 +129,12 @@ public class SignupController implements Initializable {
                 alert.setContentText("Password too Short.");
                 alert.show();
                 tfmdp_user.clear();
+            } else if (tfdate_naissance_user1.getValue().toString().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erreur inscription");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
+                alert.show();
             } else if (phone.length() < 7) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -142,7 +149,9 @@ public class SignupController implements Initializable {
                 u.setPrenom_user(tfprenom_user.getText());
                 u.setNom_user(tfnom_user.getText());
                 u.setCin_user(Integer.valueOf(tfcin_user.getText()));
-                u.setDate_naissance_user(tfdate_naissance_user.getText());
+                u.setDate_naissance_user(tfdate_naissance_user1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                
+                
                 u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
                 u.setRole_user("Member");
                 u.setPhoto_profil_user(filepath.getText());

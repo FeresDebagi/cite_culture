@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -54,8 +56,6 @@ public class ModifierMemberController implements Initializable {
     @FXML
     private Label id;
     @FXML
-    private TextField tfdate_naissance_user;
-    @FXML
     private TextField tfnum_tel_user;
     @FXML
     private Button filechose;
@@ -69,6 +69,8 @@ public class ModifierMemberController implements Initializable {
     private Button tfMain;
     @FXML
     private Label tftest;
+    @FXML
+    private DatePicker tfdate_naissance_user1;
 
     void loginMM(String log) {
         tflogin_user.setText(log);
@@ -98,11 +100,11 @@ public class ModifierMemberController implements Initializable {
         tfcin_user.setText(name);
     }
 
-    void bdayMM(String log) throws SQLException {
+    /*void bdayMM(String log) throws SQLException { //check later
         ServiceUser su = new ServiceUser();
         String name = su.SearchDateOfBirth(log);
-        tfdate_naissance_user.setText(name);
-    }
+        tfdate_naissance_user1.setValue();
+    }*/
 
     void telMM(String log) throws SQLException {
         ServiceUser su = new ServiceUser();
@@ -156,6 +158,12 @@ public class ModifierMemberController implements Initializable {
                 alert.setContentText("Password too Short.");
                 alert.show();
                 tfmdp_user.clear();
+            }else if (tfdate_naissance_user1.getValue().toString().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erreur inscription");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
+                alert.show();
             } else if (phone.length() < 7) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -169,7 +177,7 @@ public class ModifierMemberController implements Initializable {
                 u.setMail_user(tfmail_user.getText());
                 u.setPrenom_user(tfprenom_user.getText());
                 u.setNom_user(tfnom_user.getText());
-                u.setDate_naissance_user(tfdate_naissance_user.getText());
+                u.setDate_naissance_user(tfdate_naissance_user1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
                 u.setPhoto_profil_user(filepath.getText());
                 u.setCin_user(Integer.valueOf(tfcin_user.getText()));

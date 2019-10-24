@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -40,7 +41,6 @@
             </Label>
             <Separator layoutX="34.0" layoutY="254.0" prefHeight="0.0" prefWidth="384.0" />
             <Label layoutX="36.0" layoutY="290.0" text="Birthdate" />
-            <TextField fx:id="tfdate_naissance_user" layoutX="127.0" layoutY="286.0" promptText="dd/mm/yyyy" />
             <Label layoutX="52.0" layoutY="343.0" text="Cin" />
             <TextField fx:id="tfcin_user" layoutX="127.0" layoutY="339.0" promptText="Cin" />
             <Label layoutX="22.0" layoutY="393.0" text="Phone number" />
@@ -48,6 +48,7 @@
             <Label layoutX="389.0" layoutY="269.0" text="Profile picture" />
             <ImageView fx:id="image1" fitHeight="128.0" fitWidth="147.0" layoutX="364.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="filechose" layoutX="363.0" layoutY="423.0" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Import" />
+            <DatePicker fx:id="tfdate_naissance_user1" layoutX="127.0" layoutY="286.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-m-dd" />
          </children>
       </Pane>
    </children>

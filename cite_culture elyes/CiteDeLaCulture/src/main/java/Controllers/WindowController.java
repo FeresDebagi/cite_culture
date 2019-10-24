@@ -86,7 +86,7 @@ public class WindowController implements Initializable {
         mm.mailMM(tflogin.getText());
         mm.prenomMM(tflogin.getText());
         mm.cinMM(tflogin.getText());
-        mm.bdayMM(tflogin.getText());
+        //mm.bdayMM(tflogin.getText());
         mm.telMM(tflogin.getText());
         mm.nomMM(tflogin.getText());
         mm.imageMM(tflogin.getText());
