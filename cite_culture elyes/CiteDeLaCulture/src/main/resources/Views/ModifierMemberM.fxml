@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberMController">
    <children>
-      <Button fx:id="tfRetour" layoutX="14.0" layoutY="382.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
+      <Button fx:id="tfRetour" layoutX="14.0" layoutY="382.0" mnemonicParsing="false" onAction="#aficherStand" text="Back" />
       <TextField fx:id="tfmdp_user" layoutX="195.0" layoutY="123.0" promptText="password" />
       <TextField fx:id="tfmail_user" layoutX="195.0" layoutY="157.0" promptText="mail" />
       <TextField fx:id="tfprenom_user" layoutX="195.0" layoutY="194.0" promptText="Prename" />
@@ -24,7 +24,7 @@
       </Label>
       <Separator layoutX="152.0" layoutY="64.0" prefHeight="0.0" prefWidth="384.0" />
       <Label fx:id="label_tapez" layoutX="374.0" layoutY="59.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
-      <Button fx:id="modifierMember" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="modifier" textFill="#3a76a8">
+      <Button fx:id="modifierMember" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="Edit" textFill="#3a76a8">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

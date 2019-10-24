@@ -8,11 +8,13 @@ package Service;
 import java.sql.*;
 import utils.DataSource;
 import Entite.User;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import org.springframework.boot.web.servlet.server.Session;
 import javax.mail.*;
@@ -20,6 +22,7 @@ import javax.mail.internet.AddressException;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.ParseException;
 
 /**
  *
@@ -48,6 +51,76 @@ public class ServiceUser {
             list.add(per);
         }
         return list;
+    }
+
+    public String SearchPassword(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT mdp_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("mdp_user");
+        }
+        return null;
+    }
+
+    public String SearchMail(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT mail_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("mail_user");
+        }
+        return null;
+    }
+
+    public String SearchPrename(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT prenom_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("prenom_user");
+        }
+        return null;
+    }
+
+    public String SearchCin(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT cin_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("cin_user");
+        }
+        return null;
+    }
+
+    public String SearchDateOfBirth(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT date_naissance_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("date_naissance_user");
+        }
+        return null;
+    }
+
+    public String SearchPhoneNumber(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT num_tel_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("num_tel_user");
+        }
+        return null;
+    }
+
+    public String SearchName(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT nom_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("nom_user");
+        }
+        return null;
     }
 
     //2eme cas:
@@ -98,7 +171,7 @@ public class ServiceUser {
             System.err.println(e.getMessage());
         }
     }
-    
+
     public void ModifierUserRolebyLogin(String login, String role_user) throws SQLException {
         try {
             String query = "update user set role_user = ? where login_user = ?";
@@ -113,10 +186,6 @@ public class ServiceUser {
             System.err.println(e.getMessage());
         }
     }
-    
-    
-    
-    
 
     public boolean checkUsername(String username) {
         int i = 0;
@@ -125,7 +194,7 @@ public class ServiceUser {
             String req = "select count(id_user) from `user` where `login_user`='" + username + "'   ";
             ResultSet resultSet = stm.executeQuery(req);
             while (resultSet.next()) {
-               i = resultSet.getInt(1);
+                i = resultSet.getInt(1);
             }
 
         } catch (SQLException ex) {
@@ -166,8 +235,6 @@ public class ServiceUser {
         }
         return null;
     }
-    
-
 
     public String searchImage(String login) throws SQLException {
         Statement stm = con.createStatement();
@@ -199,6 +266,25 @@ public class ServiceUser {
         try {
             Statement stm = con.createStatement();
             String req = "select count(id_user) from `user` where `login_user`='" + name + "'   ";
+            ResultSet resultSet = stm.executeQuery(req);
+            while (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkMail(String name) {
+        int i = 0;
+        try {
+            Statement stm = con.createStatement();
+            String req = "select count(id_user) from `user` where `mail_user`='" + name + "'   ";
             ResultSet resultSet = stm.executeQuery(req);
             while (resultSet.next()) {
                 i = resultSet.getInt(1);
@@ -293,7 +379,7 @@ public class ServiceUser {
             Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public List<User> readOneUser(String login_user) throws SQLException {
         String req = "select * from `user` where `login_user` ='" + login_user + "'";
         List<User> mylist = new ArrayList<User>();
@@ -318,7 +404,20 @@ public class ServiceUser {
 
         return mylist;
     }
-    
+
+    public static boolean isValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                + "[a-zA-Z0-9_+&*-]+)*@"
+                + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$"; //regular expression provided in OWASP Validation Regex repository.
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null) {
+            return false;
+        }
+        return pat.matcher(email).matches();
+    }
+
     
 
 }

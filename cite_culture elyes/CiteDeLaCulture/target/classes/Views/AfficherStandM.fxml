@@ -12,20 +12,20 @@
    <children>
       <TableView fx:id="tftableStand" layoutY="62.0" prefHeight="446.0" prefWidth="678.0">
         <columns>
-          <TableColumn fx:id="tfid_stand" prefWidth="75.0" text="id stand" />
-          <TableColumn fx:id="tftitre_stand" prefWidth="75.0" text="titre stand" />
-            <TableColumn fx:id="tfproprietaire_stand" prefWidth="132.0" text="proprietaire stand" />
-            <TableColumn fx:id="tftype_marchandise" prefWidth="126.0" text="type marchandise" />
-            <TableColumn fx:id="tfdate_debut_stand" prefWidth="145.0" text="date debut stand" />
-            <TableColumn fx:id="tfdate_fin_stand" prefWidth="124.0" text="date fin stand" />
+          <TableColumn fx:id="tfid_stand" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="tftitre_stand" prefWidth="75.0" text="Title" />
+            <TableColumn fx:id="tfproprietaire_stand" prefWidth="132.0" text="Property Stand" />
+            <TableColumn fx:id="tftype_marchandise" prefWidth="126.0" text="Marchandise" />
+            <TableColumn fx:id="tfdate_debut_stand" prefWidth="145.0" text="Starting Stand" />
+            <TableColumn fx:id="tfdate_fin_stand" prefWidth="124.0" text="Ending stand" />
         </columns>
       </TableView>
-      <Label layoutX="275.0" layoutY="21.0" text="Afficher Stand" textFill="#66a6de">
+      <Label layoutX="275.0" layoutY="21.0" text="Stand" textFill="#66a6de">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Separator layoutX="2.0" layoutY="49.0" prefHeight="4.0" prefWidth="671.0" />
-      <Button fx:id="tfRetour" layoutX="20.0" layoutY="512.0" mnemonicParsing="false" onAction="#Back" text="Retour" />
+      <Button fx:id="tfRetour" layoutX="20.0" layoutY="512.0" mnemonicParsing="false" onAction="#Back" text="Back" />
    </children>
 </AnchorPane>

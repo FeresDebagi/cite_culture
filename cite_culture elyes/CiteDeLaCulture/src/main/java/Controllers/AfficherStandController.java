@@ -34,6 +34,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utils.DataSource;
 import Service.ServiceStand;
+import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -41,7 +42,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -68,8 +72,6 @@ public class AfficherStandController implements Initializable {
     @FXML
     private TableView<Stand> tftableStand;
 
-    private ObservableList<Stand> data = FXCollections.observableArrayList();
-    List<Stand> st = new ArrayList<>();
     @FXML
     private Button tfadd;
     @FXML
@@ -82,11 +84,30 @@ public class AfficherStandController implements Initializable {
     private TextField tfidsearch;
     @FXML
     private Button tfsearch;
+    @FXML
+    private Label tflogin;
+    @FXML
+    private ImageView tfphoto;
+
+    private ObservableList<Stand> data = FXCollections.observableArrayList();
+    List<Stand> st = new ArrayList<>();
+    
+    //private ObservableList<Stand> standlist;
+    //standlist = tftableStand.getSelectionModel().getSelectedItems();
+    
+
+    void login(String log) {
+        tflogin.setText(log);
+    }
+
+    void image(String filepath) {
+        Image imag = new Image("file:" + filepath);
+        tfphoto.setImage(imag);
+    }
 
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceStand sp = new ServiceStand();
@@ -104,6 +125,8 @@ public class AfficherStandController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AfficherStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
 
     }
 
@@ -113,12 +136,6 @@ public class AfficherStandController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/AjouterStand.fxml"));
         Parent root = loader.load();
         tfadd.getScene().setRoot(root);
-        
-        
-        /*URL url = new File("src/main/java/Views/AjouterStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-
-        tfadd.getScene().setRoot(root);*/
 
     }
 
@@ -128,13 +145,7 @@ public class AfficherStandController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/ModifierStand.fxml"));
         Parent root = loader.load();
         tfedit.getScene().setRoot(root);
-        
-        
-        
-        /*URL url = new File("src/main/java/Views/ModifierStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
 
-        tfedit.getScene().setRoot(root);*/
     }
 
     @FXML
@@ -143,25 +154,24 @@ public class AfficherStandController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/SuprimerStand.fxml"));
         Parent root = loader.load();
         tfdel.getScene().setRoot(root);
-        
-        
-        /*URL url = new File("src/main/java/Views/SuprimerStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
 
-        tfdel.getScene().setRoot(root);*/
     }
 
     @FXML
-    private void Back(ActionEvent event) throws IOException {
+    private void Back(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+        loader.setLocation(getClass().getResource("/Views/Window.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
-        
-        
-        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfRetour.getScene().setRoot(root);*/
+
+        ServiceUser SU = new ServiceUser();
+        WindowController wc = loader.getController();
+        wc.login(tflogin.getText());
+
+        String filepath;
+        filepath = SU.searchImage(tflogin.getText());
+        wc.image(filepath);
+
     }
 
     @FXML

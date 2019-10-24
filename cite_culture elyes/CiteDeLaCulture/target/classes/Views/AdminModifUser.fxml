@@ -31,5 +31,7 @@
         </columns>
       </TableView>
       <ImageView fx:id="tfphoto_profil_user" fitHeight="107.0" fitWidth="111.0" layoutX="114.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tflogin" layoutX="685.0" layoutY="298.0" visible="false" />
+      <ImageView fx:id="tfphoto" fitHeight="33.0" fitWidth="41.0" layoutX="658.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </AnchorPane>

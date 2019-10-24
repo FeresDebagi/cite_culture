@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -88,18 +90,51 @@ public class SignupController implements Initializable {
     }
 
     @FXML
-    private void ajouterUser(ActionEvent event) {
+    private void ajouterUser(ActionEvent event) throws IOException, ParseException {
         ServiceUser su = new ServiceUser();
         User u = new User();
         try {
             String login = tflogin_user.getText();
+            String mail = tfmail_user.getText();
+            String pass = tfmdp_user.getText();
+            String phone = tfnum_tel_user.getText();
+            Boolean valid = su.isValid(mail);
+
             if (su.checkUserLogin(login)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur Login");
+                alert.setTitle("Error");
                 alert.setHeaderText(null);
                 alert.setContentText("Login Exists!");
                 alert.show();
                 tflogin_user.clear();
+            } else if (valid == false) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter a valid Email");
+                alert.show();
+                tfmail_user.clear();
+            } else if (su.checkMail(mail)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("User with this email already exists");
+                alert.show();
+                tfmail_user.clear();
+            } else if (pass.length() < 5) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Password too Short.");
+                alert.show();
+                tfmdp_user.clear();
+            } else if (phone.length() < 7) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter a Valid Phone Number.");
+                alert.show();
+                tfnum_tel_user.clear();
             } else {
                 u.setLogin_user(tflogin_user.getText());
                 u.setMdp_user(tfmdp_user.getText());
@@ -111,6 +146,13 @@ public class SignupController implements Initializable {
                 u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
                 u.setRole_user("Member");
                 u.setPhoto_profil_user(filepath.getText());
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("User created");
+                alert.setHeaderText(null);
+                alert.setContentText("User created");
+                alert.show();
+
             }
             su.ajouterUser(u);
         } catch (SQLException ex) {
@@ -124,11 +166,7 @@ public class SignupController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/Login.fxml"));
         Parent root = loader.load();
         tfretour.getScene().setRoot(root);
-        
-        
-        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfretour.getScene().setRoot(root);*/
+
     }
 
 }

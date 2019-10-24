@@ -33,12 +33,7 @@ public class Login extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Main");
-        primaryStage.show();*/
+        
     }
 
     /**

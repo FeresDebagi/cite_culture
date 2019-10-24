@@ -19,6 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import Controllers.ForgotPassController;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import utils.DataSource;
 
@@ -38,6 +41,10 @@ public class ResetPassController implements Initializable {
     private Button tfReset;
     @FXML
     private Label tfemail;
+    @FXML
+    private Button tfback;
+    @FXML
+    private Button tflogin;
     
     
 
@@ -69,6 +76,26 @@ public class ResetPassController implements Initializable {
         }else{
             JOptionPane.showMessageDialog(null, "password do not match");
         }
+    }
+
+    @FXML
+    private void backlogin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ForgotPass.fxml"));
+        Parent root = loader.load();
+        tfback.getScene().setRoot(root);  
+        
+    }
+
+    @FXML
+    private void Gotologin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Login.fxml"));
+        Parent root = loader.load();
+        tflogin.getScene().setRoot(root);
+        
+        
+        
     }
 
     

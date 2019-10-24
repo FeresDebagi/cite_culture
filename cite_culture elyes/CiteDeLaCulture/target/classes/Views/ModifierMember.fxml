@@ -6,17 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberController">
    <children>
-      <Button fx:id="tfRetour" layoutX="14.0" layoutY="382.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
-      <TextField fx:id="tfmdp_user" layoutX="195.0" layoutY="123.0" promptText="password" />
-      <TextField fx:id="tfmail_user" layoutX="195.0" layoutY="157.0" promptText="mail" />
-      <TextField fx:id="tfprenom_user" layoutX="195.0" layoutY="194.0" promptText="Prename" />
-      <TextField fx:id="tfcin_user" layoutX="195.0" layoutY="232.0" promptText="cin" />
-      <TextField fx:id="tfnom_user" layoutX="391.0" layoutY="195.0" promptText="name" />
+      <Button fx:id="tfMain" layoutX="28.0" layoutY="505.0" mnemonicParsing="false" onAction="#Main" text="Back" />
       <Label layoutX="154.0" layoutY="34.0" text="Edit Profile" textFill="#66a6de">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -24,22 +20,40 @@
       </Label>
       <Separator layoutX="152.0" layoutY="64.0" prefHeight="0.0" prefWidth="384.0" />
       <Label fx:id="label_tapez" layoutX="374.0" layoutY="59.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
-      <Button fx:id="modifierMember" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="modifier" textFill="#3a76a8">
+      <Button fx:id="modifierMember" layoutX="398.0" layoutY="479.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="Save" textFill="#3a76a8">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <Label fx:id="id" layoutX="276.0" layoutY="76.0" prefHeight="17.0" prefWidth="95.0" text="Label" visible="false" />
-      <TextField fx:id="tfdate_naissance_user" layoutX="391.0" layoutY="123.0" promptText="Date of birth" />
-      <TextField fx:id="tfnum_tel_user" layoutX="391.0" layoutY="157.0" promptText="phone number" />
-      <Button fx:id="filechose" layoutX="391.0" layoutY="232.0" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Import" />
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="96.0" prefHeight="171.0" prefWidth="163.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="96.0" prefHeight="383.0" prefWidth="192.0" spacing="30.0">
          <children>
             <Label fx:id="filename" prefHeight="26.0" prefWidth="303.0" />
-            <Label fx:id="filepath" prefHeight="26.0" prefWidth="346.0" />
-            <ImageView fx:id="image1" fitHeight="128.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="filepath" prefHeight="26.0" prefWidth="346.0" visible="false" />
+            <Label text="Profile Picture" />
+            <ImageView fx:id="image1" fitHeight="121.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="filechose" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Change Picture" />
          </children>
       </VBox>
       <Label fx:id="tflogin_user" layoutX="439.0" layoutY="39.0" prefHeight="17.0" prefWidth="52.0" />
+      <Label fx:id="tftest" layoutX="228.0" layoutY="310.0" prefHeight="17.0" prefWidth="260.0" />
+      <Pane layoutX="276.0" layoutY="85.0" prefHeight="304.0" prefWidth="271.0">
+         <children>
+            <Label layoutX="24.0" layoutY="24.0" text="First Name" />
+            <TextField fx:id="tfnom_user" layoutX="108.0" layoutY="20.0" promptText="name" />
+            <Label layoutX="25.0" layoutY="67.0" text="Last Name" />
+            <TextField fx:id="tfprenom_user" layoutX="108.0" layoutY="63.0" promptText="Prename" />
+            <Label layoutX="28.0" layoutY="149.0" text="Password" />
+            <TextField fx:id="tfcin_user" layoutX="108.0" layoutY="185.0" promptText="cin" />
+            <TextField fx:id="tfmail_user" layoutX="108.0" layoutY="103.0" promptText="mail" />
+            <TextField fx:id="tfmdp_user" layoutX="108.0" layoutY="145.0" promptText="password" />
+            <Label layoutX="39.0" layoutY="107.0" text="Email" />
+            <Label layoutX="44.0" layoutY="189.0" text="Cin" />
+            <Label layoutX="27.0" layoutY="228.0" text="Birth Date" />
+            <TextField fx:id="tfdate_naissance_user" layoutX="108.0" layoutY="224.0" promptText="Date of birth" />
+            <Label layoutX="14.0" layoutY="268.0" text="Phone number" />
+            <TextField fx:id="tfnum_tel_user" layoutX="105.0" layoutY="261.0" promptText="phone number" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

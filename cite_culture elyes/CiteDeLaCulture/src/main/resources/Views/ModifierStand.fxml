@@ -9,21 +9,21 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierStandController">
    <children>
-      <Button fx:id="tfRetour" layoutX="21.0" layoutY="369.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
-      <TextField fx:id="tftitre_stand" layoutX="208.0" layoutY="152.0" promptText="titre stand" />
-      <TextField fx:id="tfproprietaire_stand" layoutX="208.0" layoutY="186.0" promptText="proprietaire stand" />
-      <TextField fx:id="tftype_marchandise" layoutX="208.0" layoutY="223.0" promptText="type marchandise" />
-      <TextField fx:id="tfdate_fin_stand" layoutX="208.0" layoutY="303.0" promptText="date fin stand" />
-      <TextField fx:id="tfdate_debut_stand" layoutX="208.0" layoutY="259.0" promptText="date debut stand" />
-      <Label layoutX="154.0" layoutY="34.0" text="Modifier Stand" textFill="#66a6de">
+      <Button fx:id="tfRetour" layoutX="21.0" layoutY="369.0" mnemonicParsing="false" onAction="#aficherStand" text="back" />
+      <TextField fx:id="tftitre_stand" layoutX="208.0" layoutY="152.0" promptText="Title" />
+      <TextField fx:id="tfproprietaire_stand" layoutX="208.0" layoutY="186.0" promptText="Properties" />
+      <TextField fx:id="tftype_marchandise" layoutX="208.0" layoutY="223.0" promptText="Marchandise" />
+      <TextField fx:id="tfdate_fin_stand" layoutX="208.0" layoutY="303.0" promptText="ending date" />
+      <TextField fx:id="tfdate_debut_stand" layoutX="208.0" layoutY="259.0" promptText="starting date" />
+      <Label layoutX="154.0" layoutY="34.0" text="Edit Stand" textFill="#66a6de">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Separator layoutX="152.0" layoutY="64.0" prefHeight="0.0" prefWidth="384.0" />
-      <TextField fx:id="tfid_stand" layoutX="373.0" layoutY="35.0" promptText="recherche" />
+      <TextField fx:id="tfid_stand" layoutX="373.0" layoutY="35.0" promptText="search" />
       <Label fx:id="label_tapez" layoutX="374.0" layoutY="59.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
-      <Button fx:id="modifierStand" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="modifier" textFill="#3a76a8">
+      <Button fx:id="modifierStand" layoutX="307.0" layoutY="394.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="edit" textFill="#3a76a8">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

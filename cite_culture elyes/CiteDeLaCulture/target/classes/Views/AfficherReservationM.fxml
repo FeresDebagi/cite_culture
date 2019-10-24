@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="739.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherReservationMController">
+<AnchorPane id="AnchorPane" prefHeight="739.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherReservationMController">
    <children>
-      <TableView fx:id="tftableStand" layoutY="64.0" prefHeight="617.0" prefWidth="842.0">
+      <TableView fx:id="tftableStand" layoutY="64.0" prefHeight="617.0" prefWidth="715.0">
         <columns>
-          <TableColumn fx:id="tfid_reservation" prefWidth="94.00003051757812" text="id reservation" />
-          <TableColumn fx:id="tfid_salle" prefWidth="64.99996948242188" text="id salle" />
-            <TableColumn fx:id="tfid_evenement" prefWidth="91.0" text="id evenement" />
-            <TableColumn fx:id="tfdate_debut" prefWidth="73.0" text="date debut" />
-            <TableColumn fx:id="tfdate_fin" minWidth="3.0" prefWidth="61.0" text="date fin" />
-            <TableColumn fx:id="tfetat" prefWidth="50.0" text="etat" />
-            <TableColumn fx:id="tfdescription" prefWidth="77.0" text="description" />
-            <TableColumn fx:id="tfmail" prefWidth="49.0" text="mail" />
-            <TableColumn fx:id="tftel" prefWidth="48.0" text="tel" />
-            <TableColumn fx:id="tfimage_reservation" prefWidth="117.0" text="image reservation" />
-            <TableColumn fx:id="tftitre_reservation" prefWidth="116.0" text="titre reservation" />
+          <TableColumn fx:id="tfid_reservation" prefWidth="42.0" text="Id" />
+          <TableColumn fx:id="tfid_salle" prefWidth="64.0" text="Room" />
+            <TableColumn fx:id="tfid_evenement" prefWidth="65.0" text="Event" />
+            <TableColumn fx:id="tfdate_debut" prefWidth="96.0" text="starting Date" />
+            <TableColumn fx:id="tfdate_fin" minWidth="3.0" prefWidth="93.0" text="Ending Date" />
+            <TableColumn fx:id="tfetat" prefWidth="62.0" text="Status" />
+            <TableColumn fx:id="tfdescription" prefWidth="81.0" text="description" />
+            <TableColumn fx:id="tfmail" prefWidth="46.0" text="mail" />
+            <TableColumn fx:id="tftel" prefWidth="52.0" text="Phone" />
+            <TableColumn fx:id="tfimage_reservation" prefWidth="74.0" text="Photo" />
+            <TableColumn fx:id="tftitre_reservation" prefWidth="42.0" text="Title" />
         </columns>
       </TableView>
       <Label layoutX="275.0" layoutY="21.0" text="Afficher Reservation" textFill="#66a6de">

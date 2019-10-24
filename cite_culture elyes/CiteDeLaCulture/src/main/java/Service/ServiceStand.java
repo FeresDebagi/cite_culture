@@ -164,5 +164,18 @@ public class ServiceStand {
 
         return mylist;
     }
+    
+    
+    public String searchImage(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT photo_profil_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("photo_profil_user");
+        }
+        return null;
+    }
+    
+    
 
 }

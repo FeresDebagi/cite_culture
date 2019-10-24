@@ -13,5 +13,7 @@
         <TextField fx:id="txtVerResetPass" layoutX="283.0" layoutY="205.0" />
         <Button fx:id="tfReset" layoutX="274.0" layoutY="298.0" mnemonicParsing="false" onAction="#ResetP" text="Reset" />
       <Label fx:id="tfemail" layoutX="269.0" layoutY="60.0" text="Label" />
+      <Button fx:id="tfback" layoutX="50.0" layoutY="355.0" mnemonicParsing="false" onAction="#backlogin" text="Back" />
+      <Button fx:id="tflogin" layoutX="506.0" layoutY="355.0" mnemonicParsing="false" onAction="#Gotologin" text="Login" />
     </children>
 </AnchorPane>

@@ -46,6 +46,8 @@ public class LoginController implements Initializable {
     private Button tfsign;
     @FXML
     private Hyperlink tfpassforgot;
+    @FXML
+    private Button tfExit;
 
     /**
      * Initializes the controller class.
@@ -117,21 +119,17 @@ public class LoginController implements Initializable {
                         }
                         case "Admin": {
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+                            loader.setLocation(getClass().getResource("/Views/Window.fxml"));
                             Parent root;
                             try {
                                 root = loader.load();
                                 tfLogin.getScene().setRoot(root);
-
-                                Stand_ReservationController src = loader.getController();
-                                src.login(tfuser.getText());
                                 
+                                WindowController wc = loader.getController();
+                                wc.login(tfuser.getText());
                                 
                                 filepath = SU.searchImage(tfuser.getText());
-                                src.image(filepath);
-
-                                
-
+                                wc.image(filepath);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                                 System.out.println(ex.getMessage());
@@ -151,16 +149,13 @@ public class LoginController implements Initializable {
 
     }
 
+    
     @FXML
     private void Signup(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/Signup.fxml"));
         Parent root = loader.load();
-        tfsign.getScene().setRoot(root);
-
-        /*URL url = new File("src/main/java/Views/Signup.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfsign.getScene().setRoot(root);*/
+        tfsign.getScene().setRoot(root);   
     }
 
     @FXML
@@ -174,9 +169,12 @@ public class LoginController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/ForgotPass.fxml"));
         Parent root = loader.load();
         tfpassforgot.getScene().setRoot(root);
+    
+    }
 
-        /*URL url = new File("src/main/java/Views/ForgotPass.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfsign.getScene().setRoot(root);*/
+    @FXML
+    private void GoToExit(ActionEvent event) {
+        
+        
     }
 }

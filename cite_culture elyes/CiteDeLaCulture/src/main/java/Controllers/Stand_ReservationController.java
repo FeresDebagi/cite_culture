@@ -88,10 +88,7 @@ public class Stand_ReservationController implements Initializable {
         
         
         
-        /*URL url = new File("src/main/java/Views/AfficherReservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        
-        tfReservation.getScene().setRoot(root);*/
+     
     }
 
     @FXML
@@ -102,9 +99,7 @@ public class Stand_ReservationController implements Initializable {
         tfout.getScene().setRoot(root);
         
         
-        /*URL url = new File("src/main/java/Views/Login.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfout.getScene().setRoot(root);*/
+      
     }
 
     @FXML
@@ -113,11 +108,6 @@ public class Stand_ReservationController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/AdminModifUser.fxml"));
         Parent root = loader.load();
         tfmodif.getScene().setRoot(root);
-        
-        
-        /*URL url = new File("src/main/java/Views/AdminModifUser.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfmodif.getScene().setRoot(root);*/
     }
 
     @FXML

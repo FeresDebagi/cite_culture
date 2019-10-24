@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -75,6 +76,21 @@ public class AdminModifUserController implements Initializable {
     List<User> st = new ArrayList<>();
     @FXML
     private Button tfsearchUser;
+    @FXML
+    private Label tflogin;
+    @FXML
+    private ImageView tfphoto;
+    
+    void login (String log){
+        tflogin.setText(log);
+    }
+    
+    void image (String filepath){
+        Image imag = new Image("file:" + filepath);
+        tfphoto.setImage(imag);
+    }
+    
+    
 
     /**
      * Initializes the controller class.
@@ -110,15 +126,22 @@ public class AdminModifUserController implements Initializable {
     }
 
     @FXML
-    private void Back(ActionEvent event) throws IOException {
+    private void Back(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
+        loader.setLocation(getClass().getResource("/Views/Window.fxml"));
         Parent root = loader.load();
         tfback.getScene().setRoot(root);
+        
+        ServiceUser SU = new ServiceUser();
+        WindowController wc = loader.getController();
+        wc.login(tflogin.getText());
 
-        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfback.getScene().setRoot(root);*/
+        String filepath;
+        filepath = SU.searchImage(tflogin.getText());
+        wc.image(filepath);
+        
+        
+
     }
 
     @FXML

@@ -34,7 +34,6 @@ import javafx.stage.FileChooser;
  */
 public class ModifierMemberController implements Initializable {
 
-    @FXML
     private Button tfRetour;
     @FXML
     private TextField tfmdp_user;
@@ -66,9 +65,63 @@ public class ModifierMemberController implements Initializable {
     private Label filepath;
     @FXML
     private ImageView image1;
+    @FXML
+    private Button tfMain;
+    @FXML
+    private Label tftest;
 
     void loginMM(String log) {
         tflogin_user.setText(log);
+    }
+
+    void passMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchPassword(log);
+        tfmdp_user.setText(name);
+    }
+
+    void mailMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchMail(log);
+        tfmail_user.setText(name);
+    }
+
+    void prenomMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchPrename(log);
+        tfprenom_user.setText(name);
+    }
+
+    void cinMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchCin(log);
+        tfcin_user.setText(name);
+    }
+
+    void bdayMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchDateOfBirth(log);
+        tfdate_naissance_user.setText(name);
+    }
+
+    void telMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchPhoneNumber(log);
+        tfnum_tel_user.setText(name);
+    }
+
+    void nomMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.SearchName(log);
+        tfnom_user.setText(name);
+    }
+
+    void imageMM(String log) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        String name = su.searchImage(log);
+        filepath.setText(name);
+        Image imag = new Image("file:" + filepath.getText());
+        image1.setImage(imag);
     }
 
     /**
@@ -76,28 +129,7 @@ public class ModifierMemberController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
 
-    @FXML
-    private void aficherStand(ActionEvent event) throws IOException, SQLException {
-        ServiceUser SU = new ServiceUser();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/Stand_Reservation.fxml"));
-        Parent root = loader.load();
-        tfRetour.getScene().setRoot(root);
-
-        Stand_ReservationController src = loader.getController();
-        src.login(tflogin_user.getText());
-        
-        
-        String filepath1 = SU.searchImage(tflogin_user.getText());
-        src.image(filepath1);
-
-        /*URL url = new File("src/main/java/Views/Stand_Reservation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        
-        tfRetour.getScene().setRoot(root);*/
     }
 
     @FXML
@@ -105,19 +137,53 @@ public class ModifierMemberController implements Initializable {
         ServiceUser su = new ServiceUser();
         User u = new User();
         try {
-            String Member = tflogin_user.getText();
-            u.setMdp_user(tfmdp_user.getText());
-            u.setMail_user(tfmail_user.getText());
-            u.setPrenom_user(tfprenom_user.getText());
-            u.setNom_user(tfnom_user.getText());
-            u.setDate_naissance_user(tfdate_naissance_user.getText());
-            u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
-            u.setPhoto_profil_user(filepath.getText());
-            u.setCin_user(Integer.valueOf(tfcin_user.getText()));
+            String mail = tfmail_user.getText();
+            String pass = tfmdp_user.getText();
+            String phone = tfnum_tel_user.getText();
+            Boolean valid = su.isValid(mail);
 
-            su.ModifierUser(Member, u.getMdp_user(), u.getMail_user(),
-                    u.getPrenom_user(), u.getNom_user(), u.getDate_naissance_user(), u.getNum_tel_user(),
-                    u.getPhoto_profil_user(), u.getCin_user());
+            if (valid == false) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter a valid Email");
+                alert.show();
+                tfmail_user.clear();
+            } else if (pass.length() < 5) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Password too Short.");
+                alert.show();
+                tfmdp_user.clear();
+            } else if (phone.length() < 7) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter a Valid Phone Number.");
+                alert.show();
+                tfnum_tel_user.clear();
+            } else {
+                String Member = tflogin_user.getText();
+                u.setMdp_user(tfmdp_user.getText());
+                u.setMail_user(tfmail_user.getText());
+                u.setPrenom_user(tfprenom_user.getText());
+                u.setNom_user(tfnom_user.getText());
+                u.setDate_naissance_user(tfdate_naissance_user.getText());
+                u.setNum_tel_user(Integer.valueOf(tfnum_tel_user.getText()));
+                u.setPhoto_profil_user(filepath.getText());
+                u.setCin_user(Integer.valueOf(tfcin_user.getText()));
+                su.ModifierUser(Member, u.getMdp_user(), u.getMail_user(),
+                        u.getPrenom_user(), u.getNom_user(), u.getDate_naissance_user(), u.getNum_tel_user(),
+                        u.getPhoto_profil_user(), u.getCin_user());
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("User updated");
+                alert.setHeaderText(null);
+                alert.setContentText("User updated");
+                alert.show();
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(ModifierMemberMController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
@@ -135,6 +201,22 @@ public class ModifierMemberController implements Initializable {
         File fichier = new File(filepath.getText());
         Image imag = new Image("file:" + filepath.getText());
         image1.setImage(imag);
+    }
+
+    @FXML
+    private void Main(ActionEvent event) throws IOException, SQLException {
+        ServiceUser SU = new ServiceUser();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Window.fxml"));
+        Parent root = loader.load();
+        tfMain.getScene().setRoot(root);
+
+        WindowController src = loader.getController();
+        src.login(tflogin_user.getText());
+
+        String filepath1 = SU.searchImage(tflogin_user.getText());
+        src.image(filepath1);
+
     }
 
 }

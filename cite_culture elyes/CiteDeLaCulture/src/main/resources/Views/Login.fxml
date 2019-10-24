@@ -22,18 +22,16 @@
          </font>
       </Label>
       <Separator layoutX="172.0" layoutY="84.0" prefHeight="0.0" prefWidth="384.0" />
-      <Button fx:id="tfsign" layoutX="504.0" layoutY="437.0" mnemonicParsing="false" onAction="#Signup" text="Sign up" />
+      <Button fx:id="tfsign" layoutX="528.0" layoutY="412.0" mnemonicParsing="false" onAction="#Signup" text="Sign up" />
       <Label layoutX="180.0" layoutY="185.0" text="UserName" />
       <Label layoutX="180.0" layoutY="246.0" text="Password" />
-      <VBox alignment="TOP_CENTER" layoutX="26.0" layoutY="342.0" prefHeight="95.0" prefWidth="106.0" spacing="30.0">
-         <children>
-            <ImageView fitHeight="95.0" fitWidth="95.0">
-               <image>
-                  <Image url="@../../../../../../Pics/Logo1.png" />
-               </image>
-            </ImageView>
-         </children>
-      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="19.0" prefHeight="95.0" prefWidth="106.0" spacing="30.0" />
       <Hyperlink fx:id="tfpassforgot" layoutX="431.0" layoutY="243.0" onMouseMoved="#passforgot" onMousePressed="#passForgot" text="Forgot Password?" />
+      <ImageView fitHeight="95.0" fitWidth="95.0" layoutX="7.0" layoutY="19.0">
+         <image>
+            <Image url="@Logo1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="tfExit" layoutX="14.0" layoutY="400.0" mnemonicParsing="false" onAction="#GoToExit" text="Exit" />
    </children>
 </AnchorPane>

@@ -15,5 +15,6 @@
       <Button fx:id="tfverif" layoutX="300.0" layoutY="259.0" mnemonicParsing="false" onAction="#verify" text="Verify" />
       <Label layoutX="117.0" layoutY="113.0" text="Enter Email password" />
       <TextField fx:id="txtpassEmail" layoutX="270.0" layoutY="110.0" />
+      <Button fx:id="tfback" layoutX="40.0" layoutY="345.0" mnemonicParsing="false" onAction="#backlogin" text="Back" />
    </children>
 </AnchorPane>

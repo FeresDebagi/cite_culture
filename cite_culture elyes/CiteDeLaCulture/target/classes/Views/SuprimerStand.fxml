@@ -9,11 +9,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SuprimerStandController">
    <children>
-      <Label layoutX="161.0" layoutY="174.0" text="Donner Id" />
-      <TextField fx:id="tfid_stand" layoutX="246.0" layoutY="170.0" promptText="id_Stand" />
+      <Label layoutX="161.0" layoutY="174.0" text="Id" />
+      <TextField fx:id="tfid_stand" layoutX="246.0" layoutY="170.0" promptText="Id" />
       <Button layoutX="274.0" layoutY="326.0" mnemonicParsing="false" onAction="#suprimerStand" text="Delete" />
-      <Button fx:id="tfRetour" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#aficherStand" text="Retour" />
-      <Label layoutX="164.0" layoutY="44.0" text="Suprimer Stand" textFill="#66a6de">
+      <Button fx:id="tfRetour" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#aficherStand" text="back" />
+      <Label layoutX="164.0" layoutY="44.0" text="Delite Stand" textFill="#66a6de">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -53,6 +53,8 @@ public class ForgotPassController implements Initializable {
     private TextField txtpassEmail;
     @FXML
     private Button tfverif;
+    @FXML
+    private Button tfback;
 
     /**
      * Initializes the controller class.
@@ -123,5 +125,13 @@ public class ForgotPassController implements Initializable {
             System.out.println("null pointer");
         }
 
+    }
+
+    @FXML
+    private void backlogin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Login.fxml"));
+        Parent root = loader.load();
+        tfback.getScene().setRoot(root);      
     }
 }
