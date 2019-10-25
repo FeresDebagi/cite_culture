@@ -193,15 +193,14 @@ public class ModifierMemberController implements Initializable {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ModifierMemberMController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModifierMemberController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
             System.out.println("null pointer");
         }
     }
 
     @FXML
-    private void filechoose(ActionEvent event
-    ) {
+    private void filechoose(ActionEvent event) {
         FileChooser fc = new FileChooser();
         File selected = fc.showOpenDialog(null);
         filename.setText(selected.getName());

@@ -28,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import static org.apache.maven.wagon.PathUtils.password;
 
 /**
@@ -100,21 +101,19 @@ public class LoginController implements Initializable {
                     switch (role) {
                         case "Member": {
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/Views/Stand_ReservationM.fxml"));
+                            loader.setLocation(getClass().getResource("/Views/WindowM.fxml"));
                             Parent root;
                             try {
                                 root = loader.load();
                                 tfLogin.getScene().setRoot(root);
 
-                                Stand_ReservationMController src = loader.getController();
-                                src.login(tfuser.getText());
+                                WindowMController wc = loader.getController();
+                                wc.login(tfuser.getText());
 
                                 filepath = SU.searchImage(tfuser.getText());
-                                src.image(filepath);
-
-                                
-
+                                wc.image(filepath);
                             } catch (IOException ex) {
+                                ex.printStackTrace();
                                 System.out.println(ex.getMessage());
                             }
                             break;
@@ -175,6 +174,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private void GoToExit(ActionEvent event) {
+        Stage stage = (Stage) tfExit.getScene().getWindow();
+        stage.close();
 
     }
 }

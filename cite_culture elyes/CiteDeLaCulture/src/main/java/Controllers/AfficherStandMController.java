@@ -7,7 +7,7 @@ package Controllers;
 
 import Entite.Stand;
 import Service.ServiceStand;
-import java.io.File;
+import Service.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,9 +24,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -35,8 +39,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class AfficherStandMController implements Initializable {
 
-    @FXML
-    private TableColumn<Stand, Number> tfid_stand;
     @FXML
     private TableColumn<Stand, String> tftitre_stand;
     @FXML
@@ -51,10 +53,26 @@ public class AfficherStandMController implements Initializable {
     private TableView<Stand> tftableStand;
     @FXML
     private Button tfRetour;
-    
-    private ObservableList<Stand>data = FXCollections.observableArrayList();
+    @FXML
+    private Label tflogin;
+    @FXML
+    private ImageView tfphoto;
+    @FXML
+    private Label tfid;
+    @FXML
+    private Label tftitle;
+
+    private ObservableList<Stand> data = FXCollections.observableArrayList();
     List<Stand> st = new ArrayList<>();
 
+    void login(String log) {
+        tflogin.setText(log);
+    }
+
+    void image(String filepath) {
+        Image imag = new Image("file:" + filepath);
+        tfphoto.setImage(imag);
+    }
 
     /**
      * Initializes the controller class.
@@ -62,34 +80,61 @@ public class AfficherStandMController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceStand sp = new ServiceStand();
-        try{
-            st=sp.readAllStand();
+        try {
+            st = sp.readAllStand();
             data.addAll(st);
-            tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
             tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
             tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
             tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
             tfdate_debut_stand.setCellValueFactory(new PropertyValueFactory<>("date_debut_stand"));
             tfdate_fin_stand.setCellValueFactory(new PropertyValueFactory<>("date_fin_stand"));
             tftableStand.setItems(data);
-            
+
         } catch (SQLException ex) {
-            Logger.getLogger(AfficherStandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AfficherStandMController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
-    private void Back(ActionEvent event) throws IOException {
+    private void detail(MouseEvent event) throws SQLException, IOException {
+        Stand s = tftableStand.getSelectionModel().getSelectedItem();
+        tfid.setText(Integer.toString(s.getId_stand()));
+        tftitle.setText(s.getProprietaire_stand());
+
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/Stand_ReservationM.fxml"));
+        loader.setLocation(getClass().getResource("/Views/StandDetailedM.fxml"));
+        Parent root = loader.load();
+        tftableStand.getScene().setRoot(root);
+
+        StandDetailedMController sdc = loader.getController();
+        sdc.idStand(tfid.getText());
+        sdc.titreStand(s.getTitre_stand());
+        sdc.proprietaireStand(tftitle.getText());
+        sdc.marchandiseStand(s.getType_marchandise());
+        sdc.debutStand(s.getDate_debut_stand());
+        sdc.finStand(s.getDate_fin_stand());
+        sdc.login(tflogin.getText());
+        
+        ServiceStand SS = new ServiceStand();
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        sdc.image(filepath);
+    }
+
+    @FXML
+    private void Back(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/WindowM.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
-        
-        
-        
-        /*URL url = new File("src/main/java/Views/Stand_ReservationM.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfRetour.getScene().setRoot(root);*/
+
+        ServiceUser SU = new ServiceUser();
+        WindowMController wc = loader.getController();
+        wc.login(tflogin.getText());
+
+        String filepath;
+        filepath = SU.searchImage(tflogin.getText());
+        wc.image(filepath);
     }
-    
+
 }

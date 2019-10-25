@@ -5,19 +5,19 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="551.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandMController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandMController">
    <children>
-      <TableView fx:id="tftableStand" layoutY="62.0" prefHeight="446.0" prefWidth="678.0">
+      <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="604.0">
         <columns>
-          <TableColumn fx:id="tfid_stand" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="tftitre_stand" prefWidth="75.0" text="Title" />
-            <TableColumn fx:id="tfproprietaire_stand" prefWidth="132.0" text="Property Stand" />
+            <TableColumn fx:id="tfproprietaire_stand" prefWidth="132.0" text="Proprety" />
             <TableColumn fx:id="tftype_marchandise" prefWidth="126.0" text="Marchandise" />
             <TableColumn fx:id="tfdate_debut_stand" prefWidth="145.0" text="Starting Stand" />
-            <TableColumn fx:id="tfdate_fin_stand" prefWidth="124.0" text="Ending stand" />
+            <TableColumn fx:id="tfdate_fin_stand" prefWidth="124.0" text="Ending Stand" />
         </columns>
       </TableView>
       <Label layoutX="275.0" layoutY="21.0" text="Stand" textFill="#66a6de">
@@ -27,5 +27,9 @@
       </Label>
       <Separator layoutX="2.0" layoutY="49.0" prefHeight="4.0" prefWidth="671.0" />
       <Button fx:id="tfRetour" layoutX="20.0" layoutY="512.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+      <Label fx:id="tflogin" layoutX="695.0" layoutY="308.0" prefHeight="17.0" prefWidth="0.0" visible="false" />
+      <ImageView fx:id="tfphoto" fitHeight="33.0" fitWidth="41.0" layoutX="668.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+      <Label fx:id="tfid" layoutX="725.0" layoutY="360.0" />
+      <Label fx:id="tftitle" layoutX="724.0" layoutY="482.0" />
    </children>
 </AnchorPane>

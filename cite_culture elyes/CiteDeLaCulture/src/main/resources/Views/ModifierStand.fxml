@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierStandController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierStandController">
    <children>
       <Button fx:id="tfRetour" layoutX="21.0" layoutY="369.0" mnemonicParsing="false" onAction="#aficherStand" text="back" />
       <Label layoutX="154.0" layoutY="34.0" text="Edit Stand" textFill="#66a6de">

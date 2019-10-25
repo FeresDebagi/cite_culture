@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StandDetailedController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StandDetailedController">
    <children>
       <Label fx:id="tfid_stand" layoutX="29.0" layoutY="35.0" />
       <Button fx:id="tfBack" layoutX="23.0" layoutY="353.0" mnemonicParsing="false" onAction="#Back" text="Back" />

@@ -8,11 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="426.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminModifUserController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminModifUserController">
    <children>
       <TextField fx:id="tfloginuser" layoutX="107.0" layoutY="54.0" promptText="Login user" />
       <TextField fx:id="tfrole" layoutX="107.0" layoutY="285.0" promptText="Role User" />
-      <Label layoutX="41.0" layoutY="58.0" text="Login User" />
+      <Label layoutX="29.0" layoutY="58.0" text="Search User" />
       <Label layoutX="46.0" layoutY="289.0" text="Role User" />
       <Button fx:id="tfconfirm" layoutX="300.0" layoutY="333.0" mnemonicParsing="false" onAction="#confirmModif" text="Confirm" />
       <Button fx:id="tfback" layoutX="51.0" layoutY="333.0" mnemonicParsing="false" onAction="#Back" text="Back" />
