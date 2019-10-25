@@ -20,9 +20,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -43,16 +46,52 @@ public class ModifierStandController implements Initializable {
     private TextField tfdate_fin_stand;
     @FXML
     private TextField tfdate_debut_stand;
-    @FXML
-    private TextField tfid_stand;
-    @FXML
-    private Label label_tapez;
+
     @FXML
     private Button modifierStand;
     @FXML
     private Label id;
     @FXML
     private Button tfRetour;
+    @FXML
+    private Label tfidstand;
+    @FXML
+    private Label tfiduser;
+    @FXML
+    private ImageView tfimageuser;
+
+    void login(String log) {
+        tfiduser.setText(log);
+    }
+
+    void image(String filepath) {
+        Image imag = new Image("file:" + filepath);
+        tfimageuser.setImage(imag);
+    }
+
+    void idStand(String s) {
+        tfidstand.setText(s);
+    }
+
+    void titreStand(String s) {
+        tftitre_stand.setText(s);
+    }
+
+    void proprietaireStand(String s) {
+        tfproprietaire_stand.setText(s);
+    }
+
+    void marchandiseStand(String s) {
+        tftype_marchandise.setText(s);
+    }
+
+    void debutStand(String s) {
+        tfdate_debut_stand.setText(s);
+    }
+
+    void finStand(String s) {
+        tfdate_fin_stand.setText(s);
+    }
 
     /**
      * Initializes the controller class.
@@ -60,41 +99,53 @@ public class ModifierStandController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-
+    }
 
     @FXML
-    private void modifiercordonnes(ActionEvent event) {
+    private void modifiercordonnes(ActionEvent event) throws IOException {
         Stand s = new Stand();
-        s.setId_stand(Integer.valueOf(tfid_stand.getText()));
+        s.setId_stand(Integer.valueOf(tfidstand.getText()));
         s.setProprietaire_stand(tfproprietaire_stand.getText());
         s.setType_marchandise(tftype_marchandise.getText());
         s.setDate_debut_stand(tfdate_debut_stand.getText());
         s.setDate_fin_stand(tfdate_fin_stand.getText());
         s.setTitre_stand(tftitre_stand.getText());
-        
+
         ServiceStand sp = new ServiceStand();
         try {
-            sp.ModifierStand(s.getId_stand(),s.getTitre_stand(),s.getProprietaire_stand(),
-                    s.getType_marchandise(),s.getDate_debut_stand(),s.getDate_fin_stand());
+            sp.ModifierStand(s.getId_stand(), s.getTitre_stand(), s.getProprietaire_stand(),
+                    s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand());
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Updated");
+            alert.setHeaderText(null);
+            alert.setContentText("Stand Updated!");
+            alert.show();
+
+            
+
         } catch (SQLException ex) {
             Logger.getLogger(ModifierStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void aficherStand(ActionEvent event) throws MalformedURLException, IOException {
+    private void aficherStand(ActionEvent event) throws MalformedURLException, IOException, SQLException {
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
-        
-        
-         /*URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        
-        tfRetour.getScene().setRoot(root);*/
+
+        ServiceStand SS = new ServiceStand();
+        AfficherStandController asc = loader.getController();
+
+        asc.login(tfiduser.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tfiduser.getText());
+        asc.image(filepath);
+ 
     }
-    
+
 }

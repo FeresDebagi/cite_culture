@@ -51,7 +51,7 @@ public class SuprimerReservationController implements Initializable {
         try {
             sr.SuprimerReservation(r.getId_reservation());
         } catch (SQLException ex) {
-            Logger.getLogger(SuprimerStandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SuprimerReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

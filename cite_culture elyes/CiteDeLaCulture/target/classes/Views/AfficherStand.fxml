@@ -5,14 +5,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandController">
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandController">
    <children>
-      <TableView fx:id="tftableStand" layoutY="62.0" prefHeight="446.0" prefWidth="678.0">
+      <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="678.0">
         <columns>
           <TableColumn fx:id="tfid_stand" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="tftitre_stand" prefWidth="75.0" text="Title" />
@@ -23,8 +22,6 @@
         </columns>
       </TableView>
       <Button fx:id="tfadd" layoutX="115.0" layoutY="512.0" mnemonicParsing="false" onAction="#GoToAdd" text="Add" />
-      <Button fx:id="tfedit" layoutX="313.0" layoutY="512.0" mnemonicParsing="false" onAction="#GoToEdit" text="Edit" />
-      <Button fx:id="tfdel" layoutX="507.0" layoutY="512.0" mnemonicParsing="false" onAction="#GoToDelete" text="Delete" />
       <Label layoutX="275.0" layoutY="21.0" text="Stand" textFill="#66a6de">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -32,10 +29,9 @@
       </Label>
       <Separator layoutX="2.0" layoutY="49.0" prefHeight="4.0" prefWidth="671.0" />
       <Button fx:id="tfRetour" layoutX="20.0" layoutY="512.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <TextField fx:id="tfidsearch" layoutX="698.0" layoutY="180.0" promptText="Id Stand" />
-      <Label layoutX="739.0" layoutY="151.0" text="search stand" />
-      <Button fx:id="tfsearch" layoutX="747.0" layoutY="230.0" mnemonicParsing="false" onAction="#search" text="Search" />
       <Label fx:id="tflogin" layoutX="695.0" layoutY="308.0" prefHeight="17.0" prefWidth="0.0" visible="false" />
       <ImageView fx:id="tfphoto" fitHeight="33.0" fitWidth="41.0" layoutX="668.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+      <Label fx:id="tfid" layoutX="725.0" layoutY="360.0" />
+      <Label fx:id="tftitle" layoutX="724.0" layoutY="482.0" />
    </children>
 </AnchorPane>

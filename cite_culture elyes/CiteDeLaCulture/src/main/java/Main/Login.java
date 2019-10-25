@@ -5,6 +5,7 @@
  */
 package Main;
 
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -27,13 +29,14 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-
         Parent root = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        
+        //To Set full screen
+        primaryStage.setMaximized(true);
+
     }
 
     /**

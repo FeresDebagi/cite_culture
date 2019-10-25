@@ -6,7 +6,6 @@
 package Controllers;
 
 import Entite.Stand;
-import Controllers.AjouterStandController;
 import Service.ServiceStand;
 import ch.qos.logback.core.db.dialect.DBUtil;
 import java.net.URL;
@@ -37,7 +36,9 @@ import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.System.currentTimeMillis;
 import java.net.MalformedURLException;
+import java.sql.Time;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -46,6 +47,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -75,15 +77,7 @@ public class AfficherStandController implements Initializable {
     @FXML
     private Button tfadd;
     @FXML
-    private Button tfedit;
-    @FXML
-    private Button tfdel;
-    @FXML
     private Button tfRetour;
-    @FXML
-    private TextField tfidsearch;
-    @FXML
-    private Button tfsearch;
     @FXML
     private Label tflogin;
     @FXML
@@ -91,11 +85,13 @@ public class AfficherStandController implements Initializable {
 
     private ObservableList<Stand> data = FXCollections.observableArrayList();
     List<Stand> st = new ArrayList<>();
-    
+    @FXML
+    private Label tfid;
+    @FXML
+    private Label tftitle;
+
     //private ObservableList<Stand> standlist;
     //standlist = tftableStand.getSelectionModel().getSelectedItems();
-    
-
     void login(String log) {
         tflogin.setText(log);
     }
@@ -114,7 +110,7 @@ public class AfficherStandController implements Initializable {
         try {
             st = sp.readAllStand();
             data.addAll(st);
-            tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
+            //tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
             tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
             tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
             tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
@@ -125,37 +121,33 @@ public class AfficherStandController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AfficherStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
 
     }
 
     @FXML
-    private void GoToAdd(ActionEvent event) throws IOException {
+    private void GoToAdd(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/AjouterStand.fxml"));
         Parent root = loader.load();
         tfadd.getScene().setRoot(root);
+        
+        AjouterStandController asc = loader.getController();
+        asc.login(tflogin.getText());
+        
+        ServiceStand SS = new ServiceStand();
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        asc.image(filepath);
+        
+        
+        
+        
+        
+        
+        
 
     }
 
-    @FXML
-    private void GoToEdit(ActionEvent event) throws MalformedURLException, IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/ModifierStand.fxml"));
-        Parent root = loader.load();
-        tfedit.getScene().setRoot(root);
-
-    }
-
-    @FXML
-    private void GoToDelete(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/SuprimerStand.fxml"));
-        Parent root = loader.load();
-        tfdel.getScene().setRoot(root);
-
-    }
 
     @FXML
     private void Back(ActionEvent event) throws IOException, SQLException {
@@ -174,8 +166,7 @@ public class AfficherStandController implements Initializable {
 
     }
 
-    @FXML
-    private void search(ActionEvent event) {
+    /*private void search(ActionEvent event) {
         ServiceStand SS = new ServiceStand();
         Stand s = new Stand();
         try {
@@ -191,9 +182,9 @@ public class AfficherStandController implements Initializable {
             } else {
                 st = SS.readOneStand(Integer.valueOf(tfidsearch.getText()));
                 data.addAll(st);
-                tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
+                //tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
                 tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
-                tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
+                //tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
                 tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
                 tfdate_debut_stand.setCellValueFactory(new PropertyValueFactory<>("date_debut_stand"));
                 tfdate_fin_stand.setCellValueFactory(new PropertyValueFactory<>("date_fin_stand"));
@@ -204,6 +195,32 @@ public class AfficherStandController implements Initializable {
         } catch (NullPointerException ex) {
             System.out.println("null pointer");
         }
+    }*/
+
+    @FXML
+    private void detail(MouseEvent event) throws IOException, SQLException {
+        Stand s = tftableStand.getSelectionModel().getSelectedItem();
+        tfid.setText(Integer.toString(s.getId_stand()));
+        tftitle.setText(s.getProprietaire_stand());
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/StandDetailed.fxml"));
+        Parent root = loader.load();
+        tftableStand.getScene().setRoot(root);
+
+        StandDetailedController sdc = loader.getController();
+        sdc.idStand(tfid.getText());
+        sdc.titreStand(s.getTitre_stand());
+        sdc.proprietaireStand(tftitle.getText());
+        sdc.marchandiseStand(s.getType_marchandise());
+        sdc.debutStand(s.getDate_debut_stand());
+        sdc.finStand(s.getDate_fin_stand());
+        sdc.login(tflogin.getText());
+        
+        ServiceStand SS = new ServiceStand();
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        sdc.image(filepath);
     }
 
 }

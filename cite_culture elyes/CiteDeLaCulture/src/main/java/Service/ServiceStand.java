@@ -177,5 +177,20 @@ public class ServiceStand {
     }
     
     
+    //Search by 1:
+    public String SearchTitre(int id_stand) throws SQLException{
+        Statement stm = con.createStatement();
+        String req = "SELECT titre_stand FROM `stand` WHERE  id_stand='" + id_stand + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("titre_stand");
+        }
+        return null;
+    
+    }
+    
+    
+    
+    
 
 }

@@ -27,6 +27,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import static org.apache.maven.wagon.PathUtils.password;
 
 /**
@@ -107,10 +108,11 @@ public class LoginController implements Initializable {
 
                                 Stand_ReservationMController src = loader.getController();
                                 src.login(tfuser.getText());
-                                
-                                
+
                                 filepath = SU.searchImage(tfuser.getText());
                                 src.image(filepath);
+
+                                
 
                             } catch (IOException ex) {
                                 System.out.println(ex.getMessage());
@@ -124,10 +126,10 @@ public class LoginController implements Initializable {
                             try {
                                 root = loader.load();
                                 tfLogin.getScene().setRoot(root);
-                                
+
                                 WindowController wc = loader.getController();
                                 wc.login(tfuser.getText());
-                                
+
                                 filepath = SU.searchImage(tfuser.getText());
                                 wc.image(filepath);
                             } catch (IOException ex) {
@@ -149,13 +151,12 @@ public class LoginController implements Initializable {
 
     }
 
-    
     @FXML
     private void Signup(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/Signup.fxml"));
         Parent root = loader.load();
-        tfsign.getScene().setRoot(root);   
+        tfsign.getScene().setRoot(root);
     }
 
     @FXML
@@ -169,12 +170,11 @@ public class LoginController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/ForgotPass.fxml"));
         Parent root = loader.load();
         tfpassforgot.getScene().setRoot(root);
-    
+
     }
 
     @FXML
     private void GoToExit(ActionEvent event) {
-        
-        
+
     }
 }

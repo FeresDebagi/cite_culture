@@ -20,8 +20,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -43,10 +47,28 @@ public class AjouterStandController implements Initializable {
     private TextField tftitre_stand;
     @FXML
     private Button tfRetour;
+    @FXML
+    private Label login;
+    @FXML
+    private ImageView image;
 
     /**
      * Initializes the controller class.
      */
+    
+    void login(String log) {
+        login.setText(log);
+    }
+
+    void image(String filepath) {
+        Image imag = new Image("file:" + filepath);
+        image.setImage(imag);
+    }
+    
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -64,22 +86,35 @@ public class AjouterStandController implements Initializable {
         ServiceStand sp = new ServiceStand();
         try {
             sp.AjouterStand(s);
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Added");
+            alert.setHeaderText(null);
+            alert.setContentText("Stand Added!");
+            alert.show();
+    
         } catch (SQLException ex) {
             Logger.getLogger(AjouterStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void aficherStand(ActionEvent event) throws IOException {
+    private void aficherStand(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
+
+
+        ServiceStand SS = new ServiceStand();
+        AfficherStandController asc = loader.getController();
+
+        asc.login(login.getText());
+
+        String filepath;
+        filepath = SS.searchImage(login.getText());
+        asc.image(filepath);
         
-        
-        
-        /*URL url = new File("src/main/java/Views/AfficherStand.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        tfRetour.getScene().setRoot(root);*/
+
     }
 }

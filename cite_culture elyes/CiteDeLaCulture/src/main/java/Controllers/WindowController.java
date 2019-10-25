@@ -90,6 +90,10 @@ public class WindowController implements Initializable {
         mm.telMM(tflogin.getText());
         mm.nomMM(tflogin.getText());
         mm.imageMM(tflogin.getText());
+        
+        
+        
+        
     }
 
     @FXML
@@ -150,6 +154,22 @@ public class WindowController implements Initializable {
         filepath = SU.searchImage(tflogin.getText());
         amuc.image(filepath);
 
+    }
+
+    @FXML
+    private void GoToStand2(MouseEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
+        Parent root = loader.load();
+        photoStand.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherStandController asc = loader.getController();
+        asc.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        asc.image(filepath);
     }
 
 }
