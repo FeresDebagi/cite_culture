@@ -161,8 +161,8 @@ public class StandDetailedController implements Initializable {
         mdc.titreStand(tftitre_stand.getText());
         mdc.proprietaireStand(tfProperty.getText());
         mdc.marchandiseStand(tftype_marchandise.getText());
-        mdc.debutStand(tfdate_debut_stand.getText());
-        mdc.finStand(tfdate_fin_stand.getText());
+        //mdc.debutStand(tfdate_debut_stand.getText());
+        //mdc.finStand(tfdate_fin_stand.getText());
         mdc.login(tflogin.getText());
         
         ServiceStand SS = new ServiceStand();

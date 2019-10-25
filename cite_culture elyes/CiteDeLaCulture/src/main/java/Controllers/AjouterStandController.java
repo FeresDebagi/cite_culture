@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -33,16 +35,15 @@ import javafx.scene.image.ImageView;
  * @author Elyes
  */
 public class AjouterStandController implements Initializable {
-    
 
     @FXML
     private TextField tfproprietaire_stand;
     @FXML
     private TextField tftype_marchandise;
     @FXML
-    private TextField tfdate_debut_stand;
+    private DatePicker tfdate_debut_stand;
     @FXML
-    private TextField tfdate_fin_stand;
+    private DatePicker tfdate_fin_stand;
     @FXML
     private TextField tftitre_stand;
     @FXML
@@ -55,7 +56,6 @@ public class AjouterStandController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     void login(String log) {
         login.setText(log);
     }
@@ -64,38 +64,44 @@ public class AjouterStandController implements Initializable {
         Image imag = new Image("file:" + filepath);
         image.setImage(imag);
     }
-    
-    
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ajouterStand(ActionEvent event) {
         Stand s = new Stand();
-        s.setProprietaire_stand(tfproprietaire_stand.getText());
-        s.setType_marchandise(tftype_marchandise.getText());
-        s.setDate_debut_stand(tfdate_debut_stand.getText());
-        s.setDate_fin_stand(tfdate_fin_stand.getText());
-        s.setTitre_stand(tftitre_stand.getText());
-        
-        ServiceStand sp = new ServiceStand();
         try {
-            sp.AjouterStand(s);
-            
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Added");
-            alert.setHeaderText(null);
-            alert.setContentText("Stand Added!");
-            alert.show();
-    
+            if ((tfdate_debut_stand.getValue().toString().isEmpty())
+                    && (tfdate_fin_stand.getValue().toString().isEmpty())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
+                alert.show();
+            } else {
+                s.setProprietaire_stand(tfproprietaire_stand.getText());
+                s.setType_marchandise(tftype_marchandise.getText());
+                s.setDate_debut_stand(tfdate_debut_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                s.setDate_fin_stand(tfdate_fin_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                s.setTitre_stand(tftitre_stand.getText());
+
+                ServiceStand sp = new ServiceStand();
+
+                sp.AjouterStand(s);
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Added");
+                alert.setHeaderText(null);
+                alert.setContentText("Stand Added!");
+                alert.show();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AjouterStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     @FXML
@@ -105,7 +111,6 @@ public class AjouterStandController implements Initializable {
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
 
-
         ServiceStand SS = new ServiceStand();
         AfficherStandController asc = loader.getController();
 
@@ -114,7 +119,6 @@ public class AjouterStandController implements Initializable {
         String filepath;
         filepath = SS.searchImage(login.getText());
         asc.image(filepath);
-        
 
     }
 }

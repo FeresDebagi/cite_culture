@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -43,9 +45,9 @@ public class ModifierStandController implements Initializable {
     @FXML
     private TextField tftype_marchandise;
     @FXML
-    private TextField tfdate_fin_stand;
+    private DatePicker tfdate_fin_stand;
     @FXML
-    private TextField tfdate_debut_stand;
+    private DatePicker tfdate_debut_stand;
 
     @FXML
     private Button modifierStand;
@@ -85,14 +87,13 @@ public class ModifierStandController implements Initializable {
         tftype_marchandise.setText(s);
     }
 
-    void debutStand(String s) {
+    /*void debutStand(String s) {
         tfdate_debut_stand.setText(s);
-    }
+    }*/
 
-    void finStand(String s) {
+ /*void finStand(String s) {
         tfdate_fin_stand.setText(s);
-    }
-
+    }*/
     /**
      * Initializes the controller class.
      */
@@ -104,26 +105,32 @@ public class ModifierStandController implements Initializable {
     @FXML
     private void modifiercordonnes(ActionEvent event) throws IOException {
         Stand s = new Stand();
-        s.setId_stand(Integer.valueOf(tfidstand.getText()));
-        s.setProprietaire_stand(tfproprietaire_stand.getText());
-        s.setType_marchandise(tftype_marchandise.getText());
-        s.setDate_debut_stand(tfdate_debut_stand.getText());
-        s.setDate_fin_stand(tfdate_fin_stand.getText());
-        s.setTitre_stand(tftitre_stand.getText());
-
-        ServiceStand sp = new ServiceStand();
         try {
-            sp.ModifierStand(s.getId_stand(), s.getTitre_stand(), s.getProprietaire_stand(),
-                    s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand());
+            if ((tfdate_debut_stand.getValue().toString().isEmpty())
+                    && (tfdate_fin_stand.getValue().toString().isEmpty())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
+                alert.show();
+            } else {
+                s.setId_stand(Integer.valueOf(tfidstand.getText()));
+                s.setProprietaire_stand(tfproprietaire_stand.getText());
+                s.setType_marchandise(tftype_marchandise.getText());
+                s.setDate_debut_stand(tfdate_debut_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                s.setDate_fin_stand(tfdate_fin_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                s.setTitre_stand(tftitre_stand.getText());
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Updated");
-            alert.setHeaderText(null);
-            alert.setContentText("Stand Updated!");
-            alert.show();
+                ServiceStand sp = new ServiceStand();
+                sp.ModifierStand(s.getId_stand(), s.getTitre_stand(), s.getProprietaire_stand(),
+                        s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand());
 
-            
-
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Updated");
+                alert.setHeaderText(null);
+                alert.setContentText("Stand Updated!");
+                alert.show();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ModifierStandController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -145,7 +152,7 @@ public class ModifierStandController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tfiduser.getText());
         asc.image(filepath);
- 
+
     }
 
 }

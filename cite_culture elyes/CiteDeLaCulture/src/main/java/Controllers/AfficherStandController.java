@@ -60,8 +60,6 @@ public class AfficherStandController implements Initializable {
     private Statement ste;
 
     @FXML
-    private TableColumn<Stand, Number> tfid_stand;
-    @FXML
     private TableColumn<Stand, String> tftitre_stand;
     @FXML
     private TableColumn<Stand, String> tfproprietaire_stand;
@@ -90,8 +88,7 @@ public class AfficherStandController implements Initializable {
     @FXML
     private Label tftitle;
 
-    //private ObservableList<Stand> standlist;
-    //standlist = tftableStand.getSelectionModel().getSelectedItems();
+
     void login(String log) {
         tflogin.setText(log);
     }
@@ -110,7 +107,6 @@ public class AfficherStandController implements Initializable {
         try {
             st = sp.readAllStand();
             data.addAll(st);
-            //tfid_stand.setCellValueFactory(new PropertyValueFactory<>("id_stand"));
             tftitre_stand.setCellValueFactory(new PropertyValueFactory<>("titre_stand"));
             tfproprietaire_stand.setCellValueFactory(new PropertyValueFactory<>("proprietaire_stand"));
             tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
