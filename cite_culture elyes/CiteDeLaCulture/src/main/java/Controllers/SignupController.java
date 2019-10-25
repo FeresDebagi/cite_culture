@@ -131,7 +131,7 @@ public class SignupController implements Initializable {
                 tfmdp_user.clear();
             } else if (tfdate_naissance_user1.getValue().toString().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Erreur inscription");
+                alert.setTitle("Erro");
                 alert.setHeaderText(null);
                 alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
                 alert.show();

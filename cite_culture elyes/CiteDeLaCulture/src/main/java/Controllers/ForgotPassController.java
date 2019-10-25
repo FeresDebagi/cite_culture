@@ -68,10 +68,10 @@ public class ForgotPassController implements Initializable {
     private void sendMail(ActionEvent event) throws AddressException, MessagingException {
         //enable less secure app access in gmail
         Random rand = new Random();
-        randomCode = rand.nextInt(999999);
-        String host = "smtp.gmail.com";
-        String user = txtEmail.getText();
-        String pass = txtpassEmail.getText();
+        randomCode = rand.nextInt(999999);  //generate a random number between 0 and 999999
+        String host = "smtp.gmail.com";     //les mail eli tnajm tverifi a3lehom
+        String user = txtEmail.getText();   //recuperer eli maktoub fil input txtEmail
+        String pass = txtpassEmail.getText();   //recuperer eli maktoub fil input txtpassEmail
         String to = txtEmail.getText();
         String subject = "Resting Code";
         String message = "Your reset Code is " + randomCode;
