@@ -24,7 +24,7 @@
       <Label fx:id="filename" layoutX="91.0" layoutY="180.0" prefHeight="17.0" prefWidth="0.0" visible="false" />
       <Pane layoutX="207.0" layoutY="54.0" prefHeight="491.0" prefWidth="953.0">
          <children>
-            <Label layoutX="30.0" layoutY="14.0" text="Create your Account" textFill="#2196f3">
+            <Label layoutX="30.0" layoutY="14.0" text="Create your Account">
                <font>
                   <Font size="24.0" />
                </font>
@@ -40,7 +40,7 @@
             <Label layoutX="439.0" layoutY="275.0" text="Last name" textFill="#a0a2ab" />
             <TextField fx:id="tfmdp_user" layoutX="586.0" layoutY="103.0" promptText="Use 8 or more characters" />
             <Label layoutX="487.0" layoutY="107.0" text="Password" textFill="#a0a2ab" />
-            <Label layoutX="28.0" layoutY="188.0" text="Avanced Details" textFill="#2196f3">
+            <Label layoutX="39.0" layoutY="200.0" text="Avanced Details">
                <font>
                   <Font size="20.0" />
                </font>
