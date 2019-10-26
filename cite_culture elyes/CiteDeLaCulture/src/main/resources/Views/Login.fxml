@@ -5,48 +5,39 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1366.0" style="-fx-background-color: #485487;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
-      <Button fx:id="tfLogin" layoutX="630.0" layoutY="554.0" mnemonicParsing="false" onAction="#Login" prefHeight="51.0" prefWidth="106.0" text="Login">
+      <Button fx:id="tfLogin" layoutX="683.0" layoutY="519.0" mnemonicParsing="false" onAction="#Login" prefHeight="51.0" prefWidth="106.0" style="-fx-background-color: #151928;" text="Login" textFill="#a0a2ab">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Label layoutX="194.0" layoutY="47.0" text="Login" textFill="#66a6de">
+      <Label layoutX="270.0" layoutY="50.0" text="Login">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Separator layoutX="194.0" layoutY="99.0" prefHeight="11.0" prefWidth="542.0" />
-      <Button fx:id="tfsign" layoutX="1059.0" layoutY="625.0" mnemonicParsing="false" onAction="#Signup" prefHeight="51.0" prefWidth="166.0" text="Sign up">
+      <Separator layoutX="270.0" layoutY="100.0" prefHeight="11.0" prefWidth="542.0" />
+      <Button fx:id="tfsign" layoutX="1186.0" layoutY="31.0" mnemonicParsing="false" onAction="#Signup" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #151928;" text="Sign up" textFill="#a0a2ab">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="19.0" prefHeight="95.0" prefWidth="106.0" spacing="30.0" />
-      <ImageView fitHeight="126.0" fitWidth="120.0" layoutX="7.0" layoutY="19.0">
-         <image>
-            <Image url="@Logo1.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="tfExit" layoutY="676.0" mnemonicParsing="false" onAction="#GoToExit" prefHeight="42.0" prefWidth="106.0" text="Exit">
+      <Button fx:id="tfExit" layoutY="671.0" mnemonicParsing="false" onAction="#GoToExit" prefHeight="42.0" prefWidth="106.0" style="-fx-background-color: #151928;" text="Exit" textFill="#a0a2ab">
          <font>
             <Font size="20.0" />
          </font></Button>
       <Pane layoutX="465.0" layoutY="171.0" prefHeight="295.0" prefWidth="542.0">
          <children>
-            <Label layoutX="53.0" layoutY="63.0" text="UserName">
+            <Label layoutX="53.0" layoutY="63.0" text="UserName" textFill="#a0a2ab">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <TextField fx:id="tfuser" layoutX="197.0" layoutY="68.0" promptText="username" />
-            <Label layoutX="55.0" layoutY="144.0" prefHeight="60.0" prefWidth="106.0" text="Password">
+            <Label layoutX="55.0" layoutY="144.0" prefHeight="60.0" prefWidth="106.0" text="Password" textFill="#a0a2ab">
                <font>
                   <Font size="24.0" />
                </font>
@@ -55,5 +46,10 @@
             <Hyperlink fx:id="tfpassforgot" layoutX="373.0" layoutY="163.0" onMouseMoved="#passforgot" onMousePressed="#passForgot" text="Forgot Password?" />
          </children>
       </Pane>
+      <Label layoutX="1017.0" layoutY="42.0" prefHeight="30.0" prefWidth="138.0" text="Not member?" textFill="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

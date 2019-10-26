@@ -195,7 +195,7 @@ public class StandDetailedController implements Initializable {
     private void GoToChangeStatus(ActionEvent event) { 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Changin Status");
-        alert.setContentText("Change Stand Status");
+        alert.setHeaderText("Change Stand Status");
         alert.getButtonTypes().clear();
         ButtonType Activate = new ButtonType("Activate");
         alert.getButtonTypes().add(Activate);

@@ -32,6 +32,7 @@ public class Login extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Cultural City Of Tunis");
         primaryStage.show();
 
         //To Set full screen

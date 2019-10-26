@@ -11,6 +11,7 @@ import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import static org.apache.maven.wagon.PathUtils.filename;
 import static org.codehaus.plexus.util.FileUtils.filename;
 
@@ -88,6 +90,10 @@ public class SignupController implements Initializable {
         File fichier = new File(filepath.getText());    //hedhi useless ama khalitha fel tuto mawjouda xd
         Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
         image1.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
+        
+        
+        
+ 
     }
 
     @FXML
