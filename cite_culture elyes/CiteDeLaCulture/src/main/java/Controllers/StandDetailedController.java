@@ -26,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -60,6 +61,14 @@ public class StandDetailedController implements Initializable {
     private Label tflogin;
     @FXML
     private ImageView tfphoto;
+    @FXML
+    private Label tfActif;
+    @FXML
+    private Button tfchange;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Label filepath;
 
     /**
      * Initializes the controller class.
@@ -95,6 +104,16 @@ public class StandDetailedController implements Initializable {
 
     void finStand(String s) {
         tfdate_fin_stand.setText(s);
+    }
+
+    void findStatus(String s) {
+        tfActif.setText(s);
+    }
+    
+    void imageStand(String s){
+        Image imag = new Image("file:" + s);
+        image1.setImage(imag);
+        
     }
 
     @Override
@@ -134,11 +153,6 @@ public class StandDetailedController implements Initializable {
             try {
                 sp.SuprimerStand(s.getId_stand());
 
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
-                Parent root = loader.load();
-                tfBack.getScene().setRoot(root);
-
             } catch (SQLException ex) {
                 Logger.getLogger(StandDetailedController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -164,15 +178,55 @@ public class StandDetailedController implements Initializable {
         //mdc.debutStand(tfdate_debut_stand.getText());
         //mdc.finStand(tfdate_fin_stand.getText());
         mdc.login(tflogin.getText());
+        mdc.findStatus(tfActif.getText());
         
         ServiceStand SS = new ServiceStand();
+
+        String idd = SS.searchImageStand(tfid_stand.getText());
+        mdc.imageStand(idd);
+        
+
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         mdc.image(filepath);
-        
-        
-        
-        
     }
 
+    @FXML
+    private void GoToChangeStatus(ActionEvent event) { 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Changin Status");
+        alert.setContentText("Change Stand Status");
+        alert.getButtonTypes().clear();
+        ButtonType Activate = new ButtonType("Activate");
+        alert.getButtonTypes().add(Activate);
+        ButtonType Disable = new ButtonType("Disable");
+        alert.getButtonTypes().add(Disable);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == Activate) {
+            Stand s = new Stand();
+            s.setId_stand(Integer.valueOf(tfid_stand.getText()));
+            ServiceStand sp = new ServiceStand();
+            try {
+                sp.ModifierStandStatus(s.getId_stand(), "Yes");
+                tfActif.setText("Yes");
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(StandDetailedController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (result.get() == Disable) {
+            Stand s = new Stand();
+            s.setId_stand(Integer.valueOf(tfid_stand.getText()));
+            ServiceStand sp = new ServiceStand();
+            try {
+                sp.ModifierStandStatus(s.getId_stand(), "No");
+                tfActif.setText("No");
+            } catch (SQLException ex) {
+                Logger.getLogger(StandDetailedController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } 
+    }
 }

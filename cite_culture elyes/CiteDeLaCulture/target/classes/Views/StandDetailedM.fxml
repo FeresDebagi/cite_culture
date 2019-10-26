@@ -10,7 +10,7 @@
    <children>
       <Label fx:id="tfid_stand" layoutX="29.0" layoutY="35.0" />
       <Button fx:id="tfBack" layoutX="23.0" layoutY="353.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <Pane layoutX="138.0" layoutY="35.0" prefHeight="256.0" prefWidth="347.0">
+      <Pane layoutX="138.0" layoutY="35.0" prefHeight="397.0" prefWidth="524.0">
          <children>
             <Label layoutX="49.0" layoutY="29.0" text="Title" />
             <Label fx:id="tftitre_stand" layoutX="120.0" layoutY="29.0" />
@@ -22,9 +22,14 @@
             <Label layoutX="28.0" layoutY="210.0" text="Ending Date" />
             <Label fx:id="tfdate_fin_stand" layoutX="162.0" layoutY="210.0" />
             <Label fx:id="tfProperty" layoutX="194.0" layoutY="69.0" />
+            <Label layoutX="27.0" layoutY="255.0" text="Actif Status" />
+            <Label fx:id="tfActif" layoutX="161.0" layoutY="264.0" />
+            <ImageView fx:id="image1" fitHeight="121.0" fitWidth="144.0" layoutX="312.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Label fx:id="tflogin" layoutX="15.0" layoutY="14.0" />
       <ImageView fx:id="tfphoto" fitHeight="25.0" fitWidth="22.0" layoutX="23.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="filepath" layoutX="612.0" layoutY="276.0" prefHeight="26.0" prefWidth="182.0" visible="false" />
+      <Button fx:id="tfedit" layoutX="392.0" layoutY="517.0" mnemonicParsing="false" onAction="#EditS" text="Edit" />
    </children>
 </AnchorPane>

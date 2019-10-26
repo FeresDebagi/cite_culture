@@ -87,7 +87,8 @@ public class AfficherStandController implements Initializable {
     private Label tfid;
     @FXML
     private Label tftitle;
-
+    @FXML
+    private TableColumn<Stand, String> tfActif;
 
     void login(String log) {
         tflogin.setText(log);
@@ -112,6 +113,7 @@ public class AfficherStandController implements Initializable {
             tftype_marchandise.setCellValueFactory(new PropertyValueFactory<>("type_marchandise"));
             tfdate_debut_stand.setCellValueFactory(new PropertyValueFactory<>("date_debut_stand"));
             tfdate_fin_stand.setCellValueFactory(new PropertyValueFactory<>("date_fin_stand"));
+            tfActif.setCellValueFactory(new PropertyValueFactory<>("Actif"));
             tftableStand.setItems(data);
 
         } catch (SQLException ex) {
@@ -126,24 +128,23 @@ public class AfficherStandController implements Initializable {
         loader.setLocation(getClass().getResource("/Views/AjouterStand.fxml"));
         Parent root = loader.load();
         tfadd.getScene().setRoot(root);
-        
+
         AjouterStandController asc = loader.getController();
         asc.login(tflogin.getText());
-        
+
         ServiceStand SS = new ServiceStand();
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         asc.image(filepath);
-        
-        
-        
-        
-        
-        
-        
+
+        asc.Prop(SS.searchNom(tflogin.getText()), SS.searchPrenom(tflogin.getText()));
+
+        ServiceUser SU = new ServiceUser();
+        int x;
+        x = SU.SearchId(tflogin.getText());
+        asc.idStand(x);
 
     }
-
 
     @FXML
     private void Back(ActionEvent event) throws IOException, SQLException {
@@ -192,7 +193,6 @@ public class AfficherStandController implements Initializable {
             System.out.println("null pointer");
         }
     }*/
-
     @FXML
     private void detail(MouseEvent event) throws IOException, SQLException {
         Stand s = tftableStand.getSelectionModel().getSelectedItem();
@@ -212,8 +212,12 @@ public class AfficherStandController implements Initializable {
         sdc.debutStand(s.getDate_debut_stand());
         sdc.finStand(s.getDate_fin_stand());
         sdc.login(tflogin.getText());
-        
+        sdc.findStatus(s.getActif());
         ServiceStand SS = new ServiceStand();
+
+        String idd = SS.searchImageStand(tfid.getText());
+        sdc.imageStand(idd);
+
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         sdc.image(filepath);

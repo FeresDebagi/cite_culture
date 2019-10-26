@@ -64,6 +64,8 @@ public class AfficherStandMController implements Initializable {
 
     private ObservableList<Stand> data = FXCollections.observableArrayList();
     List<Stand> st = new ArrayList<>();
+    @FXML
+    private Button tfadd;
 
     void login(String log) {
         tflogin.setText(log);
@@ -135,6 +137,29 @@ public class AfficherStandMController implements Initializable {
         String filepath;
         filepath = SU.searchImage(tflogin.getText());
         wc.image(filepath);
+    }
+
+    @FXML
+    private void GoToAdd(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AjouterStandM.fxml"));
+        Parent root = loader.load();
+        tfadd.getScene().setRoot(root);
+        
+        AjouterStandMController asc = loader.getController();
+        asc.login(tflogin.getText());
+        
+        ServiceStand SS = new ServiceStand();
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        asc.image(filepath);
+        
+        asc.Prop (SS.searchNom(tflogin.getText()),SS.searchPrenom(tflogin.getText()));
+          
+        ServiceUser SU = new ServiceUser();
+        int x;
+        x = SU.SearchId(tflogin.getText());
+        asc.idStand(x);
     }
 
 }

@@ -7,11 +7,9 @@ package Controllers;
 
 import Entite.Stand;
 import Service.ServiceStand;
-import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -36,16 +34,12 @@ import javafx.stage.FileChooser;
  *
  * @author Elyes
  */
-public class AjouterStandController implements Initializable {
+public class AjouterStandMController implements Initializable {
 
     @FXML
     private TextField tfproprietaire_stand;
     @FXML
     private TextField tftype_marchandise;
-    @FXML
-    private DatePicker tfdate_debut_stand;
-    @FXML
-    private DatePicker tfdate_fin_stand;
     @FXML
     private TextField tftitre_stand;
     @FXML
@@ -54,6 +48,10 @@ public class AjouterStandController implements Initializable {
     private Label login;
     @FXML
     private ImageView image;
+    @FXML
+    private DatePicker tfdate_debut_stand;
+    @FXML
+    private DatePicker tfdate_fin_stand;
     @FXML
     private Label tfidM;
     @FXML
@@ -89,7 +87,6 @@ public class AjouterStandController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         // TODO
     }
 
@@ -125,27 +122,25 @@ public class AjouterStandController implements Initializable {
                 alert.show();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AjouterStandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AjouterStandMController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
-    private void aficherStand(ActionEvent event) throws IOException, SQLException {
+    private void aficherStand(ActionEvent event) throws SQLException, IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
+        loader.setLocation(getClass().getResource("/Views/AfficherStandM.fxml"));
         Parent root = loader.load();
         tfRetour.getScene().setRoot(root);
 
         ServiceStand SS = new ServiceStand();
-        AfficherStandController asc = loader.getController();
+        AfficherStandMController asc = loader.getController();
 
         asc.login(login.getText());
 
         String filepath;
         filepath = SS.searchImage(login.getText());
         asc.image(filepath);
-
     }
 
     @FXML
@@ -157,4 +152,5 @@ public class AjouterStandController implements Initializable {
         Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
         imageS.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
     }
+
 }

@@ -28,6 +28,7 @@
             <ImageView fx:id="tfphoto" fitHeight="93.0" fitWidth="100.0" layoutX="77.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="tfmodifp" layoutX="90.0" layoutY="278.0" mnemonicParsing="false" onAction="#modifProfile" text="Edit Profile" />
             <Button fx:id="tfout" layoutX="23.0" layoutY="361.0" mnemonicParsing="false" onAction="#tfout" text="Log out" />
+            <Button fx:id="tfCheckEventsSigned" layoutX="53.0" layoutY="464.0" mnemonicParsing="false" onAction="#CheckEventsSigned" text="Check your Events" />
          </children>
       </Pane>
       <Pane layoutX="274.0" layoutY="36.0" prefHeight="112.0" prefWidth="333.0">
@@ -54,7 +55,6 @@
             <Hyperlink fx:id="tfGoToStand" layoutX="11.0" layoutY="44.0" onAction="#GoToStand" text="Go To stand" />
          </children>
       </Pane>
-      <Button fx:id="tfCheckEventsSigned" layoutX="686.0" layoutY="69.0" mnemonicParsing="false" onAction="#CheckEventsSigned" text="Check your Events" />
       <Button fx:id="tfFormation" layoutX="686.0" layoutY="208.0" mnemonicParsing="false" onAction="#Formation" text="Browse Formations" />
    </children>
 </AnchorPane>

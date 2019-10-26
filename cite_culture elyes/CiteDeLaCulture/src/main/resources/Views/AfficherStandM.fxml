@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandMController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandMController">
    <children>
       <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="604.0">
         <columns>
@@ -31,5 +32,6 @@
       <ImageView fx:id="tfphoto" fitHeight="33.0" fitWidth="41.0" layoutX="668.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" visible="false" />
       <Label fx:id="tfid" layoutX="725.0" layoutY="360.0" />
       <Label fx:id="tftitle" layoutX="724.0" layoutY="482.0" />
+      <Button fx:id="tfadd" layoutX="125.0" layoutY="522.0" mnemonicParsing="false" onAction="#GoToAdd" text="Add" />
    </children>
 </AnchorPane>

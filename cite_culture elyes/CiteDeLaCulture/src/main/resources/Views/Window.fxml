@@ -69,9 +69,10 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="tfmodif" layoutX="1166.0" layoutY="48.0" mnemonicParsing="false" onAction="#modifUser" text="Edit Members">
+      <Button fx:id="tfmodif" layoutX="1189.0" layoutY="215.0" mnemonicParsing="false" onAction="#modifUser" text="Edit Members">
          <font>
             <Font size="20.0" />
          </font></Button>
+      <Button fx:id="tfNotifications" layoutX="1271.0" layoutY="24.0" mnemonicParsing="false" onAction="#GoToNotifications" text="Notifications" />
    </children>
 </AnchorPane>

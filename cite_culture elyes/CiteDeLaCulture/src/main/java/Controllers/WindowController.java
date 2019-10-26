@@ -5,18 +5,24 @@
  */
 package Controllers;
 
+import Entite.Stand;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -56,6 +62,8 @@ public class WindowController implements Initializable {
     private Button tfFormation;
     @FXML
     private Button tfmodif;
+    @FXML
+    private Button tfNotifications;
 
     /**
      * Initializes the controller class.
@@ -170,6 +178,12 @@ public class WindowController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         asc.image(filepath);
+    }
+
+    @FXML
+    private void GoToNotifications(ActionEvent event) {
+        
+        
     }
 
 }

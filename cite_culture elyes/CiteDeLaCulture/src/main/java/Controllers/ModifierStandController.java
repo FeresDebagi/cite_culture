@@ -7,6 +7,7 @@ package Controllers;
 
 import Entite.Stand;
 import Service.ServiceStand;
+import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -30,6 +31,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -61,6 +64,14 @@ public class ModifierStandController implements Initializable {
     private Label tfiduser;
     @FXML
     private ImageView tfimageuser;
+    @FXML
+    private Label tfActif;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Button filechose;
+    @FXML
+    private Label filepath;
 
     void login(String log) {
         tfiduser.setText(log);
@@ -87,12 +98,29 @@ public class ModifierStandController implements Initializable {
         tftype_marchandise.setText(s);
     }
 
+    void Prop(String name, String prename) {
+        tfproprietaire_stand.setText(name + " " + prename);
+    }
+
+    void findStatus(String s) {
+        tfActif.setText(s);
+    }
+    
+     void imageStand(String s){
+        Image imag = new Image("file:" + s);
+        image1.setImage(imag);
+        
+    }
+    
+
+
     /*void debutStand(String s) {
-        tfdate_debut_stand.setText(s);
+        
     }*/
 
- /*void finStand(String s) {
-        tfdate_fin_stand.setText(s);
+    /*void finStand(String s) {
+        tfdate_debut_stand.setAccessibleText(tfdate_debut_stand.getValue().
+                format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }*/
     /**
      * Initializes the controller class.
@@ -120,10 +148,16 @@ public class ModifierStandController implements Initializable {
                 s.setDate_debut_stand(tfdate_debut_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 s.setDate_fin_stand(tfdate_fin_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 s.setTitre_stand(tftitre_stand.getText());
+                s.setActif(tfActif.getText());
+                s.setPhotoStand(filepath.getText());
 
                 ServiceStand sp = new ServiceStand();
+                ServiceUser su = new ServiceUser();
+
                 sp.ModifierStand(s.getId_stand(), s.getTitre_stand(), s.getProprietaire_stand(),
-                        s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand());
+                        s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand(),
+                        su.SearchId(tfiduser.getText()),
+                        s.getPhotoStand(), tfActif.getText());
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Updated");
@@ -153,6 +187,16 @@ public class ModifierStandController implements Initializable {
         filepath = SS.searchImage(tfiduser.getText());
         asc.image(filepath);
 
+    }
+
+    @FXML
+    private void filechoose(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        File selected = fc.showOpenDialog(null);
+        filepath.setText(selected.getAbsolutePath());
+        File fichier = new File(filepath.getText());
+        Image imag = new Image("file:" + filepath.getText());
+        image1.setImage(imag);
     }
 
 }

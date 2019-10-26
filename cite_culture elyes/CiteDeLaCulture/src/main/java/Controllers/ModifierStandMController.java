@@ -11,7 +11,6 @@ import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -36,8 +35,16 @@ import javafx.stage.FileChooser;
  *
  * @author Elyes
  */
-public class AjouterStandController implements Initializable {
+public class ModifierStandMController implements Initializable {
 
+    @FXML
+    private Button tfRetour;
+    @FXML
+    private Button modifierStand;
+    @FXML
+    private Label id;
+    @FXML
+    private TextField tftitre_stand;
     @FXML
     private TextField tfproprietaire_stand;
     @FXML
@@ -47,55 +54,88 @@ public class AjouterStandController implements Initializable {
     @FXML
     private DatePicker tfdate_fin_stand;
     @FXML
-    private TextField tftitre_stand;
+    private Label tfActif;
     @FXML
-    private Button tfRetour;
+    private ImageView image1;
     @FXML
-    private Label login;
+    private Button filechose;
     @FXML
-    private ImageView image;
+    private Label tfidstand;
     @FXML
-    private Label tfidM;
+    private Label tfiduser;
     @FXML
-    private Label ftnameprop;
-    @FXML
-    private Label ftlastnameprop;
-    @FXML
-    private ImageView imageS;
-    @FXML
-    private Button tfimportphotoS;
+    private ImageView tfimageuser;
     @FXML
     private Label filepath;
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     void login(String log) {
-        login.setText(log);
+        tfiduser.setText(log);
     }
 
     void image(String filepath) {
         Image imag = new Image("file:" + filepath);
-        image.setImage(imag);
+        tfimageuser.setImage(imag);
     }
 
-    void idStand(int x) {
-        tfidM.setText(Integer.toString(x));
+    void idStand(String s) {
+        tfidstand.setText(s);
+    }
+
+    void titreStand(String s) {
+        tftitre_stand.setText(s);
+    }
+
+    void proprietaireStand(String s) {
+        tfproprietaire_stand.setText(s);
+    }
+
+    void marchandiseStand(String s) {
+        tftype_marchandise.setText(s);
     }
 
     void Prop(String name, String prename) {
         tfproprietaire_stand.setText(name + " " + prename);
     }
 
+    void findStatus(String s) {
+        tfActif.setText(s);
+    }
+    
+     void imageStand(String s){
+        Image imag = new Image("file:" + s);
+        image1.setImage(imag);
+        
+    }
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         // TODO
+    }    
+
+    @FXML
+    private void aficherStand(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherStandM.fxml"));
+        Parent root = loader.load();
+        tfRetour.getScene().setRoot(root);
+
+        ServiceStand SS = new ServiceStand();
+        AfficherStandMController asc = loader.getController();
+
+        asc.login(tfiduser.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tfiduser.getText());
+        asc.image(filepath);
+        
     }
 
     @FXML
-    private void ajouterStand(ActionEvent event) {
-        Stand s = new Stand();
+    private void modifiercordonnes(ActionEvent event) {Stand s = new Stand();
         try {
             if ((tfdate_debut_stand.getValue().toString().isEmpty())
                     && (tfdate_fin_stand.getValue().toString().isEmpty())) {
@@ -105,56 +145,42 @@ public class AjouterStandController implements Initializable {
                 alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
                 alert.show();
             } else {
+                s.setId_stand(Integer.valueOf(tfidstand.getText()));
                 s.setProprietaire_stand(tfproprietaire_stand.getText());
                 s.setType_marchandise(tftype_marchandise.getText());
                 s.setDate_debut_stand(tfdate_debut_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 s.setDate_fin_stand(tfdate_fin_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 s.setTitre_stand(tftitre_stand.getText());
-                s.setActif("no");
+                s.setActif(tfActif.getText());
                 s.setPhotoStand(filepath.getText());
-                s.setIdU_fk(Integer.valueOf(tfidM.getText()));
 
                 ServiceStand sp = new ServiceStand();
+                ServiceUser su = new ServiceUser();
 
-                sp.AjouterStand(s);
+                sp.ModifierStand(s.getId_stand(), s.getTitre_stand(), s.getProprietaire_stand(),
+                        s.getType_marchandise(), s.getDate_debut_stand(), s.getDate_fin_stand(),
+                        su.SearchId(tfiduser.getText()),
+                        s.getPhotoStand(), tfActif.getText());
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Added");
+                alert.setTitle("Updated");
                 alert.setHeaderText(null);
-                alert.setContentText("Stand Added!");
+                alert.setContentText("Stand Updated!");
                 alert.show();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AjouterStandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModifierStandMController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
-    private void aficherStand(ActionEvent event) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/AfficherStand.fxml"));
-        Parent root = loader.load();
-        tfRetour.getScene().setRoot(root);
-
-        ServiceStand SS = new ServiceStand();
-        AfficherStandController asc = loader.getController();
-
-        asc.login(login.getText());
-
-        String filepath;
-        filepath = SS.searchImage(login.getText());
-        asc.image(filepath);
-
+    private void filechoose(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        File selected = fc.showOpenDialog(null);
+        filepath.setText(selected.getAbsolutePath());
+        File fichier = new File(filepath.getText());
+        Image imag = new Image("file:" + filepath.getText());
+        image1.setImage(imag);
     }
-
-    @FXML
-    private void importphotoS(ActionEvent event) {
-        FileChooser fc = new FileChooser();     //3ayetna lel class hedhi deja mawjouda
-        File selected = fc.showOpenDialog(null);    //hedhi bch n7ot les entete fou9 taswira
-        File fichier = new File(selected.getName());    //hedhi useless ama khalitha fel tuto mawjouda xd
-        filepath.setText(selected.getAbsolutePath());   
-        Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
-        imageS.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
-    }
+    
 }

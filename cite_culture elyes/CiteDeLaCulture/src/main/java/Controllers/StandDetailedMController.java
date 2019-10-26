@@ -5,7 +5,9 @@
  */
 package Controllers;
 
+import Entite.Stand;
 import Service.ServiceStand;
+import Service.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -45,13 +48,18 @@ public class StandDetailedMController implements Initializable {
     private Label tflogin;
     @FXML
     private ImageView tfphoto;
-    
-
+    @FXML
+    private Label tfActif;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Label filepath;
+    @FXML
+    private Button tfedit;
 
     /**
      * Initializes the controller class.
      */
-    
     void login(String log) {
         tflogin.setText(log);
     }
@@ -84,13 +92,21 @@ public class StandDetailedMController implements Initializable {
     void finStand(String s) {
         tfdate_fin_stand.setText(s);
     }
-    
-    
-    
+
+    void findStatus(String s) {
+        tfActif.setText(s);
+    }
+
+    void imageStand(String s) {
+        Image imag = new Image("file:" + s);
+        image1.setImage(imag);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void Back(ActionEvent event) throws SQLException, IOException {
@@ -108,5 +124,45 @@ public class StandDetailedMController implements Initializable {
         filepath = SS.searchImage(tflogin.getText());
         asc.image(filepath);
     }
-    
+
+    @FXML
+    private void EditS(ActionEvent event) throws IOException, SQLException {
+        ServiceUser su = new ServiceUser();
+        ServiceStand SS = new ServiceStand();
+        Stand s = new Stand();
+        int ifU = su.SearchId(tflogin.getText());
+        int idU = Integer.valueOf(SS.searchMemberID(Integer.valueOf(tfid_stand.getText())));
+        if (ifU == idU) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Views/ModifierStandM.fxml"));
+            Parent root = loader.load();
+            tfedit.getScene().setRoot(root);
+
+            ModifierStandMController mdc = loader.getController();
+            mdc.idStand(tfid_stand.getText());
+            mdc.titreStand(tftitre_stand.getText());
+            mdc.proprietaireStand(tfProperty.getText());
+            mdc.marchandiseStand(tftype_marchandise.getText());
+            //mdc.debutStand(tfdate_debut_stand.getText());
+            //mdc.finStand(tfdate_fin_stand.getText());
+            mdc.login(tflogin.getText());
+            mdc.findStatus(tfActif.getText());
+
+            String idd = SS.searchImageStand(tfid_stand.getText());
+            mdc.imageStand(idd);
+
+            String filepath;
+            filepath = SS.searchImage(tflogin.getText());
+            mdc.image(filepath);
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("You can't edit this Stand!");
+            alert.show();
+        }
+
+    }
+
 }

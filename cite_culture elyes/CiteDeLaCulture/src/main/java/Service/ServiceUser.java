@@ -52,6 +52,20 @@ public class ServiceUser {
         }
         return list;
     }
+    
+    
+    public int SearchId(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT id_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getInt("id_user");
+        }
+        return 0;
+    }
+    
+    
+    
 
     public String SearchPassword(String login) throws SQLException {
         Statement stm = con.createStatement();

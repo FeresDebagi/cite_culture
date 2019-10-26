@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterStandMController">
+    
+    <children>
+      <Button layoutX="338.0" layoutY="562.0" mnemonicParsing="false" onAction="#ajouterStand" text="Add" />
+      <TextField fx:id="tfproprietaire_stand" layoutX="357.0" layoutY="154.0" promptText="Property" />
+      <TextField fx:id="tftype_marchandise" layoutX="357.0" layoutY="193.0" promptText="Marchandise" />
+      <TextField fx:id="tftitre_stand" layoutX="357.0" layoutY="112.0" promptText="Title" />
+      <Label layoutX="218.0" layoutY="116.0" text="Title" />
+      <Label layoutX="205.0" layoutY="154.0" text="Property" />
+      <Label layoutX="205.0" layoutY="193.0" text="Marchandise" />
+      <Label layoutX="205.0" layoutY="235.0" text="Starting date" />
+      <Label layoutX="209.0" layoutY="278.0" text="Ending date" />
+      <Button fx:id="tfRetour" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#aficherStand" text="Back" />
+      <Label layoutX="176.0" layoutY="36.0" text="Add Stand" textFill="#66a6de">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="162.0" layoutY="74.0" prefHeight="0.0" prefWidth="384.0" />
+      <Label fx:id="login" layoutX="48.0" layoutY="69.0" />
+      <ImageView fx:id="image" fitHeight="103.0" fitWidth="89.0" layoutX="25.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+      <DatePicker fx:id="tfdate_debut_stand" layoutX="357.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-MM-dd" />
+      <DatePicker fx:id="tfdate_fin_stand" layoutX="357.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-MM-dd" />
+      <Label fx:id="tfidM" layoutX="251.0" layoutY="492.0" />
+      <Label fx:id="ftnameprop" layoutX="291.0" layoutY="534.0" />
+      <Label fx:id="ftlastnameprop" layoutX="273.0" layoutY="566.0" />
+      <Label layoutX="224.0" layoutY="331.0" text="Photo" />
+      <ImageView fx:id="imageS" fitHeight="103.0" fitWidth="119.0" layoutX="372.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="tfimportphotoS" layoutX="392.0" layoutY="412.0" mnemonicParsing="false" onAction="#importphotoS" text="import" />
+      <Label fx:id="filepath" layoutX="605.0" layoutY="429.0" />
+   </children>
+    
+</AnchorPane>

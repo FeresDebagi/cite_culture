@@ -11,13 +11,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherStandController">
    <children>
-      <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="604.0">
+      <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="679.0">
         <columns>
           <TableColumn fx:id="tftitre_stand" prefWidth="75.0" text="Title" />
             <TableColumn fx:id="tfproprietaire_stand" prefWidth="132.0" text="Proprety" />
             <TableColumn fx:id="tftype_marchandise" prefWidth="126.0" text="Marchandise" />
             <TableColumn fx:id="tfdate_debut_stand" prefWidth="145.0" text="Starting Stand" />
             <TableColumn fx:id="tfdate_fin_stand" prefWidth="124.0" text="Ending Stand" />
+            <TableColumn fx:id="tfActif" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
       <Button fx:id="tfadd" layoutX="115.0" layoutY="512.0" mnemonicParsing="false" onAction="#GoToAdd" text="Add" />

@@ -38,11 +38,26 @@ public class ServiceStand {
         Stand st = null;
         while (res.next()) {
             st = new Stand(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5),
-                    res.getString(6));
+                    res.getString(6), res.getInt(7), res.getString(8), res.getString(9));
             list.add(st);
         }
         return list;
     }
+    
+    public List<Stand> readMyAllStand(int idMember) throws SQLException {
+        List<Stand> list = new ArrayList<>();
+        ResultSet res = ste.executeQuery("select * from stand where `IdU_fk` = `" + idMember + "`");
+        Stand st = null;
+        while (res.next()) {
+            st = new Stand(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5),
+                    res.getString(6), res.getInt(7), res.getString(8), res.getString(9));
+            list.add(st);
+        }
+        return list;
+    }
+    
+    
+    
 
     public List<Stand> readAllStand1() throws SQLException {
         String req = "select *  from stand ";
@@ -64,14 +79,19 @@ public class ServiceStand {
     }
 
     public void AjouterStand(Stand s) throws SQLException {
-        String req = "INSERT INTO `stand` (`titre_stand`, `proprietaire_stand`, `type_marchandise`, `date_debut_stand`, `date_fin_stand`)"
-                + " VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `stand` (`titre_stand`, `proprietaire_stand`, `type_marchandise`, "
+                + "`date_debut_stand`, `date_fin_stand`, `IdU_fk`, `PhotoStand`, `Actif`)"
+                + " VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pres = con.prepareStatement(req);
         pres.setString(1, s.getTitre_stand());
         pres.setString(2, s.getProprietaire_stand());
         pres.setString(3, s.getType_marchandise());
         pres.setString(4, s.getDate_debut_stand());
         pres.setString(5, s.getDate_fin_stand());
+        pres.setInt(6, s.getIdU_fk());
+        pres.setString(7, s.getPhotoStand());
+        pres.setString(8, s.getActif());
+
         pres.executeUpdate();
         System.out.println("element insere");
     }
@@ -89,11 +109,13 @@ public class ServiceStand {
     }
 
     public void ModifierStand(int id_stand, String titre_stand, String proprietaire_stand,
-            String type_marchandise, String date_debut_stand, String date_fin_stand) throws SQLException {
+            String type_marchandise, String date_fin_stand, String date_debut_stand, int idU_fk,
+            String PhotoStand, String actif) throws SQLException {
         {
 
             String req = "update stand set titre_stand = ? , proprietaire_stand=  ?, type_marchandise = ? ,"
-                    + "date_debut_stand = ? ,date_fin_stand = ? where id_stand = ? ";
+                    + "date_debut_stand = ? ,date_fin_stand = ? ,IdU_fk = ? ,PhotoStand = ? "
+                    + ",Actif = ?  where id_stand = ? ";
 
             try {
                 PreparedStatement ps = con.prepareStatement(req);
@@ -103,26 +125,34 @@ public class ServiceStand {
                 ps.setString(3, type_marchandise);
                 ps.setString(4, date_debut_stand);
                 ps.setString(5, date_fin_stand);
-                ps.setInt(6, id_stand);
+                ps.setInt(6, idU_fk);
+                ps.setString(7, PhotoStand);
+                ps.setString(8, actif);
+                ps.setInt(9, id_stand);
+
                 ps.execute();
                 System.out.println("Stand modifié");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-
-            /*preparedStmt.setString   (1, titre_stand);
-      preparedStmt.setInt(2, id_stand);
-
-      // execute the java preparedstatement
-      preparedStmt.executeUpdate();
-      
+        }
     }
-    catch (Exception e)
-    {
-      System.err.println("Got an exception! ");
-      System.err.println(e.getMessage());
-    }
-    }*/
+
+    public void ModifierStandStatus(int id_stand, String Actif) throws SQLException {
+        {
+
+            String req = "update stand set Actif = ? where id_stand = ? ";
+
+            try {
+                PreparedStatement ps = con.prepareStatement(req);
+
+                ps.setString(1, Actif);
+                ps.setInt(2, id_stand);
+                ps.execute();
+                System.out.println("Stand modifié");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
@@ -164,8 +194,7 @@ public class ServiceStand {
 
         return mylist;
     }
-    
-    
+
     public String searchImage(String login) throws SQLException {
         Statement stm = con.createStatement();
         String req = "SELECT photo_profil_user FROM `user` WHERE  login_user='" + login + "'";
@@ -176,9 +205,20 @@ public class ServiceStand {
         return null;
     }
     
+    public String searchImageStand(String id) throws SQLException {
+        Statement stm = con.createStatement();
+        int idd = Integer.valueOf(id);
+        String req = "SELECT PhotoStand FROM `stand` WHERE  id_stand='" + idd + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("PhotoStand");
+        }
+        return null;
+    }
     
+
     //Search by 1:
-    public String SearchTitre(int id_stand) throws SQLException{
+    public String SearchTitre(int id_stand) throws SQLException {
         Statement stm = con.createStatement();
         String req = "SELECT titre_stand FROM `stand` WHERE  id_stand='" + id_stand + "'";
         ResultSet resultat = stm.executeQuery(req);
@@ -186,11 +226,38 @@ public class ServiceStand {
             return resultat.getString("titre_stand");
         }
         return null;
-    
+    }
+
+    public String searchNom(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT prenom_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("prenom_user");
+        }
+        return null;
+    }
+
+    public String searchPrenom(String login) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT nom_user FROM `user` WHERE  login_user='" + login + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("nom_user");
+        }
+        return null;
     }
     
     
-    
+    public String searchMemberID(int id) throws SQLException {
+        Statement stm = con.createStatement();
+        String req = "SELECT IdU_fk FROM `stand` WHERE  id_stand='" + id + "'";
+        ResultSet resultat = stm.executeQuery(req);
+        if (resultat.next()) {
+            return resultat.getString("IdU_fk");
+        }
+        return null;
+    }
     
 
 }
