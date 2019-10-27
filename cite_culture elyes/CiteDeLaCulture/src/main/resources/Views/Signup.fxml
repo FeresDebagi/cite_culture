@@ -30,31 +30,58 @@
                </font>
             </Label>
             <Separator layoutX="34.0" layoutY="48.0" prefHeight="17.0" prefWidth="737.0" />
-            <Label layoutX="94.0" layoutY="275.0" text=" First name" textFill="#a0a2ab" />
-            <TextField fx:id="tfnom_user" layoutX="190.0" layoutY="271.0" promptText=" First name" />
-            <Label layoutX="109.0" layoutY="107.0" text="Login" textFill="#a0a2ab" />
+            <Label layoutX="64.0" layoutY="269.0" text=" First name" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfnom_user" layoutX="202.0" layoutY="271.0" promptText=" First name" />
+            <Label layoutX="109.0" layoutY="107.0" text="Login" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
             <TextField fx:id="tflogin_user" layoutX="202.0" layoutY="103.0" promptText="Login" />
-            <TextField fx:id="tfmail_user" layoutX="190.0" layoutY="334.0" promptText="exemple@gmail.com" />
-            <Label layoutX="112.0" layoutY="338.0" text="Email" textFill="#a0a2ab" />
-            <TextField fx:id="tfprenom_user" layoutX="537.0" layoutY="271.0" promptText="Last name" />
-            <Label layoutX="439.0" layoutY="275.0" text="Last name" textFill="#a0a2ab" />
-            <TextField fx:id="tfmdp_user" layoutX="586.0" layoutY="103.0" promptText="Use 8 or more characters" />
-            <Label layoutX="487.0" layoutY="107.0" text="Password" textFill="#a0a2ab" />
+            <TextField fx:id="tfmail_user" layoutX="202.0" layoutY="341.0" promptText="exemple@gmail.com" />
+            <Label layoutX="88.0" layoutY="339.0" text="Email" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfprenom_user" layoutX="570.0" layoutY="271.0" promptText="Last name" />
+            <Label layoutX="439.0" layoutY="275.0" text="Last name" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfmdp_user" layoutX="570.0" layoutY="103.0" promptText="Use 8 or more characters" />
+            <Label layoutX="435.0" layoutY="101.0" text="Password" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
             <Label layoutX="39.0" layoutY="200.0" text="Avanced Details">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Separator layoutX="34.0" layoutY="239.0" prefHeight="2.0" prefWidth="737.0" />
-            <Label layoutX="99.0" layoutY="409.0" text="Birthdate" textFill="#a0a2ab" />
-            <Label layoutX="457.0" layoutY="338.0" text="Cin" textFill="#a0a2ab" />
-            <TextField fx:id="tfcin_user" layoutX="544.0" layoutY="334.0" promptText="Cin" />
-            <Label layoutX="426.0" layoutY="409.0" text="Phone number" textFill="#a0a2ab" />
-            <TextField fx:id="tfnum_tel_user" layoutX="544.0" layoutY="405.0" promptText="Phone number" />
-            <Label layoutX="778.0" layoutY="267.0" text="Profile picture" textFill="#a0a2ab" />
+            <Label layoutX="72.0" layoutY="410.0" text="Birthdate" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="457.0" layoutY="338.0" text="Cin" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfcin_user" layoutX="570.0" layoutY="341.0" promptText="Cin" />
+            <Label layoutX="406.0" layoutY="415.0" text="Phone number" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfnum_tel_user" layoutX="570.0" layoutY="411.0" promptText="Phone number" />
+            <Label layoutX="771.0" layoutY="269.0" text="Profile picture" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
             <ImageView fx:id="image1" fitHeight="128.0" fitWidth="147.0" layoutX="772.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="filechose" layoutX="771.0" layoutY="430.0" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Import" />
-            <DatePicker fx:id="tfdate_naissance_user1" layoutX="190.0" layoutY="405.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-m-dd" />
+            <DatePicker fx:id="tfdate_naissance_user1" layoutX="202.0" layoutY="412.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-m-dd" />
          </children>
       </Pane>
    </children>

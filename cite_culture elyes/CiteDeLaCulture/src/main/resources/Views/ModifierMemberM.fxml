@@ -5,56 +5,115 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberMController">
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1366.0" style="-fx-background-color: #485487;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierMemberMController">
    <children>
-      <Button fx:id="tfMain" layoutX="28.0" layoutY="505.0" mnemonicParsing="false" onAction="#Main" text="Back" />
-      <Label layoutX="154.0" layoutY="34.0" text="Edit Profile" textFill="#66a6de">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Separator layoutX="152.0" layoutY="64.0" prefHeight="0.0" prefWidth="384.0" />
       <Label fx:id="label_tapez" layoutX="374.0" layoutY="59.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
-      <Button fx:id="modifierMember" layoutX="398.0" layoutY="479.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" text="Save" textFill="#3a76a8">
+      <Button fx:id="modifierMember" layoutX="756.0" layoutY="552.0" mnemonicParsing="false" onAction="#modifiercordonnes" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: #151928;" text="Save" textFill="#a0a2ab">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
       <Label fx:id="id" layoutX="276.0" layoutY="76.0" prefHeight="17.0" prefWidth="95.0" text="Label" visible="false" />
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="96.0" prefHeight="383.0" prefWidth="192.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="1013.0" layoutY="93.0" prefHeight="383.0" prefWidth="192.0" spacing="30.0">
          <children>
             <Label fx:id="filename" prefHeight="26.0" prefWidth="303.0" />
             <Label fx:id="filepath" prefHeight="26.0" prefWidth="346.0" visible="false" />
-            <Label text="Profile Picture" />
-            <ImageView fx:id="image1" fitHeight="121.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="filechose" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Change Picture" />
          </children>
       </VBox>
-      <Label fx:id="tflogin_user" layoutX="439.0" layoutY="39.0" prefHeight="17.0" prefWidth="52.0" />
-      <Label fx:id="tftest" layoutX="228.0" layoutY="310.0" prefHeight="17.0" prefWidth="260.0" />
-      <Pane layoutX="276.0" layoutY="85.0" prefHeight="304.0" prefWidth="271.0">
+      <Label fx:id="tftest" layoutX="228.0" layoutY="310.0" prefHeight="17.0" prefWidth="260.0" text="tftest" visible="false" />
+      <Pane layoutX="491.0" layoutY="90.0" prefHeight="406.0" prefWidth="664.0">
          <children>
-            <Label layoutX="24.0" layoutY="24.0" text="First Name" />
-            <TextField fx:id="tfnom_user" layoutX="108.0" layoutY="20.0" promptText="name" />
-            <Label layoutX="25.0" layoutY="67.0" text="Last Name" />
-            <TextField fx:id="tfprenom_user" layoutX="108.0" layoutY="63.0" promptText="Prename" />
-            <Label layoutX="28.0" layoutY="149.0" text="Password" />
-            <TextField fx:id="tfcin_user" layoutX="108.0" layoutY="185.0" promptText="cin" />
-            <TextField fx:id="tfmail_user" layoutX="108.0" layoutY="103.0" promptText="mail" />
-            <TextField fx:id="tfmdp_user" layoutX="108.0" layoutY="145.0" promptText="password" />
-            <Label layoutX="39.0" layoutY="107.0" text="Email" />
-            <Label layoutX="44.0" layoutY="189.0" text="Cin" />
-            <Label layoutX="27.0" layoutY="228.0" text="Birth Date" />
-            <Label layoutX="14.0" layoutY="268.0" text="Phone number" />
-            <TextField fx:id="tfnum_tel_user" layoutX="105.0" layoutY="261.0" promptText="phone number" />
-            <DatePicker fx:id="tfdate_naissance_user1" layoutX="101.0" layoutY="221.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-m-dd" />
+            <Label layoutX="44.0" layoutY="218.0" text="First Name" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfnom_user" layoutX="170.0" layoutY="221.0" promptText="name" />
+            <Label layoutX="369.0" layoutY="218.0" text="Last Name" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfprenom_user" layoutX="501.0" layoutY="220.0" promptText="last name" />
+            <Label layoutX="374.0" layoutY="41.0" text="Password" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfcin_user" layoutX="170.0" layoutY="287.0" promptText="cin" />
+            <TextField fx:id="tfmail_user" layoutX="170.0" layoutY="43.0" promptText="mail" />
+            <TextField fx:id="tfmdp_user" layoutX="501.0" layoutY="43.0" promptText="password" />
+            <Label layoutX="69.0" layoutY="41.0" text="Email" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="78.0" layoutY="284.0" text="Cin" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="200.0" layoutY="343.0" text="Birth Date" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="350.0" layoutY="284.0" text="Phone number" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="tfnum_tel_user" layoutX="501.0" layoutY="287.0" promptText="phone number" />
+            <DatePicker fx:id="tfdate_naissance_user1" layoutX="341.0" layoutY="346.0" prefHeight="25.0" prefWidth="149.0" promptText="yyyy-m-dd" />
+            <Label layoutX="36.0" layoutY="135.0" text="Avanced Details">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator layoutX="35.0" layoutY="183.0" prefHeight="3.0" prefWidth="540.0" />
          </children>
       </Pane>
+      <Pane prefHeight="716.0" prefWidth="246.0" style="-fx-background-color: dimgrey;">
+         <children>
+            <Label layoutX="69.0" layoutY="24.0" text="Cultural City Of Tunis">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="50.0" layoutX="6.0" layoutY="7.0">
+               <image>
+                  <Image url="@Logo1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="44.0" layoutY="155.0" text="Welcome Back">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="246.0" text="Profile Picture">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="filechose" layoutX="46.0" layoutY="471.0" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #151928;" text="Change Picture" textFill="#a0a2ab" />
+            <Button fx:id="tfMain" layoutY="670.0" mnemonicParsing="false" onAction="#Main" style="-fx-background-color: #151928;" text="Back" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="image1" fitHeight="195.0" fitWidth="188.0" layoutX="30.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tflogin_user" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="190.0" prefHeight="30.0" prefWidth="172.0" text="tflogin_user">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="448.0" layoutY="24.0" text="Edit Profile">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="439.0" layoutY="66.0" prefHeight="3.0" prefWidth="734.0" />
    </children>
 </AnchorPane>
