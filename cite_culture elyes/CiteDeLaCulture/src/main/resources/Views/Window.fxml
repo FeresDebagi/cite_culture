@@ -60,6 +60,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="tfChangePictureEvent" disable="true" layoutX="230.0" layoutY="187.0" mnemonicParsing="false" onAction="#ChangePictureEvent" style="-fx-background-color: #151928;" text="Change Picture" textFill="#a0a2ab" visible="false" />
+            <Label fx:id="filepathgifevent" layoutX="97.0" layoutY="191.0" text="filepathgifevent" visible="false" />
          </children>
       </Pane>
       <Pane layoutX="274.0" layoutY="254.0" prefHeight="213.0" prefWidth="983.0">
@@ -86,6 +88,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="tfChangePictureHistory" disable="true" layoutX="233.0" layoutY="187.0" mnemonicParsing="false" onAction="#ChangePictureHistory" style="-fx-background-color: #151928;" text="Change Picture" textFill="#a0a2ab" visible="false" />
+            <Label fx:id="filepathgifhistory" layoutX="79.0" layoutY="191.0" text="filepathgifhistory" visible="false" />
          </children>
       </Pane>
       <Pane layoutX="274.0" layoutY="482.0" prefHeight="213.0" prefWidth="974.0">
@@ -112,6 +116,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="tfChangePictureStand" disable="true" layoutX="235.0" layoutY="187.0" mnemonicParsing="false" onAction="#ChangePictureStand" style="-fx-background-color: #151928;" text="Change Picture" textFill="#a0a2ab" visible="false" />
+            <Label fx:id="filepathgifstand" layoutX="104.0" layoutY="191.0" text="filepathgifstand" visible="false" />
          </children>
       </Pane>
       <Button fx:id="tfFormation" layoutX="1159.0" layoutY="662.0" mnemonicParsing="false" onAction="#Formation" style="-fx-background-color: #151928;" text="Browse Formations" textFill="#a0a2ab">

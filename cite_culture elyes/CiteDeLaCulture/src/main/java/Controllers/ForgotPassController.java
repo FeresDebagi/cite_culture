@@ -132,6 +132,6 @@ public class ForgotPassController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Views/Login.fxml"));
         Parent root = loader.load();
-        tfback.getScene().setRoot(root);      
+        tfback.getScene().setRoot(root);        
     }
 }

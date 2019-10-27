@@ -8,6 +8,7 @@ package Controllers;
 import Entite.Stand;
 import Service.ServiceStand;
 import Service.ServiceUser;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -63,7 +65,17 @@ public class WindowController implements Initializable {
     @FXML
     private Button tfmodif;
     @FXML
-    private Button tfNotifications;
+    private Label filepathgifevent;
+    @FXML
+    private Label filepathgifhistory;
+    @FXML
+    private Label filepathgifstand;
+    @FXML
+    private Button tfChangePictureEvent;
+    @FXML
+    private Button tfChangePictureHistory;
+    @FXML
+    private Button tfChangePictureStand;
 
     /**
      * Initializes the controller class.
@@ -181,9 +193,36 @@ public class WindowController implements Initializable {
     }
 
     @FXML
-    private void GoToNotifications(ActionEvent event) {
+    private void ChangePictureEvent(ActionEvent event) {
+        FileChooser fc = new FileChooser();     
+        File selected = fc.showOpenDialog(null);     
+        filepathgifevent.setText(selected.getAbsolutePath());   
+        File fichier = new File(filepathgifevent.getText());    
+        Image imag = new Image("file:" + filepathgifevent.getText());   
+        photoEvent.setImage(imag);  
+    }
+
+    @FXML
+    private void ChangePictureHistory(ActionEvent event) {
+        FileChooser fc = new FileChooser();     
+        File selected = fc.showOpenDialog(null);     
+        filepathgifhistory.setText(selected.getAbsolutePath());   
+        File fichier = new File(filepathgifhistory.getText());    
+        Image imag = new Image("file:" + filepathgifhistory.getText());   
+        photoHistory.setImage(imag);  
         
         
     }
+
+    @FXML
+    private void ChangePictureStand(ActionEvent event) {
+        FileChooser fc = new FileChooser();     
+        File selected = fc.showOpenDialog(null);     
+        filepathgifstand.setText(selected.getAbsolutePath());   
+        File fichier = new File(filepathgifstand.getText());    
+        Image imag = new Image("file:" + filepathgifstand.getText());   
+        photoStand.setImage(imag);  
+    }
+
 
 }
