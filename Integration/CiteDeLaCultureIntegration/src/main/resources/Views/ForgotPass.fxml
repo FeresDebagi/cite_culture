@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1366.0" style="-fx-background-color: #485487;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForgotPassController">
+   <children>
+      <Button fx:id="tfback" layoutY="671.0" mnemonicParsing="false" onAction="#backlogin" style="-fx-background-color: #151928;" text="&lt; Back" textFill="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Pane layoutX="439.0" layoutY="54.0" prefHeight="536.0" prefWidth="683.0">
+         <children>
+            <TextField fx:id="txtVer" layoutX="289.0" layoutY="408.0" />
+            <Label layoutX="87.0" layoutY="403.0" text="Verivy code" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtpassEmail" layoutX="353.0" layoutY="238.0" />
+            <TextField fx:id="txtEmail" layoutX="353.0" layoutY="149.0" />
+            <Label layoutX="118.0" layoutY="144.0" text="Enter Email" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="233.0" text="Enter Email password" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="tfsend" layoutX="391.0" layoutY="303.0" mnemonicParsing="false" onAction="#sendMail" style="-fx-background-color: #151928;" text="Send" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tfverif" layoutX="502.0" layoutY="399.0" mnemonicParsing="false" onAction="#verify" style="-fx-background-color: #151928;" text="Verify" textFill="#a0a2ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="34.0" layoutY="22.0" text="Mail verification">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Separator layoutX="34.0" layoutY="67.0" prefHeight="11.0" prefWidth="542.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
