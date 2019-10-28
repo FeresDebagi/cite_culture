@@ -110,10 +110,7 @@ public class WindowController implements Initializable {
         mm.telMM(tflogin.getText());
         mm.nomMM(tflogin.getText());
         mm.imageMM(tflogin.getText());
-        
-        
-        
-        
+  
     }
 
     @FXML
@@ -143,7 +140,21 @@ public class WindowController implements Initializable {
     }
 
     @FXML
-    private void Formation(ActionEvent event) {
+    private void Formation(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherForm.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherFormController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+        
+        
     }
 
     @FXML

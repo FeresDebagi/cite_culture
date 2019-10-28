@@ -43,7 +43,7 @@
       </Pane>
       <Pane layoutX="274.0" layoutY="36.0" prefHeight="213.0" prefWidth="880.0">
          <children>
-            <ImageView fx:id="photoEvent" fitHeight="163.0" fitWidth="523.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="photoEvent" fitHeight="163.0" fitWidth="523.0" layoutY="25.0" onMouseClicked="#GoToEvent2" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Stand.gif" />
                </image></ImageView>

@@ -104,11 +104,36 @@ public class WindowMController implements Initializable {
     }
 
     @FXML
-    private void Formation(ActionEvent event) {
+    private void Formation(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherFormM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherFormMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+        
     }
 
     @FXML
-    private void GoToEvent(ActionEvent event) {
+    private void GoToEvent(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficheM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficheMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
     }
 
     @FXML
@@ -146,6 +171,22 @@ public class WindowMController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         asc.image(filepath);
+    }
+
+    @FXML
+    private void GoToEvent2(MouseEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficheM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficheMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
     }
 
 

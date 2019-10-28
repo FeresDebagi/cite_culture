@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InscriptionController">
    <children>
       <Pane prefHeight="720.0" prefWidth="246.0" style="-fx-background-color: dimgrey;">
          <children>
@@ -62,5 +61,6 @@
       </TableView>
       <Label layoutX="521.0" layoutY="122.0" text="Events" />
       <Label layoutX="1256.0" layoutY="230.0" text="Formation" />
+      <Button fx:id="tfShow" layoutX="361.0" layoutY="565.0" mnemonicParsing="false" onAction="#Show" text="Show" />
    </children>
 </AnchorPane>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="414.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterEventMController">
+   <children>
+      <Button layoutX="502.0" layoutY="460.0" mnemonicParsing="false" onAction="#ajouter_Evenement" prefHeight="44.0" prefWidth="149.0" text="ajouter" />
+      <TextField fx:id="description_event" layoutX="405.0" layoutY="160.0" prefHeight="78.0" prefWidth="194.0" />
+      <TextField fx:id="type_event" layoutX="404.0" layoutY="113.0" />
+      <Label layoutX="22.0" layoutY="40.0" prefHeight="25.0" prefWidth="92.0" />
+      <Label layoutX="222.0" layoutY="113.0" prefHeight="25.0" prefWidth="157.0" text="Type de l'evennement :" textAlignment="CENTER">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="218.0" layoutY="160.0" prefHeight="25.0" prefWidth="165.0" text="Description  de l'evenement :">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="229.0" layoutY="68.0" prefHeight="25.0" prefWidth="143.0" text="Titre de l'evenement : ">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="441.0" layoutY="297.0" prefHeight="25.0" prefWidth="114.0" text="Prix de l'evenement :">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="152.0" layoutY="297.0" prefHeight="25.0" prefWidth="114.0" text="Salle de l'evenement">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="152.0" layoutY="260.0" text="Date de l'evenement">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="441.0" layoutY="256.0" text="heure de l'evenement">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <Label layoutX="440.0" layoutY="379.0" text="Image de l'evenement">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="18.0" />
+         </font></Label>
+      <TextField fx:id="titre_event" layoutX="404.0" layoutY="68.0" />
+      <TextField fx:id="prix_event" layoutX="577.0" layoutY="297.0" />
+      <TextField fx:id="salle_event" layoutX="259.0" layoutY="297.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="heure_event" layoutX="577.0" layoutY="258.0" />
+      <Button fx:id="affiche" layoutX="177.0" layoutY="465.0" mnemonicParsing="false" onAction="#affiche" prefHeight="35.0" prefWidth="143.0" text="retour" />
+      <Label layoutX="42.0" prefHeight="44.0" prefWidth="413.0" text="Ajouter un evenement">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="36.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#120668" />
+                  <Stop color="#9895ae" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="date_event" layoutX="259.0" layoutY="258.0" />
+      <Separator layoutX="48.0" layoutY="43.0" prefHeight="0.0" prefWidth="393.0" />
+      <Pane layoutX="8.0" layoutY="43.0" prefHeight="487.0" prefWidth="136.0" style="-fx-background-color: #66A6DE;" />
+      <Button fx:id="filechose" layoutX="547.0" layoutY="376.0" mnemonicParsing="false" onAction="#filechoose" prefHeight="26.0" prefWidth="149.0" text="Import" />
+      <Label fx:id="filename" layoutX="635.0" layoutY="380.0" />
+      <Label fx:id="filepath" layoutX="635.0" layoutY="410.0" />
+      <ImageView fx:id="image1" fitHeight="68.0" fitWidth="87.0" layoutX="301.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tflogin" layoutX="621.0" layoutY="22.0" text="tflogin" />
+      <ImageView fx:id="tfphoto" fitHeight="78.0" fitWidth="87.0" layoutX="608.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="155.0" layoutY="349.0" text="Event producer" />
+      <TextField fx:id="tfproducer" layoutX="259.0" layoutY="345.0" />
+   </children>
+</AnchorPane>
