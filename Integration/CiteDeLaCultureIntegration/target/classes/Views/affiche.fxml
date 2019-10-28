@@ -47,5 +47,6 @@
       <Label fx:id="tftitreevent" layoutX="360.0" layoutY="500.0" text="tftitreevent" />
       <Label fx:id="tftypeevent" layoutX="402.0" layoutY="517.0" text="tftypeevent" />
       <Label fx:id="tfdescevent" layoutX="416.0" layoutY="563.0" text="tfdescevent" />
+      <Button fx:id="tfSubscribeToEvent" layoutX="105.0" layoutY="450.0" mnemonicParsing="false" onAction="#SubscribeToEvent" text="Subscribe to event" />
    </children>
 </AnchorPane>

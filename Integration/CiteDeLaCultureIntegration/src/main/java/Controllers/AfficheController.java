@@ -6,8 +6,10 @@
 package Controllers;
 
 import Entite.Evenement;
+import Entite.Inscription;
 import Entite.Stand;
 import Service.ServiceEvenement;
+import Service.ServiceInscription;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.IOException;
@@ -96,6 +98,8 @@ public class AfficheController implements Initializable {
     private Label tftypeevent;
     @FXML
     private Label tfdescevent;
+    @FXML
+    private Button tfSubscribeToEvent;
 
     /**
      * Initializes the controller class.
@@ -116,9 +120,8 @@ public class AfficheController implements Initializable {
         try {
             ev = sp.readAll1();
             data.addAll(ev);
-            //Id_event.setCellValueFactory(new PropertyValueFactory<>("id_event"));
             Type_event.setCellValueFactory(new PropertyValueFactory<>("type_event"));
-            Description_event.setCellValueFactory(new PropertyValueFactory<>(" description_event"));
+            Description_event.setCellValueFactory(new PropertyValueFactory<>("description_event"));
             Image_event.setCellValueFactory(new PropertyValueFactory<>("image_event"));
             Titre_event.setCellValueFactory(new PropertyValueFactory<>("titre_event"));
             Date_event.setCellValueFactory(new PropertyValueFactory<>("date_event"));
@@ -242,6 +245,37 @@ public class AfficheController implements Initializable {
         tfprixevent.setText(Integer.toString(e.getPrix_event()));
         tfsaleevent.setText(e.getSalle_event());
 
+    }
+
+    @FXML
+    private void SubscribeToEvent(ActionEvent event) {
+        try {
+            ServiceInscription si = new ServiceInscription();
+            ServiceUser su = new ServiceUser();
+            Boolean sub;
+            int iduser = su.SearchId(tflogin.getText());
+            sub = si.CheckInscrit(iduser,Integer.valueOf(tfidevent.getText()));
+
+            if (sub == true) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Subbed");
+                alert.setHeaderText(null);
+                alert.setContentText("Already Subbed!");
+                alert.show();
+            } else {
+                Inscription i = new Inscription();
+
+                i.setId_event(Integer.valueOf(tfidevent.getText()));
+                i.setId_user(iduser);
+                i.setId_formation(1);
+
+                System.out.println(i);
+
+                si.ajouter_InscriptionEvent(i);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

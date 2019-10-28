@@ -44,8 +44,6 @@ public class AjouterEventController implements Initializable {
     private TextField prix_event;
     @FXML
     private TextField salle_event;
-    private TextField user_name_event;
-    private TextField image_event;
     @FXML
     private TextField heure_event;
     @FXML
@@ -95,7 +93,7 @@ public class AjouterEventController implements Initializable {
         e.setDescription_event(description_event.getText());
         e.setDate_event(date_event.getText());
         e.setPrix_event(Integer.valueOf(prix_event.getText()));
-        e.setImage_event(image_event.getText());
+        e.setImage_event(filepath.getText());
         e.setHeure_event(heure_event.getText());
         e.setTitre_event(titre_event.getText());
         e.setUser_name_event(tfproducer.getText());

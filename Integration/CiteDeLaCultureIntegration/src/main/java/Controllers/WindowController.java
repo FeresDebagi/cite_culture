@@ -125,7 +125,21 @@ public class WindowController implements Initializable {
     }
 
     @FXML
-    private void CheckEventsSigned(ActionEvent event) {
+    private void CheckEventsSigned(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Inscription.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        
+        
+        InscriptionController ic = loader.getController();
+        ic.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ic.image(filepath);
     }
 
     @FXML
