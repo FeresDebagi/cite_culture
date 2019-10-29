@@ -6,7 +6,6 @@
 package Service;
 
 import Entite.Chat;
-import Entite.Commentaire;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

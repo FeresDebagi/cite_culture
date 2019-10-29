@@ -7,7 +7,6 @@ package Controllers;
 
 import Entite.Stand;
 import Service.ServiceChat;
-import Service.ServiceSpeaker;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.File;
@@ -147,36 +146,14 @@ public class WindowController implements Initializable {
 
     @FXML
     private void Formation(ActionEvent event) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/AfficherForm.fxml"));
-        Parent root = loader.load();
-        tfGoToEvent.getScene().setRoot(root);
-        
-        ServiceStand SS = new ServiceStand();
-        AfficherFormController ac = loader.getController();
-        ac.login(tflogin.getText());
 
-        String filepath;
-        filepath = SS.searchImage(tflogin.getText());
-        ac.image(filepath);
         
         
     }
 
     @FXML
     private void GoToEvent(ActionEvent event) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/affiche.fxml"));
-        Parent root = loader.load();
-        tfGoToEvent.getScene().setRoot(root);
-        
-        ServiceStand SS = new ServiceStand();
-        AfficheController ac = loader.getController();
-        ac.login(tflogin.getText());
 
-        String filepath;
-        filepath = SS.searchImage(tflogin.getText());
-        ac.image(filepath);
         
     }
 
@@ -270,34 +247,12 @@ public class WindowController implements Initializable {
 
     @FXML
     private void GoToEvent2(MouseEvent event) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/affiche.fxml"));
-        Parent root = loader.load();
-        tfGoToEvent.getScene().setRoot(root);
-        
-        ServiceStand SS = new ServiceStand();
-        AfficheController ac = loader.getController();
-        ac.login(tflogin.getText());
 
-        String filepath;
-        filepath = SS.searchImage(tflogin.getText());
-        ac.image(filepath);
     }
 
     @FXML
     private void Speaker(ActionEvent event) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Views/afficherspeaker.fxml"));
-        Parent root = loader.load();
-        tfSpeaker.getScene().setRoot(root);
-        
-        ServiceSpeaker SS = new ServiceSpeaker();
-        AfficherspeakerController ac = loader.getController();
-        ac.login(tflogin.getText());
 
-        String filepath;
-        filepath = SS.searchImage(tflogin.getText());
-        ac.image(filepath);
     }
 
     @FXML
