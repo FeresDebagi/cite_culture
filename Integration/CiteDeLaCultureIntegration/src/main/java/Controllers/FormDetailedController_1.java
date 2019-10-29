@@ -7,8 +7,11 @@ package Controllers;
 
 import Entite.Commentaire;
 import Entite.Formation;
+import Entite.Inscription;
 import Service.ServiceCommentaire;
 import Service.ServiceFormation;
+import Service.ServiceInscription;
+import Service.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -64,13 +67,15 @@ public class FormDetailedController_1 implements Initializable {
     @FXML
     private TableView<Commentaire> tftable;
     @FXML
-    private TableColumn<Commentaire, Number> tfusername;
+    private TableColumn<Commentaire, String> tfusername;
     @FXML
     private TableColumn<Commentaire, String> tftablecomment;
-     private ObservableList<Commentaire>data = FXCollections.observableArrayList();
+    private ObservableList<Commentaire>data = FXCollections.observableArrayList();
     List<Commentaire> st = new ArrayList<>();
     @FXML
     private Label tfiduser;
+    @FXML
+    private Button tfSubscribeToEvent;
    
 
     /**
@@ -118,14 +123,14 @@ public class FormDetailedController_1 implements Initializable {
             st=sp.readAll5();
             data.addAll(st);
             tftablecomment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-            tfusername.setCellValueFactory(new PropertyValueFactory<>("login_user"));
+            tfusername.setCellValueFactory(new PropertyValueFactory<>("login"));
             
           
             
             tftable.setItems(data);
             
         } catch (SQLException ex) {
-            Logger.getLogger(AfficherFormMController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDetailedController_1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
        
@@ -139,10 +144,7 @@ public class FormDetailedController_1 implements Initializable {
         tfBack.getScene().setRoot(root);
         AfficherFormMController afc = loader.getController();
         afc.login(tflogin.getText());
-        
-        
-        
-        
+ 
     }
 
     @FXML
@@ -165,16 +167,49 @@ public class FormDetailedController_1 implements Initializable {
              st=sc.readAll5();
             data.addAll(st);
             tftablecomment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-            tfusername.setCellValueFactory(new PropertyValueFactory<>("login_user"));   
+            tfusername.setCellValueFactory(new PropertyValueFactory<>("login"));   
             tftable.setItems(data);
             
         } catch (SQLException ex) {
-            Logger.getLogger(AjouterFormFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDetailedController_1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
     private void share(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void SubscribeToEvent(ActionEvent event) {
+        try {
+            ServiceInscription si = new ServiceInscription();
+            ServiceUser su = new ServiceUser();
+            Boolean sub;
+            int iduser = su.SearchId(tflogin.getText());
+            sub = si.CheckInscrit(iduser,Integer.valueOf(tfid_form.getText()));
+
+            if (sub == true) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Subbed");
+                alert.setHeaderText(null);
+                alert.setContentText("Already Subbed!");
+                alert.show();
+            } else {
+                Inscription i = new Inscription();
+
+                i.setId_formation(Integer.valueOf(tfid_form.getText()));
+                i.setId_user(iduser);
+                i.setId_event(1);
+                
+
+                System.out.println(i);
+
+                si.ajouter_InscriptionForm(i);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDetailedController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

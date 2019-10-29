@@ -90,10 +90,6 @@ public class SignupController implements Initializable {
         File fichier = new File(filepath.getText());    //hedhi useless ama khalitha fel tuto mawjouda xd
         Image imag = new Image("file:" + filepath.getText());   //khina el taswira eli fel path
         image1.setImage(imag);  //hedhi el taswira fel fx tekhou el taswira eli fel path
-        
-        
-        
- 
     }
 
     @FXML

@@ -45,7 +45,7 @@ public class ServiceCommentaire {
     }
 
     public void ajouterCom(Commentaire c) throws SQLException {
-        String req = "INSERT INTO `commentaire` (`id_comment`, `id_user`, `id_formation`, `comment`,`login_user`)" + " VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `commentaire` (`id_comment`, `id_user`, `id_formation`, `comment`,`login` ,`id_evennement`)" + " VALUES (?,?,?,?,?,1)";
         PreparedStatement pres = con.prepareStatement(req);
         pres.setInt(1, c.getId_comment());
         pres.setInt(2, c.getId_user());
@@ -55,6 +55,33 @@ public class ServiceCommentaire {
         pres.executeUpdate();
         System.out.println("element inserer");
     }
+    public void ajouterComEvent(Commentaire c) throws SQLException {
+        String req = "INSERT INTO `commentaire` (`id_comment`, `id_user`, `id_formation`, `comment`,`login` ,`id_evennement`)" + " VALUES (?,?,1,?,?,?)";
+        PreparedStatement pres = con.prepareStatement(req);
+        pres.setInt(1, c.getId_comment());
+        pres.setInt(2, c.getId_user());
+        pres.setInt(3, c.getId_formation());
+        pres.setString(4, c.getComment());
+        pres.setString(5, c.getLogin());
+        pres.executeUpdate();
+        System.out.println("element inserer");
+    }
+    
+    public void SuprimerCommentEve(int id) throws SQLException {
+        String req = "DELETE FROM `commentaire` WHERE id_evennement = ?";
+        try {
+            PreparedStatement preparedStmt = con.prepareStatement(req);
+            preparedStmt.setInt(1, id);
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    
+    
+    
 
     public String searchMemberID(String login) throws SQLException {
 

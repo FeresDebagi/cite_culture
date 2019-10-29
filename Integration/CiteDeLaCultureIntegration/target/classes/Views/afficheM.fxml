@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -46,5 +47,8 @@
       <Label fx:id="tftypeevent" layoutX="402.0" layoutY="517.0" text="tftypeevent" />
       <Label fx:id="tfdescevent" layoutX="416.0" layoutY="563.0" text="tfdescevent" />
       <Button fx:id="tfSubscribeToEvent" layoutX="105.0" layoutY="450.0" mnemonicParsing="false" onAction="#SubscribeToEvent" text="Subscribe to event" />
+      <Label layoutX="682.0" layoutY="490.0" prefHeight="21.0" prefWidth="133.0" text="Add Comment" />
+      <Button layoutX="843.0" layoutY="525.0" mnemonicParsing="false" onAction="#submitcomment" text="Submit" />
+      <TextField fx:id="tfcomment" layoutX="674.0" layoutY="525.0" />
    </children>
 </AnchorPane>

@@ -121,5 +121,11 @@
          <font>
             <Font size="20.0" />
          </font></Button>
+      <Button fx:id="tfSpeaker1" layoutX="1169.0" layoutY="607.0" mnemonicParsing="false" onAction="#Speaker" style="-fx-background-color: #151928;" text="Browse Speakers" textFill="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="tfchat" layoutX="95.0" layoutY="593.0" mnemonicParsing="false" onAction="#GoToChat" text="Chat" />
    </children>
 </AnchorPane>

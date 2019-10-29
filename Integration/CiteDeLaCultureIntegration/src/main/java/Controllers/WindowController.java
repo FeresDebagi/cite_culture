@@ -6,6 +6,8 @@
 package Controllers;
 
 import Entite.Stand;
+import Service.ServiceChat;
+import Service.ServiceSpeaker;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.File;
@@ -76,6 +78,10 @@ public class WindowController implements Initializable {
     private Button tfChangePictureHistory;
     @FXML
     private Button tfChangePictureStand;
+    @FXML
+    private Button tfSpeaker;
+    @FXML
+    private Button tfchat;
 
     /**
      * Initializes the controller class.
@@ -276,6 +282,38 @@ public class WindowController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         ac.image(filepath);
+    }
+
+    @FXML
+    private void Speaker(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficherspeaker.fxml"));
+        Parent root = loader.load();
+        tfSpeaker.getScene().setRoot(root);
+        
+        ServiceSpeaker SS = new ServiceSpeaker();
+        AfficherspeakerController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+    }
+
+    @FXML
+    private void GoToChat(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Chat.fxml"));
+        Parent root = loader.load();
+        tfchat.getScene().setRoot(root);
+        
+        ServiceStand sc = new ServiceStand();
+        ChatController asc = loader.getController();
+        asc.login(tflogin.getText());
+
+        String filepath;
+        filepath = sc.searchImage(tflogin.getText());
+        asc.image(filepath);
     }
 
 

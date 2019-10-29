@@ -6,8 +6,12 @@
 package Controllers;
 
 import Controllers.WindowMController;
+import Entite.Commentaire;
 import Entite.Evenement;
+import Entite.Inscription;
+import Service.ServiceCommentaire;
 import Service.ServiceEvenement;
+import Service.ServiceInscription;
 import Service.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -65,10 +70,6 @@ public class AfficheMController implements Initializable {
     @FXML
     private Button id_ajouter;
     @FXML
-    private Button id_modifer;
-    @FXML
-    private Button id_suprimer;
-    @FXML
     private Label tflogin;
     @FXML
     private ImageView tfphoto;
@@ -92,6 +93,8 @@ public class AfficheMController implements Initializable {
     private Label tfdescevent;
     @FXML
     private Button tfSubscribeToEvent;
+    @FXML
+    private TextField tfcomment;
 
     /**
      * Initializes the controller class.
@@ -106,7 +109,6 @@ public class AfficheMController implements Initializable {
         tfphoto.setImage(imag);
     }
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceEvenement sp = new ServiceEvenement();
@@ -127,10 +129,20 @@ public class AfficheMController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AfficheMController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
     private void detail(MouseEvent event) {
+        Evenement e = id_table.getSelectionModel().getSelectedItem();
+        tfidevent.setText(Integer.toString(e.getId_evenement()));
+        tftitreevent.setText(e.getTitre_event());
+        tftypeevent.setText(e.getType_event());
+        tfdateevent.setText(e.getDate_event());
+        tfheureevent.setText(e.getHeure_event());
+        tfdescevent.setText(e.getDescription_event());
+        tfprixevent.setText(Integer.toString(e.getPrix_event()));
+        tfsaleevent.setText(e.getSalle_event());
+
     }
 
     @FXML
@@ -167,6 +179,53 @@ public class AfficheMController implements Initializable {
 
     @FXML
     private void SubscribeToEvent(ActionEvent event) {
+        try {
+            ServiceInscription si = new ServiceInscription();
+            ServiceUser su = new ServiceUser();
+            Boolean sub;
+            int iduser = su.SearchId(tflogin.getText());
+            sub = si.CheckInscrit(iduser,Integer.valueOf(tfidevent.getText()));
+
+            if (sub == true) {
+                javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+                alert.setTitle("Subbed");
+                alert.setHeaderText(null);
+                alert.setContentText("Already Subbed!");
+                alert.show();
+            } else {
+                Inscription i = new Inscription();
+
+                i.setId_formation(1);
+                i.setId_user(iduser);
+                i.setId_event(Integer.valueOf(tfidevent.getText()));
+
+                System.out.println(i);
+
+                si.ajouter_InscriptionEvent(i);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheMController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
+    @FXML
+    private void submitcomment(ActionEvent event) throws SQLException {
+        ServiceUser su = new ServiceUser();
+        Commentaire c = new Commentaire();
+        c.setComment(tfcomment.getText());
+        int idd = su.SearchId(tflogin.getText());
+
+        c.setId_user(idd);
+        c.setId_evenement(Integer.valueOf((tfidevent).getText()));
+        c.setLogin(tflogin.getText());
+        c.setId_formation(1);
+
+        ServiceCommentaire sc = new ServiceCommentaire();
+        try {
+            sc.ajouterCom(c);
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheMController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

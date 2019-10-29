@@ -8,6 +8,7 @@ package Controllers;
 import Entite.Evenement;
 import Entite.Inscription;
 import Entite.Stand;
+import Service.ServiceCommentaire;
 import Service.ServiceEvenement;
 import Service.ServiceInscription;
 import Service.ServiceStand;
@@ -205,7 +206,11 @@ public class AfficheController implements Initializable {
             Evenement e = new Evenement();
             e.setId_evenement(Integer.valueOf(tfidevent.getText()));
             ServiceEvenement se = new ServiceEvenement();
+            ServiceInscription si = new ServiceInscription();
+            ServiceCommentaire sc = new ServiceCommentaire();
             try {
+                si.SuprimerInscriptionEve(e.getId_evenement());
+                sc.SuprimerCommentEve(e.getId_evenement());
                 se.SuprimerEvenement(e.getId_evenement());
 
             } catch (SQLException ex) {
@@ -265,9 +270,9 @@ public class AfficheController implements Initializable {
             } else {
                 Inscription i = new Inscription();
 
-                i.setId_event(Integer.valueOf(tfidevent.getText()));
-                i.setId_user(iduser);
                 i.setId_formation(1);
+                i.setId_user(iduser);
+                i.setId_event(Integer.valueOf(tfidevent.getText()));
 
                 System.out.println(i);
 

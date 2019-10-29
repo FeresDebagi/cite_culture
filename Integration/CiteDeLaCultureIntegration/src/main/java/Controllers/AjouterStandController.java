@@ -104,7 +104,37 @@ public class AjouterStandController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Invalid Date: try <<yyyy-MM-dd>> ");
                 alert.show();
-            } else {
+            }else if (tfproprietaire_stand.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Insert a Title");
+                alert.show();
+            }else if (tftype_marchandise.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Insert a Marchandise");
+                alert.show();
+            }else if (tfdate_fin_stand.getValue().toString().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Date: try <<yyyy-MM-dd>>");
+                alert.show();
+            }else if (tftitre_stand.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Insert a Title");
+                alert.show();
+            }else if (filepath.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Insert a Photo");
+                alert.show();
+            }else {
                 s.setProprietaire_stand(tfproprietaire_stand.getText());
                 s.setType_marchandise(tftype_marchandise.getText());
                 s.setDate_debut_stand(tfdate_debut_stand.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));

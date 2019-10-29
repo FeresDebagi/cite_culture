@@ -6,6 +6,7 @@
 package Controllers;
 
 import Entite.Evenement;
+import Entite.Formation;
 import Service.ServiceEvenement;
 import Service.ServiceInscription;
 import Service.ServiceUser;
@@ -63,6 +64,16 @@ public class InscriptionController implements Initializable {
     private Button tfBack;
     @FXML
     private Button tfShow;
+    @FXML
+    private TableView<Formation> tfTableForm;
+    @FXML
+    private TableColumn<Formation, String> tfFormator;
+    @FXML
+    private TableColumn<Formation, String> tfClass;
+    @FXML
+    private TableColumn<Formation, Number> tfPrice;
+    @FXML
+    private TableColumn<Formation, String> tfType;
 
     /**
      * Initializes the controller class.
@@ -84,6 +95,11 @@ public class InscriptionController implements Initializable {
     
     private ObservableList<Evenement> data = FXCollections.observableArrayList();
     List<Evenement> ev = new ArrayList<>();
+    
+    private ObservableList<Formation> data1 = FXCollections.observableArrayList();
+    List<Formation> eb = new ArrayList<>();
+    
+    
     
     
     @Override
@@ -122,11 +138,19 @@ public class InscriptionController implements Initializable {
             tfEventDate.setCellValueFactory(new PropertyValueFactory<>("date_event"));
             tfEventTime.setCellValueFactory(new PropertyValueFactory<>("heure_event"));
             tfEventRoom.setCellValueFactory(new PropertyValueFactory<>("salle_event"));
-            
-            
-
             tfTableEvents.setItems(data);
+            
+            
+            eb = sp.readMyForms(Integer.valueOf(tfidUser.getText()));
+            data1.addAll(eb);
 
+            tfFormator.setCellValueFactory(new PropertyValueFactory<>("formateur_formation"));
+            tfType.setCellValueFactory(new PropertyValueFactory<>("type_formation"));
+            tfPrice.setCellValueFactory(new PropertyValueFactory<>("prix_formation"));
+            tfClass.setCellValueFactory(new PropertyValueFactory<>("classe_formation"));
+            
+            tfTableForm.setItems(data1);
+            
         } catch (SQLException ex) {
             Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }

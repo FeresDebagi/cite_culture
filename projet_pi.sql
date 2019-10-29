@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 22, 2019 at 02:17 PM
+-- Generation Time: Oct 29, 2019 at 10:24 AM
 -- Server version: 5.7.26
--- PHP Version: 5.6.40
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `projet_pi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commentaire`
+--
+
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `login_user` varchar(255) NOT NULL,
+  `id_comment` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `id_formation` int(11) NOT NULL,
+  PRIMARY KEY (`id_comment`),
+  KEY `id_user` (`id_user`,`id_formation`),
+  KEY `id_formation` (`id_formation`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `commentaire`
+--
+
+INSERT INTO `commentaire` (`login_user`, `id_comment`, `id_user`, `comment`, `id_formation`) VALUES
+('elyes', 8, 36, 'poop', 6),
+('elyes', 9, 36, 'me', 2),
+('elyes', 10, 36, 'me', 6),
+('elyes', 11, 36, 'elyes', 2),
+('elyes', 12, 36, 'me', 6),
+('elyes', 13, 36, 'off', 2),
+('elyes', 14, 36, 'off', 6);
 
 -- --------------------------------------------------------
 
@@ -41,38 +72,16 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `salle_event` varchar(255) DEFAULT NULL,
   `user_name_event` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_event`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `evenement`
 --
 
 INSERT INTO `evenement` (`id_event`, `type_event`, `description_event`, `image_event`, `titre_event`, `date_event`, `heure_event`, `prix_event`, `salle_event`, `user_name_event`) VALUES
-(5, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(2, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 2, 'test2', 'test2'),
-(3, 'i m a god', 'test2', 'test2', 'test2', 'test2', 'test2', 2, 'test2', 'test2'),
-(4, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(6, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(7, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(8, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(9, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(10, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(11, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(12, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(13, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(14, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(15, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(16, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(17, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(18, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(19, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(20, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(21, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(22, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(23, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(24, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(25, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979'),
-(26, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 9797979, 'test97979', 'test97979');
+(28, 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 132, 'oanzoitba', 'oanzoitba'),
+(29, 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 'oanzoitba', 123, 'oanzoitba', 'feres'),
+(30, 'azraz', 'azraz', 'C:wamp64wwwProjetPijavaCiteDeLaCultureIntegrationsrcmain\resourcesViewsStand.gif', 'azraz', 'azraz', 'azraz', 1234, 'azraz', 'feres feres');
 
 -- --------------------------------------------------------
 
@@ -88,7 +97,15 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `prix_formation` float DEFAULT NULL,
   `type_formation` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_formation`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `formation`
+--
+
+INSERT INTO `formation` (`id_formation`, `formateur_formation`, `classe_formation`, `prix_formation`, `type_formation`) VALUES
+(1, 'keep out', 'keep out', 1, 'keep out 2'),
+(3, 'koussay', 'is', 123, 'gay');
 
 -- --------------------------------------------------------
 
@@ -100,10 +117,47 @@ DROP TABLE IF EXISTS `historique`;
 CREATE TABLE IF NOT EXISTS `historique` (
   `id_historique` int(11) NOT NULL AUTO_INCREMENT,
   `description_his` varchar(255) DEFAULT NULL,
-  `image_his` varchar(255) DEFAULT NULL,
-  `video_his` varchar(255) DEFAULT NULL,
+  `image_his` varchar(50000) DEFAULT NULL,
+  `video_his` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`id_historique`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `historique`
+--
+
+INSERT INTO `historique` (`id_historique`, `description_his`, `image_his`, `video_his`) VALUES
+(13, 'elyes', 'C:\\wamp64\\www\\Projectpi\\pics\\joojooo.jpg', 'C:\\wamp64\\www\\Projectpi\\pics\\joojooo.jpg'),
+(12, 'me', 'C:\\Users\\kaskous\\Desktop\\joojooo.jpg', 'C:\\Users\\kaskous\\Desktop\\joojooo.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inscription`
+--
+
+DROP TABLE IF EXISTS `inscription`;
+CREATE TABLE IF NOT EXISTS `inscription` (
+  `id_inscription` int(11) NOT NULL AUTO_INCREMENT,
+  `id_event` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_formation` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_inscription`),
+  KEY `id_event` (`id_event`),
+  KEY `id_user` (`id_user`),
+  KEY `id_formation` (`id_formation`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `inscription`
+--
+
+INSERT INTO `inscription` (`id_inscription`, `id_event`, `id_user`, `id_formation`) VALUES
+(14, 28, 37, 1),
+(15, 29, 37, 1),
+(16, 30, 37, 1),
+(17, 30, 47, 1),
+(18, 30, 51, 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +168,6 @@ CREATE TABLE IF NOT EXISTS `historique` (
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id_reservation` int(11) NOT NULL AUTO_INCREMENT,
-  `id_salle` int(11) DEFAULT NULL,
   `id_evenement` int(11) DEFAULT NULL,
   `date_debut` varchar(255) DEFAULT NULL,
   `date_fin` varchar(255) DEFAULT NULL,
@@ -122,31 +175,12 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `description` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `tel` int(11) DEFAULT NULL,
-  `image_reservation` varchar(255) DEFAULT NULL,
   `titre_reservation` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_reservation`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reservation`
---
-
-INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_evenement`, `date_debut`, `date_fin`, `etat`, `description`, `mail`, `tel`, `image_reservation`, `titre_reservation`) VALUES
-(1, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(2, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(3, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(4, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(5, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(6, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(7, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(8, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(9, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(10, 10, 10, 'test10', 'test10', 'test10', 'test10', 'test10', 10, 'test10', 'test10'),
-(11, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(12, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(13, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(14, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1'),
-(15, 1, 1, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 'test1');
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_reservation`),
+  KEY `id_user` (`id_user`),
+  KEY `id_evenement` (`id_evenement`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -156,14 +190,27 @@ INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_evenement`, `date_d
 
 DROP TABLE IF EXISTS `speaker`;
 CREATE TABLE IF NOT EXISTS `speaker` (
-  `id_speaker` int(11) NOT NULL,
+  `id_speaker` int(11) NOT NULL AUTO_INCREMENT,
   `nom_speaker` varchar(255) DEFAULT NULL,
   `prenom_speaker` varchar(255) DEFAULT NULL,
   `mail_speaker` varchar(255) DEFAULT NULL,
   `date_arrive` varchar(255) DEFAULT NULL,
   `date_depart` varchar(255) DEFAULT NULL,
-  `description_speaker` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `description_speaker` varchar(255) DEFAULT NULL,
+  `idU_fk` int(11) NOT NULL,
+  `PhotoSpeaker` varchar(50000) DEFAULT NULL,
+  `proprietaire_speaker` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_speaker`),
+  KEY `idU_fk` (`idU_fk`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `speaker`
+--
+
+INSERT INTO `speaker` (`id_speaker`, `nom_speaker`, `prenom_speaker`, `mail_speaker`, `date_arrive`, `date_depart`, `description_speaker`, `idU_fk`, `PhotoSpeaker`, `proprietaire_speaker`) VALUES
+(5, 'ayedi', 'amin', 'amin.ayedi@gmail.com', '2019-10-17', '2019-10-25', 'speaker', 39, 'filepath', 'fakhar elyes'),
+(6, 'kaffel', 'houssem', 'houssem.kaffe@esprit.Tn', '2019-10-17', '2019-11-22', 'houssem est un speaker de renommé', 39, 'C:\\Users\\Debagi\\Documents\\NetBeansProjects\\mavenproject1\\src\\main\\resources\\Views\\test.jpg', 'fakhar elyes');
 
 -- --------------------------------------------------------
 
@@ -179,28 +226,19 @@ CREATE TABLE IF NOT EXISTS `stand` (
   `type_marchandise` varchar(255) NOT NULL,
   `date_debut_stand` varchar(255) NOT NULL,
   `date_fin_stand` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_stand`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `IdU_fk` int(255) NOT NULL,
+  `PhotoStand` varchar(50000) DEFAULT NULL,
+  `Actif` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_stand`),
+  KEY `IdU_fk` (`IdU_fk`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stand`
 --
 
-INSERT INTO `stand` (`id_stand`, `titre_stand`, `proprietaire_stand`, `type_marchandise`, `date_debut_stand`, `date_fin_stand`) VALUES
-(12, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(3, 'titre12', 'titre12', 'titre12', 'titre12', 'titre12'),
-(4, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(11, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(6, 'yes', 'yes', 'yes', 'yes', 'yes'),
-(7, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(8, 'final', 'final', 'final', 'final', 'final'),
-(9, 'trash', 'trash', 'trash', 'trash', 'trash'),
-(10, 'feres', 'feres', 'feres', 'feres', 'feres'),
-(13, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(15, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(16, 'test1', 'test1', 'test1', 'test1', 'test1'),
-(17, 'plz', 'plz', 'plz', 'plz', 'plz'),
-(18, 'yassertrash', 'yassertrash', 'yassertrash', 'yassertrash', 'yassertrash');
+INSERT INTO `stand` (`id_stand`, `titre_stand`, `proprietaire_stand`, `type_marchandise`, `date_debut_stand`, `date_fin_stand`, `IdU_fk`, `PhotoStand`, `Actif`) VALUES
+(33, 'jchkchc', 'Fakhar elyes', 'vutcou', '2019-10-02', '2019-10-01', 47, 'filepath', 'no');
 
 -- --------------------------------------------------------
 
@@ -219,27 +257,45 @@ CREATE TABLE IF NOT EXISTS `user` (
   `cin_user` int(11) DEFAULT NULL,
   `date_naissance_user` varchar(255) DEFAULT NULL,
   `num_tel_user` int(11) DEFAULT NULL,
-  `photo_profil_user` varchar(255) DEFAULT NULL,
+  `photo_profil_user` varchar(50000) DEFAULT NULL,
   `role_user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `login_user`, `mdp_user`, `mail_user`, `prenom_user`, `nom_user`, `cin_user`, `date_naissance_user`, `num_tel_user`, `photo_profil_user`, `role_user`) VALUES
-(7, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 97979, 'test97979', 979797, '25/25/25', 'test97979'),
-(2, 'test26', 'test26', 'test26', 'test26', 'test26', 26, 'test26', 26, '26/26/26', 'test26'),
-(4, 'test25', 'test25', 'test25', 'test25', 'test25', 25, 'test25', 25, '25/25/25', 'test25'),
-(5, 'i m a god', 'test25', 'test25', 'test25', 'test25', 25, 'test25', 25, '25/25/25', 'test25'),
-(6, 'test97979', 'test97979', 'test97979', 'test97979', 'test97979', 97979, 'test97979', 979797, '25/25/25', 'test97979'),
-(35, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(34, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(31, 'test1', 'test1', 'test1', 'test1', 'test1', 1, 'test1', 1, 'test1', '1'),
-(30, 'test0', 'test0', 'test0', 'test0', 'test0', 0, 'test0', 0, 'test0', '0'),
-(32, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, 'test'),
-(33, 'Koussay', '123', 'koussay@koussay.kouusay', 'Koussay', 'Koussay', 123, '123/123/123', 123, 'Koussay', 'Member');
+(37, 'Feres', '1234', 'feres@feres.feres', 'feres', 'feres', 123, 'feres', 123, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Admin'),
+(41, 'houssem', '12345678', 'houssem@esprit.tn', 'houssem', 'houssem', 12345678, '2019-10-03', 12345678, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Member'),
+(44, 'loua', '12345678', 'loua@esprit.tn', 'loua', 'loua', 12345678, '2019-10-02', 12345678, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Member'),
+(45, 'sahar', '123', 'sahar', 'sahar', 'sahar', 123, 'sahar', 132, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Member'),
+(46, 'test', 'A123456789!', 'test.cite.de.la.culture@gmail.com', 'test', 'test', 123, '123', 123, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Member'),
+(47, 'elyes', '12345678', 'elyes.fakhar@esprit.tn', 'Fakhar', 'elyes', 1234567, '2019-10-02', 55532227, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Admin'),
+(49, 'koussay', 'koussay', 'koussay@esprit.tn', 'koussay', 'koussay', 123, 'koussay', 123, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Admin'),
+(51, 'amin', 'amin', 'amin@esprit.tn', 'amin', 'amin', 123, 'amin', 123, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Admin'),
+(52, '12345678', '12345678', 'salah@salah.com', 'salah', 'salah', 12345678, '2019-10-01', 123456789, 'C:\\wamp64\\www\\ProjetPi\\java\\CiteDeLaCulture\\src\\main\\resources\\Views\\test.jpg', 'Member'),
+(53, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
+(54, 'hamza', '12345678', 'hamza@gmail.com', 'hamza', 'hamza', 12345678, '2019-10-02', 12345678, '', 'Member');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `inscription`
+--
+ALTER TABLE `inscription`
+  ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id_event`),
+  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `inscription_ibfk_3` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`);
+
+--
+-- Constraints for table `stand`
+--
+ALTER TABLE `stand`
+  ADD CONSTRAINT `stand_ibfk_1` FOREIGN KEY (`IdU_fk`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

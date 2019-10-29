@@ -8,9 +8,14 @@ package Controllers;
 import Entite.Stand;
 import Service.ServiceStand;
 import Service.ServiceUser;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +36,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import utils.DataSource;
 
 /**
  * FXML Controller class
@@ -38,6 +47,20 @@ import javafx.scene.input.MouseEvent;
  * @author Elyes
  */
 public class AfficherStandMController implements Initializable {
+    
+    private Connection con = DataSource.getInstance().getConnection();
+    private Statement ste;
+
+    public AfficherStandMController() {
+        try {
+            ste = con.createStatement();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+    }
+    
+    
 
     @FXML
     private TableColumn<Stand, String> tftitre_stand;
@@ -66,6 +89,8 @@ public class AfficherStandMController implements Initializable {
     List<Stand> st = new ArrayList<>();
     @FXML
     private Button tfadd;
+    @FXML
+    private Button tfexporttoexcell;
 
     void login(String log) {
         tflogin.setText(log);
@@ -160,6 +185,52 @@ public class AfficherStandMController implements Initializable {
         int x;
         x = SU.SearchId(tflogin.getText());
         asc.idStand(x);
+    }
+
+    @FXML
+    private void exporttoexcell(ActionEvent event) throws SQLException, FileNotFoundException, IOException {
+        String query="SELECT * FROM stand";
+        ste=con.createStatement();
+        Statement stm=con.createStatement();
+        ResultSet rst=stm.executeQuery(query);
+        
+        Stand s= new Stand();
+        
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet =wb.createSheet("DescriptionStand");
+        XSSFRow header = sheet.createRow(0);
+        header.createCell(0).setCellValue("titre_stand");
+        header.createCell(1).setCellValue("proprietaire_stand");
+        header.createCell(2).setCellValue("type_marchandise");
+        header.createCell(3).setCellValue("date_debut_stand");
+        header.createCell(4).setCellValue("date_fin_stand");
+        header.createCell(5).setCellValue("IdU_fk");
+        header.createCell(6).setCellValue("PhotoStand");
+        header.createCell(7).setCellValue("Actif");
+
+        int index = 1;
+        while(rst.next()){
+            XSSFRow row = sheet.createRow(index);
+            row.createCell(0).setCellValue(rst.getString("titre_stand"));
+            row.createCell(1).setCellValue(rst.getString("proprietaire_stand"));
+            row.createCell(2).setCellValue(rst.getString("type_marchandise"));
+            row.createCell(3).setCellValue(rst.getString("date_debut_stand"));
+            row.createCell(4).setCellValue(rst.getString("date_fin_stand"));
+            row.createCell(5).setCellValue(rst.getString("IdU_fk"));
+            row.createCell(6).setCellValue(rst.getString("PhotoStand"));
+            row.createCell(7).setCellValue(rst.getString("Actif"));
+            index ++ ;
+        }
+		
+        FileOutputStream fileOut = new FileOutputStream("Stand.xlsx");
+        wb.write(fileOut);
+        fileOut.close();
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("information dialog");
+        alert.setContentText("Stand Details Exported in Excel sheet.");
+        alert.showAndWait();
+        
+        
     }
 
 }

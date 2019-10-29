@@ -38,6 +38,7 @@
                   <Font size="20.0" />
                </font></Button>
             <Button fx:id="tfCheckEventsSigned" layoutX="66.0" layoutY="514.0" mnemonicParsing="false" onAction="#CheckEventsSigned" style="-fx-background-color: #151928;" text="Check your Events" textFill="#a0a2ab" />
+            <Button fx:id="tfchat" layoutX="85.0" layoutY="583.0" mnemonicParsing="false" onAction="#GoToChat" text="Chat" />
          </children>
       </Pane>
       <Pane layoutX="274.0" layoutY="36.0" prefHeight="213.0" prefWidth="880.0">
@@ -128,5 +129,10 @@
          <font>
             <Font size="20.0" />
          </font></Button>
+      <Button fx:id="tfSpeaker" layoutX="1176.0" layoutY="608.0" mnemonicParsing="false" onAction="#Speaker" style="-fx-background-color: #151928;" text="Browse Speakers" textFill="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

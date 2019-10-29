@@ -39,5 +39,6 @@
       <Label fx:id="tflogin" layoutX="761.0" layoutY="46.0" text="Label" />
       <Label fx:id="tfiduser" layoutX="677.0" layoutY="46.0" text="Label" />
       <Button layoutX="217.0" layoutY="471.0" mnemonicParsing="false" onAction="#share" text="Share facebook" />
+      <Button fx:id="tfSubscribeToEvent" layoutX="44.0" layoutY="471.0" mnemonicParsing="false" onAction="#SubscribeToEvent" text="Subscribe to Form" />
    </children>
 </AnchorPane>

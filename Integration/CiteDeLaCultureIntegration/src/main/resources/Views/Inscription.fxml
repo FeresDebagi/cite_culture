@@ -53,14 +53,16 @@
             <TableColumn fx:id="tfEventRoom" prefWidth="75.0" text="Room" />
         </columns>
       </TableView>
-      <TableView layoutX="1146.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tfTableForm" layoutX="942.0" layoutY="155.0" prefHeight="307.0" prefWidth="398.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="tfFormator" prefWidth="109.0" text="Formator" />
+          <TableColumn fx:id="tfClass" minWidth="3.0" prefWidth="95.0" text="Class" />
+            <TableColumn fx:id="tfPrice" prefWidth="100.0" text="Price" />
+            <TableColumn fx:id="tfType" prefWidth="93.0" text="Type" />
         </columns>
       </TableView>
       <Label layoutX="521.0" layoutY="122.0" text="Events" />
-      <Label layoutX="1256.0" layoutY="230.0" text="Formation" />
+      <Label layoutX="1087.0" layoutY="113.0" text="Formation" />
       <Button fx:id="tfShow" layoutX="361.0" layoutY="565.0" mnemonicParsing="false" onAction="#Show" text="Show" />
    </children>
 </AnchorPane>

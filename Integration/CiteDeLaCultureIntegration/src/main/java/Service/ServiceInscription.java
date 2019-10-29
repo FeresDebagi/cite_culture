@@ -6,6 +6,7 @@
 package Service;
 
 import Entite.Evenement;
+import Entite.Formation;
 import Entite.Inscription;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,6 +42,15 @@ public class ServiceInscription {
         ste.executeUpdate(req);
         System.out.println("elment inste");
     }
+    
+    public void ajouter_InscriptionForm(Inscription i) throws SQLException {
+        String req = "INSERT INTO `inscription` (`id_event`, `id_user` , `id_formation`) VALUES ('" +  i.getId_event() + "','" + i.getId_user() + "','" + i.getId_formation() + "');";
+
+        ste.executeUpdate(req);
+        System.out.println("elment inste");
+    }
+    
+    
 
     public List<Inscription> readAllInscription() throws SQLException {
         List<Inscription> list = new ArrayList<>();
@@ -85,6 +95,22 @@ public class ServiceInscription {
             System.err.println(e.getMessage());
         }
     }
+    
+    
+    public void SuprimerInscriptionEve(int id) throws SQLException {
+        String req = "DELETE FROM `inscription` WHERE id_event = ?";
+        try {
+            PreparedStatement preparedStmt = con.prepareStatement(req);
+            preparedStmt.setInt(1, id);
+            preparedStmt.execute();
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    
+    
 
     public List<Evenement> readMyEvents(int iduser) throws SQLException {  //jointure
 
@@ -100,8 +126,24 @@ public class ServiceInscription {
             list.add(eve);
         }
         return list;
-
     }
+    
+    public List<Formation> readMyForms(int iduser) throws SQLException {  //jointure
+
+        List<Formation> list = new ArrayList<>();
+
+        ResultSet res = ste.executeQuery("Select * from formation e inner join inscription i "
+                + "on e.id_formation=i.id_formation " + "where i.id_user ='" + iduser + "';");
+
+        Formation eve = null;
+        while (res.next()) {
+            eve = new Formation(res.getInt(1), res.getString(2),res.getString(3),res.getString(5),res.getFloat(4));
+            list.add(eve);
+        }
+        return list;
+    }
+    
+    
 
     public Boolean CheckInscrit(int iduser, int idevent) {
         int i = 0;

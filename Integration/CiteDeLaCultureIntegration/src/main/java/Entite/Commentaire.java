@@ -10,13 +10,8 @@ package Entite;
  * @author kaskous
  */
 public class Commentaire {
-    private int id_comment,id_user,id_formation;
+    private int id_comment,id_user,id_formation,id_evenement;
     private String comment,login;
-
-    @Override
-    public String toString() {
-        return "Commentaire{" + "id_comment=" + id_comment + ", id_user=" + id_user + ", id_formation=" + id_formation + ", comment=" + comment + ", login=" + login + '}';
-    }
 
     public void setLogin(String login) {
         this.login = login;
@@ -25,6 +20,19 @@ public class Commentaire {
     public String getLogin() {
         return login;
     }
+
+    public Commentaire(int id_comment, int id_user, int id_formation, int id_evenement, String comment, String login) {
+        this.id_comment = id_comment;
+        this.id_user = id_user;
+        this.id_formation = id_formation;
+        this.id_evenement = id_evenement;
+        this.comment = comment;
+        this.login = login;
+    }
+    
+    
+    
+    
 
     public Commentaire(int id_comment, int id_user, int id_formation, String comment, String login) {
         this.id_comment = id_comment;
@@ -81,6 +89,21 @@ public class Commentaire {
     public String getComment() {
         return comment;
     }
+
+    @Override
+    public String toString() {
+        return "Commentaire{" + "id_comment=" + id_comment + ", id_user=" + id_user + ", id_formation=" + id_formation + ", id_evenement=" + id_evenement + ", comment=" + comment + ", login=" + login + '}';
+    }
+
+    public int getId_evenement() {
+        return id_evenement;
+    }
+
+    public void setId_evenement(int id_evenement) {
+        this.id_evenement = id_evenement;
+    }
+    
+    
     
     
     
