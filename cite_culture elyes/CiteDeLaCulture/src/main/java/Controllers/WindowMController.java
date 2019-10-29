@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Service.ServiceSpeaker;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.IOException;
@@ -54,6 +55,10 @@ public class WindowMController implements Initializable {
     private Button tfCheckEventsSigned;
     @FXML
     private Button tfFormation;
+    @FXML
+    private Button tfSpeaker1;
+    @FXML
+    private Button tfchat;
 
     void login(String log) {
         tflogin.setText(log);
@@ -100,15 +105,57 @@ public class WindowMController implements Initializable {
     }
 
     @FXML
-    private void CheckEventsSigned(ActionEvent event) {
+    private void CheckEventsSigned(ActionEvent event) throws SQLException, IOException {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/InscriptionM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        
+        
+        InscriptionMController ic = loader.getController();
+        ic.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ic.image(filepath);
+        
+        
     }
 
     @FXML
-    private void Formation(ActionEvent event) {
+    private void Formation(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherFormM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherFormMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+        
     }
 
     @FXML
-    private void GoToEvent(ActionEvent event) {
+    private void GoToEvent(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficheM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficheMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
     }
 
     @FXML
@@ -146,6 +193,55 @@ public class WindowMController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         asc.image(filepath);
+    }
+
+    @FXML
+    private void GoToEvent2(MouseEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficheM.fxml"));
+        Parent root = loader.load();
+        tfGoToEvent.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficheMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+    }
+
+    @FXML
+    private void Speaker(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/afficherspeakerM.fxml"));
+        Parent root = loader.load();
+        tfSpeaker1.getScene().setRoot(root);
+        
+        ServiceSpeaker SS = new ServiceSpeaker();
+        AfficherspeakerMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
+    }
+
+    @FXML
+    private void GoToChat(ActionEvent event) throws SQLException, IOException {
+         FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/ChatM.fxml"));
+        Parent root = loader.load();
+        tfchat.getScene().setRoot(root);
+        
+        ServiceStand sc = new ServiceStand();
+        ChatMController asc = loader.getController();
+        asc.login(tflogin.getText());
+
+        String filepath;
+        filepath = sc.searchImage(tflogin.getText());
+        asc.image(filepath);
+        
     }
 
 

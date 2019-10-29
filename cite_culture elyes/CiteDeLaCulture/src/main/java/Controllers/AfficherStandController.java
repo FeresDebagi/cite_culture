@@ -35,20 +35,27 @@ import utils.DataSource;
 import Service.ServiceStand;
 import Service.ServiceUser;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import static java.lang.System.currentTimeMillis;
 import java.net.MalformedURLException;
+import java.sql.Connection;
 import java.sql.Time;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -56,8 +63,19 @@ import javafx.stage.Stage;
  * @author Elyes
  */
 public class AfficherStandController implements Initializable {
-
+    
+    private Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
+
+    public AfficherStandController() {
+        try {
+            ste = con.createStatement();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+    }
+   
 
     @FXML
     private TableColumn<Stand, String> tftitre_stand;
@@ -89,6 +107,8 @@ public class AfficherStandController implements Initializable {
     private Label tftitle;
     @FXML
     private TableColumn<Stand, String> tfActif;
+    @FXML
+    private Button tfexporttoexcell;
 
     void login(String log) {
         tflogin.setText(log);
@@ -143,6 +163,11 @@ public class AfficherStandController implements Initializable {
         int x;
         x = SU.SearchId(tflogin.getText());
         asc.idStand(x);
+        
+        
+        
+        
+        
 
     }
 
@@ -221,6 +246,52 @@ public class AfficherStandController implements Initializable {
         String filepath;
         filepath = SS.searchImage(tflogin.getText());
         sdc.image(filepath);
+    }
+
+    @FXML
+    private void exporttoexcell(ActionEvent event) throws SQLException, FileNotFoundException, IOException {
+        String query="SELECT * FROM stand";
+        ste=con.createStatement();
+        Statement stm=con.createStatement();
+        ResultSet rst=stm.executeQuery(query);
+        
+        Stand s= new Stand();
+        
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet =wb.createSheet("DescriptionStand");
+        XSSFRow header = sheet.createRow(0);
+        header.createCell(0).setCellValue("titre_stand");
+        header.createCell(1).setCellValue("proprietaire_stand");
+        header.createCell(2).setCellValue("type_marchandise");
+        header.createCell(3).setCellValue("date_debut_stand");
+        header.createCell(4).setCellValue("date_fin_stand");
+        header.createCell(5).setCellValue("IdU_fk");
+        header.createCell(6).setCellValue("PhotoStand");
+        header.createCell(7).setCellValue("Actif");
+
+        int index = 1;
+        while(rst.next()){
+            XSSFRow row = sheet.createRow(index);
+            row.createCell(0).setCellValue(rst.getString("titre_stand"));
+            row.createCell(1).setCellValue(rst.getString("proprietaire_stand"));
+            row.createCell(2).setCellValue(rst.getString("type_marchandise"));
+            row.createCell(3).setCellValue(rst.getString("date_debut_stand"));
+            row.createCell(4).setCellValue(rst.getString("date_fin_stand"));
+            row.createCell(5).setCellValue(rst.getString("IdU_fk"));
+            row.createCell(6).setCellValue(rst.getString("PhotoStand"));
+            row.createCell(7).setCellValue(rst.getString("Actif"));
+            index ++ ;
+        }
+		
+        FileOutputStream fileOut = new FileOutputStream("Stand.xlsx");
+        wb.write(fileOut);
+        fileOut.close();
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("information dialog");
+        alert.setContentText("Stand Details Exported in Excel sheet.");
+        alert.showAndWait();
+        
+        
     }
 
 }
