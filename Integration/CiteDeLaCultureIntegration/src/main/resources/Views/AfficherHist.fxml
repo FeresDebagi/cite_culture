@@ -8,26 +8,22 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherFormController">
+<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherHistController">
    <children>
       <ImageView fitHeight="660.0" fitWidth="1016.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../view/Cite-de-la-Culture-Ban.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="tftableStand" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="678.0">
+      <TableView fx:id="tftableHist" layoutY="62.0" onMousePressed="#detail" prefHeight="446.0" prefWidth="678.0">
         <columns>
-          <TableColumn fx:id="tfidform" prefWidth="96.0" text="Id Formation" />
-          <TableColumn fx:id="tfformateur" prefWidth="125.0" text="Formateur" />
-            <TableColumn fx:id="tfclasse" prefWidth="132.0" text="Classe" />
-            <TableColumn fx:id="tfprix" prefWidth="136.0" text="Prix" />
-            <TableColumn fx:id="tftype" prefWidth="169.0" text="Type" />
+          <TableColumn fx:id="tfidform" prefWidth="660.0" text="History" />
         </columns>
       </TableView>
-      <Label layoutX="321.0" layoutY="27.0" prefHeight="21.0" prefWidth="123.0" text="Formation" />
+      <Label layoutX="321.0" layoutY="27.0" prefHeight="21.0" prefWidth="123.0" text="History" />
       <Button fx:id="tfadd" layoutX="115.0" layoutY="512.0" mnemonicParsing="false" onAction="#GoToAdd" text="Add" />
       <Label fx:id="tflogin" layoutX="810.0" layoutY="62.0" text="Label" />
       <ImageView fx:id="tfphoto" fitHeight="150.0" fitWidth="200.0" layoutX="737.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="tfretour" layoutX="76.0" layoutY="567.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Button fx:id="tfback" layoutX="619.0" layoutY="601.0" mnemonicParsing="false" onAction="#Back" text="&lt; Back" />
    </children>
 </AnchorPane>

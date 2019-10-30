@@ -37,7 +37,6 @@ public class Login extends Application {
 
         //To Set full screen
         primaryStage.setMaximized(true);
-
     }
 
     /**

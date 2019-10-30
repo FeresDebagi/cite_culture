@@ -96,7 +96,6 @@ public class ForgotPassController implements Initializable {
         transport.sendMessage(msg, msg.getAllRecipients());
         transport.close();
         JOptionPane.showMessageDialog(null, "code has been send to the email");
-
     }
 
     @FXML

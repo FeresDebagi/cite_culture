@@ -7,6 +7,7 @@ package Controllers;
 
 import Entite.Formation;
 import Service.ServiceFormation;
+import Service.ServiceUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -62,6 +63,8 @@ public class AfficherFormController implements Initializable {
     private Label tflogin;
     @FXML
     private ImageView tfphoto;
+    @FXML
+    private Button tfretour;
      void login(String log) {
         tflogin.setText(log);
     }
@@ -139,6 +142,22 @@ public class AfficherFormController implements Initializable {
         fdc.prix(String.valueOf((f.getPrix_formation())));
         
        
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/Window.fxml"));
+        Parent root = loader.load();
+        tfretour.getScene().setRoot(root);
+
+        ServiceUser SU = new ServiceUser();
+        WindowController wc = loader.getController();
+        wc.login(tflogin.getText());
+
+        String filepath;
+        filepath = SU.searchImage(tflogin.getText());
+        wc.image(filepath);
     }
     
 }

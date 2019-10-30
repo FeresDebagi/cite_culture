@@ -7,6 +7,7 @@ package Controllers;
 
 import Entite.Stand;
 import Service.ServiceChat;
+import Service.ServiceHistorique;
 import Service.ServiceSpeaker;
 import Service.ServiceStand;
 import Service.ServiceUser;
@@ -181,7 +182,19 @@ public class WindowController implements Initializable {
     }
 
     @FXML
-    private void GoToHistory(ActionEvent event) {
+    private void GoToHistory(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherHist.fxml"));
+        Parent root = loader.load();
+        tfGoToHistory.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherHistController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
     }
 
     @FXML

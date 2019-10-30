@@ -159,7 +159,19 @@ public class WindowMController implements Initializable {
     }
 
     @FXML
-    private void GoToHistory(ActionEvent event) {
+    private void GoToHistory(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Views/AfficherHistM.fxml"));
+        Parent root = loader.load();
+        tfGoToHistory.getScene().setRoot(root);
+        
+        ServiceStand SS = new ServiceStand();
+        AfficherHistMController ac = loader.getController();
+        ac.login(tflogin.getText());
+
+        String filepath;
+        filepath = SS.searchImage(tflogin.getText());
+        ac.image(filepath);
     }
 
     @FXML
