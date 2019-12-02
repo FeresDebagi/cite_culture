@@ -1,0 +1,71 @@
+cite_homepage:
+    path:     /
+    defaults: { _controller: CiteBundle:Default:index }
+
+################################################################ Events #############################################################
+EventsRead:
+    path:     /Events
+    defaults: { _controller: CiteBundle:Evenement:ReadEvents }
+
+EventsCreate:
+    path:     /Events/create
+    defaults: { _controller: CiteBundle:Evenement:CreateEvent }
+
+EventsDelete:
+    path:     /Events/delete/{id}
+    defaults: { _controller: CiteBundle:Evenement:DeleteEvent }
+
+EventsUpdate:
+    path:     /Events/update/{id}
+    defaults: { _controller: CiteBundle:Evenement:UpdateEvent }
+
+EventsSearch:
+    path:   /SearcheEvent
+    defaults: { _controller: CiteBundle:Evenement:SearchEvent}
+
+
+
+EventsReadU:
+    path:     /EventsU
+    defaults: { _controller: CiteBundle:Evenement:ReadEventsU }
+
+Event1Show:
+    path:     /Event1/{idEvent}
+    defaults: { _controller: CiteBundle:Evenement:ShowEvent }
+
+web_inscri:
+    path: /Inscri/{ideve}/{iduser}
+    defaults: {_controller: CiteBundle:Default:Inscri }
+
+
+################################################################ History ############################################################
+HistoryRead:
+    path:     /History
+    defaults: { _controller: CiteBundle:History:ReadHistory }
+
+HistoryCreate:
+    path:     /Events/{id}
+    defaults: { _controller: CiteBundle:History:CreateHistory }
+
+################################################################ Mailing ############################################################
+MailSend:
+    path:     /Mail/{id}
+    defaults: { _controller: CiteBundle:Evenement:SendMail }
+
+################################################################ Categorie ############################################################
+CategorieRead:
+    path:     /Categorie
+    defaults: { _controller: CiteBundle:Categorie:ReadCategorie }
+
+CategorieCreate:
+    path:     /Categorie/create
+    defaults: { _controller: CiteBundle:Categorie:CreateCategorie }
+
+CategorieDelete:
+    path:     /Categorie/delete/{id}
+    defaults: { _controller: CiteBundle:Categorie:DeleteCategorie }
+
+CategorieUpdate:
+    path:     /Categorie/update/{id}
+    defaults: { _controller: CiteBundle:Categorie:UpdateCategorie }
+

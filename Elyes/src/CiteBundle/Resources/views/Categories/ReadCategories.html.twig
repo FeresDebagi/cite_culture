@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+        <table border="1">
+            <tr>
+                <td>type categorie</td>
+            </tr>
+            {% for entity in events   %}
+                <tr>
+                    <td>{{ entity.typecategorie }}</td>
+                    <td> <a href="{{ path('CategorieDelete',{'id':entity.idcategorie}) }}"><button>Delete</button></a> </td>
+                    <td> <a href="{{ path('CategorieUpdate',{'id':entity.idcategorie}) }}"><button>Update</button></a> </td>
+                </tr>
+            {% endfor %}
+        </table></br></br></br>
+        <td> <a href="{{ path('CategorieCreate') }}"><button>Add</button></a> </td>
+    {% endblock %}
+
+

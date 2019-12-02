@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+
+        <table border="1">
+            <tr>
+
+                <td>descriptionHistory</td>
+                <td>imageHistory</td>
+                <td>titreHistory</td>
+                <td>Categroie</td>
+            </tr>
+            {% for entity in h   %}
+                <tr>
+                    <td>{{ entity.descriptionHistory }}</td>
+                    <td>{{ entity.imageHistory }}</td>
+                    <td>{{ entity.titreHistory }}</td>
+                    <td>{{ entity.idcategorie.typecategorie }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endblock %}
+
+

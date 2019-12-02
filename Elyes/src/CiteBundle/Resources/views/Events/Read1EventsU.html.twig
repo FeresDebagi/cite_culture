@@ -1,0 +1,95 @@
+{% extends 'base2.html.twig' %}
+
+    {% block body %}
+
+
+        <section class="page-section" id="services">
+            <div class="container">
+                {% for entity in events   %}
+                    <h2 class="text-center mt-0">Events</h2>
+                    <hr class="divider my-4">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Title :</h3>
+                                <h3 class="h4 mb-2">{{ entity.titreEvent }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Description:</h3>
+                                <h3 class="h4 mb-2">{{ entity.descriptionEvent }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">image:</h3>
+                                <h3 class="h4 mb-2">{{ entity.image }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Date:</h3>
+                                <h3 class="h4 mb-2">{{ entity.dateEvent|date }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Price:</h3>
+                                <h3 class="h4 mb-2">{{ entity.prixEvent }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Room:</h3>
+                                <h3 class="h4 mb-2">{{ entity.salleEvent }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="mt-5">
+                                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                                <h3 class="h4 mb-2">Type:</h3>
+                                <h3 class="h4 mb-2">{{ entity.idcategorie.TypeCategorie }}</h3>
+                                <h3 class="h4 mb-2">{{ app.user.id }}</h3>
+                                <p class="text-muted mb-0"></p>
+                            </div>
+                        </div>
+                        <center><a class="btn btn-light btn-xl js-scroll-trigger" href="{{ path('web_inscri',
+                                {'ideve':entity.idEvent,'iduser':app.user.id}) }}">Inscrire</a></center>
+
+
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+
+        </section>
+    {% endblock %}

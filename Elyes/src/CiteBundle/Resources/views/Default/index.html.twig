@@ -1,0 +1,11 @@
+{% extends 'base2.html.twig' %}
+    {% block body %}
+        {% if is_granted ('ROLE_ADMIN') %}
+            <h1> I M AN ADMIN</h1>
+
+        {% elseif is_granted ('ROLE_USER') %}
+            <h1> I M A USER</h1> </br></br></br></br></br>
+        {% endif %}
+    {% endblock %}
+
+

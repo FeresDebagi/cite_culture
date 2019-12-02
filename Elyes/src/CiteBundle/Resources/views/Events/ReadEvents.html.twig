@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table m-0">
+                    <thead>
+                    <tr>
+                        <td>descriptionEvent</td>
+                        <td>titreEvent</td>
+                        <td>dateEvent</td>
+                        <td>prixEvent</td>
+                        <td>salleEvent</td>
+                        <td>Image</td>
+                        <td>Type</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in events   %}
+                        <tr>
+                            <td>{{ entity.descriptionEvent}}</td>
+                            <td>{{ entity.titreEvent }}</td>
+                            <td><span class="badge badge-success">{{ entity.dateEvent|date }}</span></td>
+                            <td>{{ entity.prixEvent}}</td>
+                            <td>{{ entity.salleEvent}}</td>
+                            <td>{{ entity.Image }}</td>
+
+                            <td><span class="badge badge-success">{{ entity.idcategorie.typecategorie }}</span></td>
+                            <td><a href="{{ path('EventsDelete',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Delete</a></td>
+                            <td> <a href="{{ path('EventsUpdate',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Update</a> </td>
+                            <td> <a href="{{ path('HistoryCreate',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Create History</a> </td>
+                            <!--<td> <a href="{{ path('MailSend',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Send Mail</a> </td>-->
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <td> <a href="{{ path('EventsCreate') }}" class="btn btn-sm btn-secondary float-right">Add event</a> </td>
+            </div>
+        </div>
+    {% endblock %}
+
+
