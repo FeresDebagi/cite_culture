@@ -1,23 +1,33 @@
 {% extends 'base.html.twig' %}
     {% block content %}
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table m-0">
+                    <thead>
+                    <tr>
+                        <td>description History</td>
+                        <td>image History</td>
+                        <td>titre History</td>
+                        <td>Categroie</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in h   %}
+                        <tr>
+                            <td>{{ entity.descriptionHistory}}</td>
+                            <td>{{ entity.titreHistory }}</td>
+                            <td>{{ entity.imageHistory}}</td>
+                            <td><span class="badge badge-success">{{ entity.idcategorie.typecategorie }}</span></td>
+                            <td><a href="{{ path('HistoryDelete',{'id':entity.idHistory}) }}"
+                                   class="btn btn-sm btn-secondary float-right">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <table border="1">
-            <tr>
 
-                <td>descriptionHistory</td>
-                <td>imageHistory</td>
-                <td>titreHistory</td>
-                <td>Categroie</td>
-            </tr>
-            {% for entity in h   %}
-                <tr>
-                    <td>{{ entity.descriptionHistory }}</td>
-                    <td>{{ entity.imageHistory }}</td>
-                    <td>{{ entity.titreHistory }}</td>
-                    <td>{{ entity.idcategorie.typecategorie }}</td>
-                </tr>
-            {% endfor %}
-        </table>
 
     {% endblock %}
 

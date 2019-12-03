@@ -44,10 +44,10 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 
         if (in_array('ROLE_ADMIN', $rolesTab, true)) {
             // c'est un aministrateur : on le rediriger vers l'espace admin
-            $redirection = new RedirectResponse($this->router->generate('EventsRead'));
+            $redirection = new RedirectResponse($this->router->generate('cite_homepageAdmin'));
         } else {
             // c'est un utilisaeur lambda : on le rediriger vers l'accueil
-            $redirection = new RedirectResponse($this->router->generate('EventsReadU'));
+            $redirection = new RedirectResponse($this->router->generate('cite_homepageMember'));
         }
 
         return $redirection;

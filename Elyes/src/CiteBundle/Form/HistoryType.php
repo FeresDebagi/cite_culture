@@ -3,8 +3,10 @@
 namespace CiteBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use CiteBundle\Entity\History;
 
 class HistoryType extends AbstractType
 {
@@ -13,7 +15,13 @@ class HistoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('descriptionHistory')->add('imageHistory')->add('titreHistory')->add('idcategorie');
+        $builder
+            //->add('descriptionHistory')
+            //->add('imageHistory')
+            //->add('titreHistory')
+            //->add('idcategorie')
+            ->add('Submit', SubmitType::class,['attr' => ['formnovalidate' => 'formnovalidate']]);
+        ;
     }/**
      * {@inheritdoc}
      */

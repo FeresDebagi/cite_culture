@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+    {% block content %}
+        {{ form_start(event) }}</br></br>
+            {% for entity in event   %}
+
+            {% endfor %}
+        {{ form_end(event) }}</br>
+
+    {% endblock %}
+
+

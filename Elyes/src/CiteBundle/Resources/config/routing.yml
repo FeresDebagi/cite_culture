@@ -1,51 +1,94 @@
 cite_homepage:
     path:     /
+    defaults: { _controller: CiteBundle:Default:indexU }
+
+cite_homepageAdmin:
+    path:     /HomeA
     defaults: { _controller: CiteBundle:Default:index }
+
+cite_homepageMember:
+    path:     /HomeM
+    defaults: { _controller: CiteBundle:Default:indexM }
 
 ################################################################ Events #############################################################
 EventsRead:
-    path:     /Events
+    path:     /HomeA/Events
     defaults: { _controller: CiteBundle:Evenement:ReadEvents }
 
 EventsCreate:
-    path:     /Events/create
+    path:     /HomeA/Events/create
     defaults: { _controller: CiteBundle:Evenement:CreateEvent }
 
 EventsDelete:
-    path:     /Events/delete/{id}
+    path:     /HomeA/Events/delete/{id}
     defaults: { _controller: CiteBundle:Evenement:DeleteEvent }
 
 EventsUpdate:
-    path:     /Events/update/{id}
+    path:     /HomeA/Events/update/{id}
     defaults: { _controller: CiteBundle:Evenement:UpdateEvent }
 
 EventsSearch:
-    path:   /SearcheEvent
+    path:   /HomeA/SearcheEvent
     defaults: { _controller: CiteBundle:Evenement:SearchEvent}
 
 
 
+EventsReadM:
+    path:     /HomeM/EventsM
+    defaults: { _controller: CiteBundle:Evenement:ReadEventsM }
+
+Event1ShowM:
+    path:     /HomeM/Event1M/{idEvent}
+    defaults: { _controller: CiteBundle:Evenement:Show1EventM }
+
+
+
 EventsReadU:
-    path:     /EventsU
+    path:     /HomeU/EventsU
     defaults: { _controller: CiteBundle:Evenement:ReadEventsU }
 
-Event1Show:
-    path:     /Event1/{idEvent}
-    defaults: { _controller: CiteBundle:Evenement:ShowEvent }
+Event1ShowU:
+    path:     /HomeU/Event1U/{idEvent}
+    defaults: { _controller: CiteBundle:Evenement:Show1EventU }
+
+
 
 web_inscri:
-    path: /Inscri/{ideve}/{iduser}
+    path: /HomeM/EventsM/Inscri/{ideve}/{iduser}
     defaults: {_controller: CiteBundle:Default:Inscri }
-
 
 ################################################################ History ############################################################
 HistoryRead:
-    path:     /History
+    path:     /HomeA/History
     defaults: { _controller: CiteBundle:History:ReadHistory }
 
 HistoryCreate:
-    path:     /Events/{id}
+    path:     /HomeA/Events/{id}
     defaults: { _controller: CiteBundle:History:CreateHistory }
+
+HistoryDelete:
+    path:     /HomeA/History/delete/{id}
+    defaults: { _controller: CiteBundle:History:DeleteHistory }
+
+
+
+
+HistoryReadM:
+    path:     /HomeM/HistoryM
+    defaults: { _controller: CiteBundle:History:ReadHistoryM }
+
+History1ShowM:
+    path:     /HomeM/History1M/{idHistory}
+    defaults: { _controller: CiteBundle:History:Show1HistoryM }
+
+
+HistoryReadU:
+    path:     /HomeU/HistoryU
+    defaults: { _controller: CiteBundle:History:ReadHistoryU }
+
+History1ShowU:
+    path:     /HomeU/History1U/{idHistory}
+    defaults: { _controller: CiteBundle:History:Show1HistoryU }
 
 ################################################################ Mailing ############################################################
 MailSend:
@@ -54,18 +97,18 @@ MailSend:
 
 ################################################################ Categorie ############################################################
 CategorieRead:
-    path:     /Categorie
+    path:     /HomeA/Categorie
     defaults: { _controller: CiteBundle:Categorie:ReadCategorie }
 
 CategorieCreate:
-    path:     /Categorie/create
+    path:     /HomeA/Categorie/create
     defaults: { _controller: CiteBundle:Categorie:CreateCategorie }
 
 CategorieDelete:
-    path:     /Categorie/delete/{id}
+    path:     /HomeA/Categorie/delete/{id}
     defaults: { _controller: CiteBundle:Categorie:DeleteCategorie }
 
 CategorieUpdate:
-    path:     /Categorie/update/{id}
+    path:     /HomeA/Categorie/update/{id}
     defaults: { _controller: CiteBundle:Categorie:UpdateCategorie }
 

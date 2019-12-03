@@ -4,6 +4,7 @@ namespace CiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CiteBundle\Entity\Evenement;
+use CiteBundle\Entity\History;
 use mysql_xdevapi\CollectionRemove;
 use mysql_xdevapi\TableDelete;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +18,12 @@ use CiteBundle\Form\RechercheEventType;
 class EvenementController extends Controller
 {
 //-----------------------------------------------------Affichage Evenement----------------------------------------------
-    public function ShowEventAction($idEvent)
+    public function Show1EventMAction($idEvent)
     {
         //$em = $this->getDoctrine()->getManager();
         $event=$this->getDoctrine()->getRepository(Evenement::class)->findBy(array('idEvent'=>$idEvent));
-
         //return $this->redirectToRoute("web_view2");
-        return $this->render('@Cite/Events/Read1EventsU.html.twig',array('events'=>$event,'id'=>$idEvent));
+        return $this->render('@Cite/Events/Read1EventsM.html.twig',array('events'=>$event,'id'=>$idEvent));
     }
 
     public function ReadEventsAction(){
@@ -32,11 +32,30 @@ class EvenementController extends Controller
         return $this->render('@Cite/Events/ReadEvents.html.twig',array('events'=>$event));
     }
 
+    public function ReadEventsMAction(){
+        $event=$this->getDoctrine()->getRepository(Evenement::class)->findAll();
+        //add the list of clubs to the render function as input to base
+        return $this->render('@Cite/Events/ReadEventsM.html.twig',array('events'=>$event));
+    }
+
+
+
+
     public function ReadEventsUAction(){
         $event=$this->getDoctrine()->getRepository(Evenement::class)->findAll();
         //add the list of clubs to the render function as input to base
         return $this->render('@Cite/Events/ReadEventsU.html.twig',array('events'=>$event));
     }
+
+
+    public function Show1EventUAction($idEvent)
+    {
+        //$em = $this->getDoctrine()->getManager();
+        $event=$this->getDoctrine()->getRepository(Evenement::class)->findBy(array('idEvent'=>$idEvent));
+        //return $this->redirectToRoute("web_view2");
+        return $this->render('@Cite/Events/Read1EventsU.html.twig',array('events'=>$event));
+    }
+
 
 //-----------------------------------------------------Ajout Evenement----------------------------------------------
     public function CreateEventAction(Request $request){

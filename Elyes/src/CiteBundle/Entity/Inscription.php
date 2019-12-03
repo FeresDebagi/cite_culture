@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Inscription
- *
+ * @ORM\Entity(repositoryClass="CiteBundle\Repository\AnnonceRepository")
  * @ORM\Table(name="inscription", indexes={@ORM\Index(name="iduser", columns={"iduser"}),
  *     @ORM\Index(name="id_formation", columns={"id_formation"}),
  *     @ORM\Index(name="id_event", columns={"id_event"})})
@@ -30,6 +30,7 @@ class Inscription
      * @ORM\ManyToOne(targetEntity="Evenement")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_event", referencedColumnName="id_event")
+     *
      * })
      */
     private $idevent;
