@@ -44,8 +44,14 @@ class DefaultController extends Controller
         $em->flush();
 
         return $this->render('@Cite/Events/Read1EventsU.html.twig',array('events'=>$event,'id'=>$ideve));
-
     }
+
+    public function ProfilesAdiminAction()
+    {
+        $event=$this->getDoctrine()->getRepository(User::class)->findAll();
+        return $this->render('@Cite/Profiles/ProfilesAdmin.html.twig',array('events'=>$event));
+    }
+
 
 
 }

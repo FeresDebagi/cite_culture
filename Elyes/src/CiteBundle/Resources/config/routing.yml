@@ -53,7 +53,7 @@ Event1ShowU:
 
 
 
-web_inscri:
+Event_inscri:
     path: /HomeM/EventsM/Inscri/{ideve}/{iduser}
     defaults: {_controller: CiteBundle:Default:Inscri }
 
@@ -111,4 +111,184 @@ CategorieDelete:
 CategorieUpdate:
     path:     /HomeA/Categorie/update/{id}
     defaults: { _controller: CiteBundle:Categorie:UpdateCategorie }
+
+################################################################ Foire ####################################################
+
+
+FoireRead:
+    path:     /HomeA/Foire
+    defaults: { _controller: CiteBundle:Foire:ReadFoire}
+
+FoireCreate:
+    path:     /HomeA/Foire/create
+    defaults: { _controller: CiteBundle:Foire:CreateFoire }
+
+FoireUpdate:
+    path:     /HomeA/Foire/update/{id}
+    defaults: { _controller: CiteBundle:Foire:UpdateFoire }
+
+FoireDelete:
+    path:     /HomeA/Foire/delete/{id}
+    defaults: { _controller: CiteBundle:Foire:DeleteFoire }
+
+
+
+FoireReadU:
+    path:     /HomeU/FoireU
+    defaults: { _controller: CiteBundle:Foire:ReadFU}
+
+FoireReadM:
+    path:     /HomeM/FoireM
+    defaults: { _controller: CiteBundle:Foire:ReadFoireM}
+
+
+FoireStat:
+    path:     /stat
+    defaults: { _controller: CiteBundle:Stat:Stat }
+
+################################################################ Profiles ####################################################
+ProfilesA:
+    path:     /HomeA/ProfileA
+    defaults: { _controller: CiteBundle:Default:ProfilesAdimin }
+
+################################################################ Sales ############################################################
+
+web_ajoutS:
+    path:     /HomeA/Salle/ajout
+    defaults: { _controller: CiteBundle:Salle:create }
+
+web_viewS:
+    path:     /HomeA/Salle/ReadF
+    defaults: { _controller: CiteBundle:Salle:ReadF }
+
+deleteS:
+    path:     /HomeA/Salle/delete/{id}
+    defaults: { _controller: CiteBundle:Salle:delete }
+
+updateS:
+    path:     /HomeA/Salle/update/{id}
+    defaults: { _controller: CiteBundle:Salle:update }
+
+################################################################ Conference ############################################################
+web_view:
+    path:     /HomeA/Conference
+    defaults: { _controller: CiteBundle:Conference:ReadF }
+
+web_ajout:
+    path:     /HomeA/Conference/ajout
+    defaults: { _controller: CiteBundle:Conference:create}
+
+delete:
+    path:     /HomeA/Conference/delete/{id}
+    defaults: { _controller: CiteBundle:Conference:delete }
+
+update:
+    path:     /HomeA/Conference/update/{id}
+    defaults: { _controller: CiteBundle:Conference:update }
+
+
+
+web_viewM:
+    path:     /HomeM/ConferenceM
+    defaults: { _controller: CiteBundle:Conference:ReadCM }
+
+web_viewMD:
+    path:     /HomeM/ConferenceM/details/{idconference}
+    defaults: { _controller: CiteBundle:Conference:ReadCMD}
+
+
+
+web_viewU:
+    path:     /HomeU/ConferenceU
+    defaults: { _controller: CiteBundle:Conference:ReadCU }
+
+web_viewUD:
+    path:     /HomeU/ConferenceU/details/{idconference}
+    defaults: { _controller: CiteBundle:Conference:ReadCUD}
+
+
+
+Conference_inscri:
+    path:     /HomeU/ConferenceU/details/{idconference}/{iduser}
+    defaults: { _controller: CiteBundle:Conference:Inscription}
+
+
+
+################################################################ Speaker ############################################################
+speaker_view:
+    path:     /HomeA/Speaker
+    defaults: { _controller: CiteBundle:Speaker:speaker}
+
+
+speaker_create:
+    path:     /HomeA/Speaker/ajouter
+    defaults: { _controller: CiteBundle:Speaker:speakercreate}
+
+speaker_delete:
+    path:     /HomeA/Speaker/delete/{id}
+    defaults: { _controller: CiteBundle:Speaker:speakerdelete }
+
+speaker_update:
+    path:     /HomeA/Speaker/update/{id}
+    defaults: { _controller: CiteBundle:Speaker:speakerupdate }
+
+
+speaker_viewSM:
+    path:     /HomeM/SpeakerM
+    defaults: { _controller: CiteBundle:Speaker:speakerM}
+
+web_viewSMD:
+    path:     /HomeM/SpeakerM/details/{idspeaker}
+    defaults: { _controller: CiteBundle:Speaker:speakerMD}
+
+
+speaker_viewSU:
+    path:     /HomeU/SpeakerU
+    defaults: { _controller: CiteBundle:Speaker:speakerU}
+
+web_viewSUD:
+    path:     /HomeU/SpeakerU/details/{idspeaker}
+    defaults: { _controller: CiteBundle:Speaker:speakerUD}
+
+################################################################ Formation ############################################################
+FormationRead:
+    path:     /HomeA/FormationA/ReadA
+    defaults: { _controller: CiteBundle:Formation:ReadF }
+
+FormationAdd:
+    path:     /HomeA/FormationA/ajout
+    defaults: { _controller: CiteBundle:Formation:create }
+
+FormationDelete:
+    path:     /HomeA/FormationA/delete/{id}
+    defaults: { _controller: CiteBundle:Formation:delete }
+
+FormationUpdate:
+    path:     /HomeA/FormationA/update/{id}
+    defaults: { _controller: CiteBundle:Formation:update }
+
+
+
+FormationReadU:
+    path:     /HomeM/FormationM/ReadFU
+    defaults: { _controller: CiteBundle:Formation:ReadUF }
+
+FormationReadU1:
+    path:     /HomeM/FormationM/ReadFUD/{idformation}
+    defaults: { _controller: CiteBundle:Formation:ReadFUD }
+
+
+FormationReadUU:
+    path:     /HomeU/FormationU/ReadFU
+    defaults: { _controller: CiteBundle:Formation:ReadUUF }
+
+FormationReadUU1:
+    path:     HomeU/FormationU/ReadFUD/{idformation}
+    defaults: { _controller: CiteBundle:Formation:ReadFUUD }
+
+
+
+Formation_inscri:
+    path:     /Inscri/{idform}/{iduser}
+    defaults: { _controller: CiteBundle:Formation:Inscri }
 

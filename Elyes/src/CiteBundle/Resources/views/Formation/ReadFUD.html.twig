@@ -1,0 +1,135 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+
+
+    <section class="page-section" id="services">
+        <div class="container">
+            {% for entity in formations   %}
+            <h2 class="text-center mt-0">Formation</h2>
+            <hr class="divider my-4">
+
+
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Formation :</h3>
+                        <h3 class="h4 mb-2">{{ entity.formateurformation }}</h3>
+
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Classe :</h3>
+                        <h3 class="h4 mb-2">{{ entity.classeformation }}</h3>
+
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Prix :</h3>
+                        <h3 class="h4 mb-2">{{ entity.prixformation }}</h3>
+
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Type :</h3>
+                        <h3 class="h4 mb-2">{{ entity.typeformation }}</h3>
+
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Date :</h3>
+                        <h3 class="h4 mb-2">{{ entity.DateFormation |date }}</h3>
+
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Salle :</h3>
+                        <h3 class="h4 mb-2">{{ entity.idSalle.idSalle }}</h3>
+
+
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        </div>
+                <center><a class="btn btn-light btn-xl js-scroll-trigger" href="{{ path('Formation_inscri',{'idform':entity.idformation,'iduser':app.user.id}) }}" data-toggle="modal" data-target="#exampleModal">Inscrire</a></center>
+        {% endfor %}
+
+
+
+
+    </section>
+
+
+    {% for entity in formations   %}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                    <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ path('Formation_inscri',{'idform':entity.idformation,'iduser':app.user.id}) }}">Inscrire</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table m-0">
+                    <thead>
+                    <tr>
+                        <td>username</td>
+                        <td>email</td>
+                        <td>enabled</td>
+                        <td>nom</td>
+                        <td>prenom</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in events   %}
+                        <tr>
+                            <td>{{ entity.username}}</td>
+                            <td>{{ entity.email }}</td>
+                            <td>{{ entity.enabled }}</span></td>
+                            <td>{{ entity.nom}}</td>
+                            <td>{{ entity.prenom}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+
+

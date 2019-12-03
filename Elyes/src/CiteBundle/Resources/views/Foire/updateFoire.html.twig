@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{%  block content %}
+        <h1>Update an Foire</h1>
+
+        {{ form_start(f) }}</br></br>
+        description: * </br>
+        {{ form_widget(f.descriptionFoire) }}</br></br>
+        image: * </br>
+        {{ form_widget(f.imageFoire) }}</br></br>
+        titre: * </br>
+        {{ form_widget(f.titreFoire) }}</br></br>
+        date: * </br>
+        {{ form_widget(f.dateFoire) }}</br></br>
+        heure: * </br>
+        {{ form_widget(f.heureFoire) }}</br></br>
+        prix: * </br>
+        {{ form_widget(f.prixFoire) }}</br></br>
+        salle: * </br>
+        {{ form_widget(f.salleFoire) }}</br></br>
+        userName: * </br>
+        {{ form_widget(f.userNameFoire) }}</br></br>
+        titre stand: *
+        {{ form_widget(f.idStand) }}</br></br>
+
+        {{ form_end(f) }}</br>
+
+
+
+{% endblock %}

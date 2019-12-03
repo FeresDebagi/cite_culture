@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+
+    <h1>Ajouter un Speaker</h1>
+    </br>
+
+    {{ form_start(f) }}</br>
+    titre: *</br>
+    {{ form_widget(f.titreconference) }}</br>
+    description : </br>
+    {{ form_widget(f.descriptionconference) }}</br>
+    date conference  : </br>
+    {{ form_widget(f.dateconference) }}</br>
+    heure conference  : </br>
+    {{ form_widget(f.heureconference) }}</br>
+    salle conference  : </br>
+    {{ form_widget(f.idsalle) }}</br>
+    speaker de la conference : </br>
+    {{ form_widget(f.idspeaker) }}</br>
+    {{ form_widget(f.save) }}
+    {{ form_end(f) }}</br>
+
+
+
+{% endblock %}

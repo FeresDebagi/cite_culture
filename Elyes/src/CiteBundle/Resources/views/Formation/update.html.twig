@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+
+    <h1>Modifier une Formation</h1>
+    </br>
+
+    {{ form_start(f) }}</br>
+    Formateur: *</br>
+    {{ form_widget(f.formateurformation) }}</br>
+    Classe : </br>
+    {{ form_widget(f.classeformation) }}</br>
+    Prix  : </br>
+    {{ form_widget(f.prixformation) }}</br>
+    Type  : </br>
+    {{ form_widget(f.typeformation) }}</br>
+    Date de Formation  : </br>
+    {{ form_widget(f.dateformation) }}</br>
+    Salle : </br>
+    {{ form_widget(f.idsalle) }}</br>
+    {{ form_widget(f.save) }}
+    {{ form_end(f) }}</br>
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+
+    <div class="card-body p-0">
+    <div class="table-responsive">
+
+    <table class="table m-0">
+        <thead>
+    <tr>
+        <td>Nom Speaker</td>
+        <td>Prenom Speaker</td>
+        <td>Mail Speaker</td>
+        <td>Date Arrive</td>
+        <td>Date Depart</td>
+        <td>Description Speaker</td>
+        <td>Ajouté Par</td>
+        <td>Photo Speaker</td>
+        <td> <a href="{{ path('speaker_create') }}"><button>create</button></a> </td>
+
+    </tr>
+    {% for entity in speak  %}
+        <tr>
+            <td>{{ entity.nomspeaker}}</td>
+            <td>{{ entity.prenomspeaker}}</td>
+            <td>{{ entity.mailspeaker}}</td>
+            <td>{{ entity.datearrive|date}}</td>
+            <td>{{ entity.datedepart|date}}</td>
+            <td>{{ entity.descriptionspeaker}}</td>
+            <td><span class="badge badge-success">{{ entity.iduser.nom }}</span></td>
+            <td>{{ entity.PhotoSpeaker}}</td>
+
+            <td> <a href="{{ path('speaker_delete',{'id':entity.idspeaker}) }}"><button>delete</button></a> </td>
+            <td> <a href="{{ path('speaker_update',{'id':entity.idspeaker}) }}"><button>Update</button></a> </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

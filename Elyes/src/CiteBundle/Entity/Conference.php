@@ -36,18 +36,11 @@ class Conference
     private $descriptionconference;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="DateConference", type="string", length=255, nullable=false)
+     * @ORM\Column(name="DateConference", type="datetime", nullable=false)
      */
     private $dateconference;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="HeureConference", type="string", length=255, nullable=false)
-     */
-    private $heureconference;
 
     /**
      * @var \Salle
@@ -64,10 +57,106 @@ class Conference
      *
      * @ORM\ManyToOne(targetEntity="Speaker")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idSpeaker", referencedColumnName="id_speaker")
+     *   @ORM\JoinColumn(name="idSpeaker", referencedColumnName="idspeaker")
      * })
      */
     private $idspeaker;
+
+    /**
+     * @return int
+     */
+    public function getIdconference()
+    {
+        return $this->idconference;
+    }
+
+    /**
+     * @param int $idconference
+     */
+    public function setIdconference($idconference)
+    {
+        $this->idconference = $idconference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitreconference()
+    {
+        return $this->titreconference;
+    }
+
+    /**
+     * @param string $titreconference
+     */
+    public function setTitreconference($titreconference)
+    {
+        $this->titreconference = $titreconference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionconference()
+    {
+        return $this->descriptionconference;
+    }
+
+    /**
+     * @param string $descriptionconference
+     */
+    public function setDescriptionconference($descriptionconference)
+    {
+        $this->descriptionconference = $descriptionconference;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateconference()
+    {
+        return $this->dateconference;
+    }
+
+    /**
+     * @param \DateTime $dateconference
+     */
+    public function setDateconference($dateconference)
+    {
+        $this->dateconference = $dateconference;
+    }
+
+    /**
+     * @return \Salle
+     */
+    public function getIdsalle()
+    {
+        return $this->idsalle;
+    }
+
+    /**
+     * @param \Salle $idsalle
+     */
+    public function setIdsalle($idsalle)
+    {
+        $this->idsalle = $idsalle;
+    }
+
+    /**
+     * @return \Speaker
+     */
+    public function getIdspeaker()
+    {
+        return $this->idspeaker;
+    }
+
+    /**
+     * @param \Speaker $idspeaker
+     */
+    public function setIdspeaker($idspeaker)
+    {
+        $this->idspeaker = $idspeaker;
+    }
 
 
 }

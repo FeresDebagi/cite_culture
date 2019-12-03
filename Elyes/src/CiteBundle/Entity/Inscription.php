@@ -62,6 +62,10 @@ class Inscription
      */
     private $dateajout = 'CURRENT_TIMESTAMP';
 
+
+//------------------------------------------------------------ Getters and Setters ---------------------------------------------
+
+
     public function __construct() {
         $this->dateajout = new \DateTime();
     }

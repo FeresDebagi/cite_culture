@@ -16,8 +16,6 @@
                     </thead>
                     <tbody>
                     {% for entity in events   %}
-
-
                         <tr>
                             <td>{{ entity.descriptionEvent}}</td>
                             <td>{{ entity.titreEvent }}</td>
@@ -32,11 +30,10 @@
                             <!--<td> <a href="{{ path('MailSend',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Send Mail</a> </td>-->
                         </tr>
                     {% endfor %}
-
-
                     </tbody>
                 </table>
                 <td> <a href="{{ path('EventsCreate') }}" class="btn btn-sm btn-secondary float-right">Add event</a> </td>
+                <td> <a href="{{ path('EventsSearch') }}" class="btn btn-sm btn-secondary float-right">Search Events</a> </td>
             </div>
         </div>
     {% endblock %}

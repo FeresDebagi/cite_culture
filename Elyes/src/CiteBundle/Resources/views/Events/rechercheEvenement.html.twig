@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
     {% block content %}
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table m-0">
+                    <thead>
+                    <tr>
+                        <td>descriptionEvent</td>
+                        <td>titreEvent</td>
+                        <td>dateEvent</td>
+                        <td>prixEvent</td>
+                        <td>salleEvent</td>
+                        <td>Image</td>
+                        <td>Type</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in e   %}
+                        <tr>
+                            <td>{{ entity.descriptionEvent}}</td>
+                            <td>{{ entity.titreEvent }}</td>
+                            <td><span class="badge badge-success">{{ entity.dateEvent|date }}</span></td>
+                            <td>{{ entity.prixEvent}}</td>
+                            <td>{{ entity.salleEvent}}</td>
+                            <td>{{ entity.image}}</td>
+                            <td><span class="badge badge-success">{{ entity.idcategorie.typecategorie }}</span></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {{ form(form) }}
+        </div>
 
-        <h1>Recherche Evenement par titre</h1>
-        {{ form(form) }}
-
-        <table border="1">
-            <tr>
-                <td>descriptionEvent</td>
-                <td>imageEvent</td>
-                <td>titreEvent</td>
-                <td>dateEvent</td>
-                <td>prixEvent</td>
-                <td>salleEvent</td>
-                <td>idcategorie</td>
-
-            </tr>
-            {% for entity in e   %}
-                <tr>
-                    <td>{{ entity.descriptionEvent }}</td>
-                    <td>{{ entity.imageEvent }}</td>
-                    <td>{{ entity.titreEvent }}</td>
-                    <td>{{ entity.dateEvent|date }}</td>
-                    <td>{{ entity.prixEvent }}</td>
-                    <td>{{ entity.salleEvent }}</td>
-                    <td>{{ entity.idcategorie.typecategorie }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <td> <a href="{{ path('EventsCreate') }}"><button>Add</button></a> </td>
     {% endblock %}

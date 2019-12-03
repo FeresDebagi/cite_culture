@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="card-body p-0">
+    <div class="table-responsive">
+        <table class="table m-0">
+            <thead>
+            <tr>
+                <td>Id</td>
+                <td>Formateur</td>
+                <td>Classe</td>
+                <td>Prix</td>
+                <td>Type</td>
+                <td>Date</td>
+                <td>Salle</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in formations   %}
+            <tr>
+                <td>{{ entity.idformation}}</td>
+                <td>{{ entity.formateurformation }}</td>
+                <td><span class="badge badge-success">{{ entity.classeformation }}</span></td>
+                <td>{{ entity.prixformation}}</td>
+                <td>{{ entity.typeformation}}</td>
+                <td>{{ entity.DateFormation |date }}</td>
+
+                <td><span class="badge badge-success">{{ entity.idSalle.idSalle }}</span></td>
+                <td><a href="{{ path('FormationDelete',{'id':entity.idformation}) }}" class="btn btn-sm btn-secondary float-right">Suprimer</a></td>
+                <td> <a href="{{ path('FormationUpdate',{'id':entity.idformation}) }}" class="btn btn-sm btn-secondary float-right">Update</a> </td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+        <td> <a href="{{ path('FormationAdd') }}" class="btn btn-sm btn-secondary float-right">Add Formation</a> </td>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+    <div class="card-body p-0">
+    <div class="table-responsive">
+
+    <table class="table m-0">
+        <thead>
+    <tr>
+        <td>Titre Conference</td>
+        <td>Description Conference</td>
+        <td>Date Conference</td>
+        <td>Numero Salle</td>
+        <td>Nom Speaker</td>
+        <td> <a href="{{ path('web_ajout') }}"><button>create</button></a> </td>
+    </tr>
+        </thead>
+    {% for entity in conf  %}
+        <tr>
+            <td>{{ entity.titreconference}}</td>
+            <td>{{ entity.descriptionconference }}</td>
+            <td>{{ entity.dateconference|date}}</td>
+            <td><span class="badge badge-success">{{ entity.idsalle.numsalle }}</span></td>
+            <td><span class="badge badge-success">{{ entity.idspeaker.nomspeaker}}</span></td>
+            <td> <a href="{{ path('delete',{'id':entity.idconference}) }}"><button>delete</button></a> </td>
+            <td> <a href="{{ path('update',{'id':entity.idconference}) }}"><button>Update</button></a> </td>
+        </tr>
+    {% endfor %}
+        </tbody>
+</table>
+{% endblock %}

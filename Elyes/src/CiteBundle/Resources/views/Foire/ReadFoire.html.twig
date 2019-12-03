@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+    {%  block content %}
+            <table border="1">
+                <tr>
+                    <td>idFoire</td>
+                    <td>descriptionFoire</td>
+                    <td>imageFoire</td>
+                    <td>titreFoire</td>
+                    <td>dateFoire</td>
+                    <td>heureFoire</td>
+                    <td>prixFoire</td>
+                    <td>salleFoire</td>
+                    <td>userNameFoire</td>
+
+                </tr>
+                {% for entity in f   %}
+                    <tr>
+                        <td>{{ entity.idFoire }}</td>
+                        <td>{{ entity.descriptionFoire }}</td>
+                        <td>{{ entity.imageFoire }}</td>
+                        <td>{{ entity.titreFoire }}</td>
+                        <td>{{ entity.dateFoire }}</td>
+                        <td>{{ entity.heureFoire }}</td>
+                        <td>{{ entity.prixFoire }}</td>
+                        <td>{{ entity.salleFoire }}</td>
+                        <td>{{ entity.userNameFoire }}</td>
+                        <td> <a href="{{ path('FoireDelete',{'id':entity.idFoire}) }}"><button>Delete</button></a> </td>
+                        <td> <a href="{{ path('FoireUpdate',{'id':entity.idFoire}) }}"><button>Update</button></a> </td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <td> <a href="{{ path('FoireCreate') }}"><button>Add</button></a> </td>
+
+    {% endblock %}
+
+

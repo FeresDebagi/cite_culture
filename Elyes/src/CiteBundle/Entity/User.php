@@ -37,7 +37,6 @@ class User extends BaseUser
      */
     private $prenom;
 
-
 //------------------------------------------------------------ Getters and Setters ---------------------------------------------
 
     /**
@@ -74,10 +73,6 @@ class User extends BaseUser
 
 
 
-
-
-
-
     /**
      * User constructor.
      */
@@ -101,6 +96,10 @@ class User extends BaseUser
     {
         $this->id = $id;
     }
+
+
+
+
 
 
 }

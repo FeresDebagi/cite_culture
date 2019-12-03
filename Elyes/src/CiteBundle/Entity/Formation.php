@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="formation", indexes={@ORM\Index(name="idSalle", columns={"idSalle"})})
  * @ORM\Entity
+ *
  */
 class Formation
 {
@@ -19,40 +20,40 @@ class Formation
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idFormation;
+    private $idformation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="formateur_formation", type="string", length=255, nullable=true)
+     * @ORM\Column(name="formateurformation", type="string", length=255, nullable=true)
      */
-    private $formateurFormation;
+    private $formateurformation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="classe_formation", type="string", length=255, nullable=true)
+     * @ORM\Column(name="classeformation", type="string", length=255, nullable=true)
      */
-    private $classeFormation;
+    private $classeformation;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix_formation", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="prixformation", type="float", precision=10, scale=0, nullable=true)
      */
-    private $prixFormation;
+    private $prixformation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_formation", type="string", length=255, nullable=true)
+     * @ORM\Column(name="typeformation", type="string", length=255, nullable=true)
      */
-    private $typeFormation;
+    private $typeformation;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="DateFormation", type="string", length=255, nullable=false)
+     * @ORM\Column(name="DateFormation", type="datetime", nullable=false)
      */
     private $dateformation;
 
@@ -65,6 +66,118 @@ class Formation
      * })
      */
     private $idsalle;
+
+    /**
+     * @return int
+     */
+    public function getIdformation()
+    {
+        return $this->idformation;
+    }
+
+    /**
+     * @param int $idformation
+     */
+    public function setIdformation($idformation)
+    {
+        $this->idformation = $idformation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormateurformation()
+    {
+        return $this->formateurformation;
+    }
+
+    /**
+     * @param string $formateurformation
+     */
+    public function setFormateurformation($formateurformation)
+    {
+        $this->formateurformation = $formateurformation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClasseformation()
+    {
+        return $this->classeformation;
+    }
+
+    /**
+     * @param string $classeformation
+     */
+    public function setClasseformation($classeformation)
+    {
+        $this->classeformation = $classeformation;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrixformation()
+    {
+        return $this->prixformation;
+    }
+
+    /**
+     * @param float $prixformation
+     */
+    public function setPrixformation($prixformation)
+    {
+        $this->prixformation = $prixformation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeformation()
+    {
+        return $this->typeformation;
+    }
+
+    /**
+     * @param string $typeformation
+     */
+    public function setTypeformation($typeformation)
+    {
+        $this->typeformation = $typeformation;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateformation()
+    {
+        return $this->dateformation;
+    }
+
+    /**
+     * @param \DateTime $dateformation
+     */
+    public function setDateformation($dateformation)
+    {
+        $this->dateformation = $dateformation;
+    }
+
+    /**
+     * @return \Salle
+     */
+    public function getIdsalle()
+    {
+        return $this->idsalle;
+    }
+
+    /**
+     * @param \Salle $idsalle
+     */
+    public function setIdsalle($idsalle)
+    {
+        $this->idsalle = $idsalle;
+    }
 
 
 }

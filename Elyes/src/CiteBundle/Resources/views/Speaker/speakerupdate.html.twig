@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <h1>Modifier un Speaker</h1>
+    </br>
+
+    {{ form_start(f) }}</br>
+    Nom Speaker: *</br>
+    {{ form_widget(f.nomspeaker) }}</br>
+    Prenom Speaker : </br>
+    {{ form_widget(f.prenomspeaker) }}</br>
+    Mail Speaker  : </br>
+    {{ form_widget(f.mailspeaker) }}</br>
+    Date Arrive  : </br>
+    {{ form_widget(f.datearrive) }}</br>
+    Date Depart : </br>
+    {{ form_widget(f.datedepart) }}</br>
+    Date Depart : </br>
+    {{ form_widget(f.descriptionspeaker) }}</br>
+    Ajouté par : </br>
+    {{ form_widget(f.iduser) }}</br>
+    Photo Speaker : </br>
+    {{ form_widget(f.PhotoSpeaker) }} </br>
+    </br>{{ form_widget(f.save) }}</br>
+    {{ form_end(f) }} </br>
+    </br>
+
+
+
+
+{% endblock %}

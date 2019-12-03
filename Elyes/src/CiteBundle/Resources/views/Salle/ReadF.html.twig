@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <td>Room number</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in salle   %}
+                    <tr>
+                        <td>{{ entity.numsalle}}</td>
+                        <td><a href="{{ path('deleteS',{'id':entity.idsalle}) }}"
+                               class="btn btn-sm btn-secondary float-right">Delete</a></td>
+
+                        <td><a href="{{ path('updateS',{'id':entity.idsalle}) }}"
+                               class="btn btn-sm btn-secondary float-right">Update</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <td> <a href="{{ path('web_ajoutS') }}" class="btn btn-sm btn-secondary float-right">Add room</a> </td>
+        </div>
+    </div>
+{% endblock %}
