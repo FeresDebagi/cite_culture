@@ -10,6 +10,7 @@ use CiteBundle\Entity\Conference;
 use CiteBundle\Entity\User;
 use CiteBundle\Entity\InscriptionConference;
 use CiteBundle\Form\ConferenceType;
+use Symfony\Component\HttpFoundation\Response;
 
 class ConferenceController extends Controller
 {
@@ -75,12 +76,12 @@ class ConferenceController extends Controller
         $nbr = $categorie->getNbrf();
         if(($inscriptionss )&& ($inscriptionsss)) {
             echo "<script language='javascript'>";
-            echo "if(!alert('tu es deja particper')){
+            echo "if(!alert('Already Subbed')){
                  window.location.reload();}";
             echo "</script>";
         }elseif($nbr == 0){
             echo "<script language='javascript'>";
-            echo "if(!alert('Full')){
+            echo "if(!alert('No More Places Left')){
              window.location.reload();}";
             echo "</script>";
         }else{
@@ -147,6 +148,24 @@ class ConferenceController extends Controller
     }
 
 
+    public function pdfAction(Conference $conference)
+    {
+        $snappy = $this->get('knp_snappy.pdf');
 
+        $html = $this->renderView('@Cite/Conference/conferencepdf.html.twig', array(
+            'conference' => $conference,
+        ));
+
+        $filename = 'myFirstSnappyPDF';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
 
 }

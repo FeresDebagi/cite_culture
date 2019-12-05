@@ -1,39 +1,37 @@
 
-    {% extends 'baseM.html.twig' %}
+{% extends 'baseM.html.twig' %}
     {% block body %}
-        <section class="page-section" id="services">
-        <div class="container">
-            <h2 class="text-center mt-0">Events</h2>
-            <hr class="divider my-4">
+<section class="page-section" id="services">
+    <div class="container">
+        <h2 class="text-center mt-0">Events</h2>
+        <hr class="divider my-4">
 
 
-            {% for entity in evenement   %}
-                <div class="site-section">
-                    <div class="container">
-                        <div class="row justify-content-center text-center float-left" >
-                            <div class="col-md-7 mb-5">
-                                <h3>Event Title:{{ entity.idevent.titreEvent }}</h3>
-                            </div>
-                            <div class="row mt-5">
-                            </div>
+        {% for entity in evenement   %}
+            <div class="site-section">
+                <div class="container">
+                    <div class="row justify-content-center text-center float-left" >
+                        <div class="col-md-7 mb-5">
+                            <h3>Event Title:{{ entity.idevent.titreEvent }}</h3></div>
+                        <div class="row mt-5">
                         </div>
                     </div>
-                </div><br><br><br><br><br>
-            {% endfor %}
-        </div>
+                </div>
+            </div><br><br><br><br><br>
+        {% endfor %}
+    </div>
 
-        <section class="page-section" id="services">
+    <section class="page-section" id="services">
         <div class="container">
             <h2 class="text-center mt-0">Formations</h2>
             <hr class="divider my-4">
-
-
             {% for entity in formations   %}
                 <div class="site-section">
                     <div class="container">
                         <div class="row justify-content-center text-center float-left" >
                             <div class="col-md-7 mb-5">
                                 <h3>Formator:{{ entity.idformation.formateurformation }}</h3>
+                                <td><a href="{{ path('web_deleteinscri',{'idinscription':entity.idinscription}) }}" class="btn btn-sm btn-secondary float-right">Remove</a></td>
                             </div>
                             <div class="row mt-5">
                             </div>
@@ -44,24 +42,24 @@
         </div>
 
         <section class="page-section" id="services">
-        <div class="container">
-            <h2 class="text-center mt-0">Conferences</h2>
-            <hr class="divider my-4">
+            <div class="container">
+                <h2 class="text-center mt-0">Conferences</h2>
+                <hr class="divider my-4">
 
 
-            {% for entity in conference   %}
-                <div class="site-section">
-                    <div class="container">
-                        <div class="row justify-content-center text-center float-left" >
-                            <div class="col-md-7 mb-5">
-                                <h3>Confrence Title:{{ entity.idconference.titreConference }}</h3>
-                            </div>
-                            <div class="row mt-5">
+                {% for entity in conference   %}
+                    <div class="site-section">
+                        <div class="container">
+                            <div class="row justify-content-center text-center float-left" >
+                                <div class="col-md-7 mb-5">
+                                    <h3>Confrence Title:{{ entity.idconference.titreConference }}</h3>
+                                </div>
+                                <div class="row mt-5">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><br><br><br><br><br>
-            {% endfor %}
-        </div>
+                    </div><br><br><br><br><br>
+                {% endfor %}
+            </div>
 
-    {% endblock %}
+            {% endblock %}

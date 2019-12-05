@@ -1,86 +1,31 @@
 {% extends 'baseU.html.twig' %}
-
     {% block body %}
+        <div class="card-body p-0">
+            {% for entity in events   %}
+                <div class="table-responsive">
 
-
-        <section class="page-section" id="services">
-            <div class="container">
-                {% for entity in events   %}
-
-                <center><h3>{{ entity.titreEvent }}</h3></center><br><br>
-                <div class="site-section">
-                    <div class="container">
-                        <div class="row justify-content-center text-center float-left" >
-                            <div class="col-md-7 mb-5">
-                                <div class="col-lg-3 col-md-6 text-center">
-                                    <img width="200px" height="200px" src="{{ asset('uploads/images/'~ entity.image) }}" alt="Image not found">
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center text-center float-center" >
-                            <div class="col-md-7 mb-5">
-                                <h3 class="h4 mb-2">Description: {{ entity.descriptionEvent }}</h3>
-                            </div>
-                            <div class="row mt-5">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center text-center float-right" >
-                            <div class="col-md-7 mb-5">
-                                <h3 class="h4 mb-2">Type: {{ entity.idcategorie.TypeCategorie }}</h3>
-                            </div>
-                            <div class="row mt-5">
-                            </div>
-                        </div>
-                    </div>
-
-                </div><br><br><br><br><br>
-
-
-
-
-                <div class="container">
-                    <div class="row justify-content-center text-center float-center" >
-                        <div class="col-md-7 mb-5">
-                            <h3 class="h4 mb-2">Date: {{ entity.dateEvent|date }}</h3>
-                        </div>
-                        <div class="row mt-5">
-                        </div>
-                    </div>
-                </div><br><br><br><br><br>
-
-                <div class="container">
-                    <div class="row justify-content-left text-center float-left" >
-                        <div class="col-md-7 mb-5">
-                            <h3 class="h4 mb-2">Price: {{ entity.prixEvent }}$</h3>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center text-center float-center" >
-                        <div class="col-md-7 mb-5">
-                            <h3 class="h4 mb-2">Room: {{ entity.salleEvent }}</h3>
-                        </div>
-                    </div>
-                    <div class="row justify-content-right text-center float-right" >
-                        <div class="col-md-7 mb-5">
-                            <h3 class="h4 mb-2">Places Left: {{ entity.nbre }}</h3>
-                        </div>
-                    </div>
-                </div><br><br><br><br><br>
-            </div>
-            </div>
+                    <center><h3>{{ entity.titreEvent }}</h3></center><br><br>
+                    <table class="table m-0">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><img width="100px" height="100px" src="{{ asset('uploads/images/'~ entity.image) }}" alt="Image not found"></td>
+                            <td>Description: {{ entity.descriptionEvent }}</td>
+                            <td>Date: {{ entity.dateEvent|date }}</td>
+                            <td>Date: {{ entity.idcategorie.TypeCategorie }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cost: {{ entity.prixEvent }}</td>
+                            <td>Room: {{ entity.salleEvent }}</td>
+                            <td>Places Left: {{ entity.nbre }}</td>
+                        </tr>
+                        </tbody>
+                    </table><br><br><br>
+                </div>
             {% endfor %}
-            </div>
-
-
-
-
-        </section>
+        </div>
     {% endblock %}
+
+
 

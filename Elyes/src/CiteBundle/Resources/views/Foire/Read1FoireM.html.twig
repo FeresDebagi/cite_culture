@@ -3,26 +3,21 @@
         <div class="card-body p-0">
             {% for entity in events   %}
             <div class="table-responsive">
-
-                <center><h3>{{ entity.titreEvent }}</h3></center><br><br>
+                <center><h3>{{ entity.titreFoire }}</h3></center><br><br>
                 <table class="table m-0">
                     <thead>
                     </thead>
                     <tbody>
                         <tr>
                             <td><img width="100px" height="100px" src="{{ asset('uploads/images/'~ entity.image) }}" alt="Image not found"></td>
-                            <td>Description: {{ entity.descriptionEvent }}</td>
-                            <td>Date: {{ entity.dateEvent|date }}</td>
-                            <td>Date: {{ entity.idcategorie.TypeCategorie }}</td>
+                            <td>Description: {{ entity.descriptionFoire }}</td>
                         </tr>
                         <tr>
-                            <td>Cost: {{ entity.prixEvent }}</td>
-                            <td>Room: {{ entity.salleEvent }}</td>
-                            <td>Places Left: {{ entity.nbre }}</td>
+                            <td>Cost: {{ entity.prixFoire }}</td>
+                            <td>Length: {{ entity.idStand.taille }}</td>
                         </tr>
                     </tbody>
                 </table><br><br><br>
-                <center><a class="btn btn-light btn-xl js-scroll-trigger" href="{{ path('Event_inscri',{'ideve':entity.idEvent,'iduser':app.user.id}) }}">Inscrire</a></center>
             </div>
            {% endfor %}
         </div>

@@ -5,6 +5,7 @@ namespace CiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -28,13 +29,26 @@ class Evenement
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Description must be longer that 5 charaters",
+     *     maxMessage="Description must be shorter that 50 charaters"
+     *     )
      * @ORM\Column(name="description_event", type="string", length=255, nullable=true)
      */
     private $descriptionEvent;
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This Block is obligatory")
+     *  @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Title must be longer that 5 charaters",
+     *     maxMessage="Title must be shorter that 50 charaters"
+     *     )
      *
      * @ORM\Column(name="titre_event", type="string", length=255, nullable=true)
      */

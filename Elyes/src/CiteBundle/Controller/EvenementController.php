@@ -67,11 +67,14 @@ class EvenementController extends Controller
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('image_directory'),$fileName);
             $event->setImage($fileName);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($event);
-            $em->flush();
-            return $this->redirectToRoute('EventsRead');
+            $timezone = date_default_timezone_get();
+            $dateE= $event->getDateEvent();
+            if ($dateE > $timezone){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($event);
+                $em->flush();
+                return $this->redirectToRoute('EventsRead');
+            }
         }
         return $this->render('@Cite/Events/createEvent.html.twig',array('f'=> $form->createView()));
     }
@@ -155,12 +158,12 @@ class EvenementController extends Controller
 
         if(($inscriptionss )&& ($inscriptionsss)) {
             echo "<script language='javascript'>";
-            echo "if(!alert('tu es deja particper')){
+            echo "if(!alert('Already Subbed')){
           window.location.reload();}";
             echo "</script>";
         }elseif($nbr == 0){
             echo "<script language='javascript'>";
-            echo "if(!alert('Full')){
+            echo "if(!alert('No More Places Left')){
                     window.location.reload();}";
             echo "</script>";
         }else{

@@ -3,6 +3,7 @@
 namespace CiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Formation
@@ -24,6 +25,10 @@ class Formation
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This block is obligatory")
+     * @Assert\Length(min =5 ,max=30,
+     *     minMessage="Formator must be longer that 5 charters",
+     *     maxMessage="Formator must be shorter that 5 charters")
      *
      * @ORM\Column(name="formateurformation", type="string", length=255, nullable=true)
      */
@@ -31,6 +36,11 @@ class Formation
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank (message="This block is obligatory")
+     * @Assert\Length(min =5 ,max=30,
+     *     minMessage="Class must be longer that 5 charters",
+     *     maxMessage="Class must be shorter that 5 charters")
      *
      * @ORM\Column(name="classeformation", type="string", length=255, nullable=true)
      */
@@ -45,6 +55,10 @@ class Formation
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This block is obligatory")
+     * @Assert\Length(min =5 ,max=30,
+     *     minMessage="Type must be longer that 5 charters",
+     *     maxMessage="Type must be shorter that 5 charters")
      *
      * @ORM\Column(name="typeformation", type="string", length=255, nullable=true)
      */

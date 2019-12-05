@@ -2,7 +2,7 @@
 
 namespace CiteBundle\Controller;
 
-
+use DateTime;
 use CiteBundle\Entity\Conference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,19 +107,30 @@ class FormationController extends Controller
         $idd->getId();
         //$iddd= $user->getId();
         $nbr = $categorie->getPrixformation();
+        $time = new DateTime();
+        $time = $time->diff($country->getDateformation());
+        $hours = $time->format('%R%a hours');
+
 
         //$categorie->setPrixformation($nbr-1);
         if(($inscriptionss )&& ($inscriptionsss)) {
             echo "<script language='javascript'>";
-            echo "if(!alert('tu es deja particper')){
+            echo "if(!alert('Already Subbed')){
           window.location.reload();}";
             echo "</script>";
         }elseif($nbr == 0){
             echo "<script language='javascript'>";
-            echo "if(!alert('Full')){
+            echo "if(!alert('No More Places')){
                          window.location.reload();}";
             echo "</script>";
-        }else {
+        }
+        elseif ($hours < 3){
+            echo "<script language='javascript'>";
+            echo "if(!alert('Inscription Time ran out')){
+          window.location.reload();}";
+            echo "</script>";
+        }
+        else {
             $inscription = new Inscription;
             $inscription->setIdformation($country);
             $inscription->setIduser($user);

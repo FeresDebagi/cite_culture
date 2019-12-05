@@ -3,6 +3,7 @@
 namespace CiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Categorie
@@ -23,7 +24,13 @@ class Categorie
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Type must be longer that 5 charaters",
+     *     maxMessage="Type must be shorter that 50 charaters"
+     *     )
      * @ORM\Column(name="TypeCategorie", type="string", length=255, nullable=false)
      */
     private $typecategorie;

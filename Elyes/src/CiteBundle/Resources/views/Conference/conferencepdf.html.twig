@@ -1,0 +1,32 @@
+
+<style>
+    h1 {
+        font-size: 50px;
+    }
+    h2{
+        font-size: 30px;
+    }
+    h3{
+        font-size: 20px;
+    }
+    p{
+        text-align: justify;
+        font-size: 25px;
+    }
+</style>
+<br>
+<center>
+    <h1>{{ conference.titreconference }}</h1>
+    <br>
+    <br>
+    <h2>Date de la conference: {{conference.image}}</h2>
+</center>
+<br>
+<br>
+<br>
+<h3>Date de la conference: {{conference.dateconference|date}}</h3>
+<br>
+<h3>Date de la conference: {{conference.nbrf}}</h3>
+<br>
+<br>
+<p>{{ conference.descriptionconference }}</p>

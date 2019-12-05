@@ -3,6 +3,7 @@
 namespace CiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Conference
@@ -23,14 +24,26 @@ class Conference
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Title must be longer that 5 charaters",
+     *     maxMessage="Title must be shorter that 50 charaters"
+     *     )
      * @ORM\Column(name="TitreConference", type="string", length=255, nullable=false)
      */
     private $titreconference;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=500,
+     *     minMessage="Description must be longer that 5 charaters",
+     *     maxMessage="Description must be shorter that 500 charaters"
+     *     )
      * @ORM\Column(name="DescriptionConference", type="string", length=255, nullable=false)
      */
     private $descriptionconference;
@@ -56,6 +69,7 @@ class Conference
      * @var \Speaker
      *
      * @ORM\ManyToOne(targetEntity="Speaker")
+     *
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idSpeaker", referencedColumnName="idspeaker")
      * })
@@ -64,6 +78,7 @@ class Conference
 
     /**
      * @var float
+     *
      *
      * @ORM\Column(name="nbr", type="integer", precision=10, scale=0, nullable=true)
      */

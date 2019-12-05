@@ -3,16 +3,18 @@
         <div class="card-body p-0">
             {% for entity in events   %}
                 <div class="table-responsive">
-
-                    <center><h3>{{ entity.titreHistory }}</h3></center><br><br>
+                    <center><h3>{{ entity.titreFoire }}</h3></center><br><br>
                     <table class="table m-0">
                         <thead>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><img width="200px" height="200px" src="{{ asset('uploads/images/'~ entity.image) }}" alt="Image not found"></td>
-                            <td>Description: {{ entity.descriptionHistory }}</td>
-                            <td>Type: {{ entity.idcategorie.TypeCategorie }}</td>
+                            <td><img width="100px" height="100px" src="{{ asset('uploads/images/'~ entity.image) }}" alt="Image not found"></td>
+                            <td>Description: {{ entity.descriptionFoire }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cost: {{ entity.prixFoire }}</td>
+                            <td>Length: {{ entity.idStand.taille }}</td>
                         </tr>
                         </tbody>
                     </table><br><br><br>
@@ -20,15 +22,6 @@
             {% endfor %}
         </div>
     {% endblock %}
-
-
-
-
-
-
-
-
-
 
 
 

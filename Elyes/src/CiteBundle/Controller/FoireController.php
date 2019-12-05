@@ -2,6 +2,7 @@
 
 namespace CiteBundle\Controller;
 
+use CiteBundle\Entity\Evenement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CiteBundle\Entity\Foire;
 use mysql_xdevapi\CollectionRemove;
@@ -85,5 +86,24 @@ class FoireController extends Controller
 
         return $this->render('@Cite/Foire/updateFoire.html.twig', array('f' => $form->createView()));
     }
+
+
+        public function Show1FoireMAction($idFoire)
+    {
+        //$em = $this->getDoctrine()->getManager();
+        $event=$this->getDoctrine()->getRepository(Foire::class)->findBy(array('idFoire'=>$idFoire));
+        //return $this->redirectToRoute("web_view2");
+        return $this->render('@Cite/Foire/Read1FoireM.html.twig',array('events'=>$event));
+    }
+
+
+    public function Show1FoireUAction($idFoire)
+    {
+        //$em = $this->getDoctrine()->getManager();
+        $event=$this->getDoctrine()->getRepository(Foire::class)->findBy(array('idFoire'=>$idFoire));
+        //return $this->redirectToRoute("web_view2");
+        return $this->render('@Cite/Foire/Read1FoireU.html.twig',array('events'=>$event));
+    }
+
 
 }

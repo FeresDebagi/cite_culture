@@ -42,6 +42,13 @@ class Foire
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Description must be longer that 5 charaters",
+     *     maxMessage="Description must be shorter that 50 charaters"
+     *     )
      *
      * @ORM\Column(name="image_foire", type="string", length=255, nullable=true)
      */

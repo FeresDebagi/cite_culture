@@ -43,6 +43,26 @@ class InscriptionController extends Controller
     }
 
 
+    public function deleteinscriAction($idinscription)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $inscription = $em->getRepository(Inscription::class)->find($idinscription);
+        $em->remove($inscription);
+        $em->flush();
+        return $this->redirectToRoute("My_Inscriptions");
+    }
+
+    public function deleteinscriEventAction($idinscription)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $inscription = $em->getRepository(InscriptionEvent::class)->find($idinscription);
+        $em->remove($inscription);
+        $em->flush();
+        return $this->redirectToRoute("My_Inscriptions");
+    }
+
+
+
 
 
 

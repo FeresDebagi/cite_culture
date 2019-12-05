@@ -3,6 +3,7 @@
 namespace CiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Speaker
@@ -30,6 +31,13 @@ class Speaker
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Prenom must be longer that 5 charaters",
+     *     maxMessage="Prenom must be shorter that 50 charaters"
+     *     )
      *
      * @ORM\Column(name="prenomspeaker", type="string", length=255, nullable=true)
      */
@@ -37,6 +45,13 @@ class Speaker
 
     /**
      * @var string
+     * @Assert\NotBlank (message="This Block is obligatory")
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Mail must be longer that 5 charaters",
+     *     maxMessage="Mail must be shorter that 50 charaters"
+     *     )
      *
      * @ORM\Column(name="mailspeaker", type="string", length=255, nullable=true)
      */
@@ -58,6 +73,12 @@ class Speaker
 
     /**
      * @var string
+     * @Assert\Length(
+     *     min =5,
+     *     max=50,
+     *     minMessage="Description must be longer that 5 charaters",
+     *     maxMessage="Description must be shorter that 50 charaters"
+     *     )
      *
      * @ORM\Column(name="descriptionspeaker", type="string", length=255, nullable=true)
      */

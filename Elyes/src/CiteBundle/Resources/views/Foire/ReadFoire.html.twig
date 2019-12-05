@@ -2,16 +2,15 @@
 
     {% block content %}
 
+        <div class="input-container">
+            <i class="fa fa-search"></i>
+            <input type="search"  id="searsh" onkeyup="myFunction()" class="form-control-sm boxed"><br><br><br><br>
+            <div class="underline"></div>
+        </div><br><br><br><br>
+
         <div class="card-body p-0">
-            <div class="table-responsive">
-                <div class="input-container">
-                    <i class="fa fa-search"></i>
-                    <input type="search"  id="searsh" onkeyup="myFunction()" class="form-control-sm boxed">
-                    <div class="underline"></div>
-                </div>
-
-
-                <table class="table table table-hover" id="contenu">
+            <div table class="table table table-hover" id="contenu" >
+                <table class="table m-0" >
                     <thead>
                     <tr>
                         <td>Title</td>
@@ -19,7 +18,7 @@
                         <td>Cost</td>
                         <td>Date</td>
                         <td>Image</td>
-                        <td>Stand</td>
+                        <td>Length</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,14 +29,17 @@
                             <td>{{ entity.prixFoire }}</td>
                             <td>{{ entity.dateFoire |date}}</td>
                             <td>{{ entity.image }}</td>
-                            <td>{{ entity.idStand.taille }}</td>
-                            <td> <a href="{{ path('FoireDelete',{'id':entity.idFoire}) }}"><button>Delete</button></a> </td>
-                            <td> <a href="{{ path('FoireUpdate',{'id':entity.idFoire}) }}"><button>Update</button></a> </td>
+                            <td>{{ entity.idStand  .taille }}</td>
+
+                            <td><a href="{{ path('FoireDelete',{'id':entity.idFoire}) }}" class="btn btn-sm btn-secondary float-right">Delete</a></td>
+                            <td> <a href="{{ path('FoireUpdate',{'id':entity.idFoire}) }}" class="btn btn-sm btn-secondary float-right">Update</a> </td>
                         </tr>
+
+
+
                     {% endfor %}
                     </tbody>
                 </table>
-
                 <script src="{{ asset('jquery-3.1.1.js') }}"></script>
                 <script>
                     function myFunction() {
@@ -60,10 +62,27 @@
                     }
                 </script>
 
-                <td> <a href="{{ path('FoireCreate') }}"><button>Add</button></a> </td>
 
+                <td> <a href="{{ path('FoireCreate') }}" class="btn btn-sm btn-secondary float-right">Add</a> </td>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {% endblock %}
 
 
