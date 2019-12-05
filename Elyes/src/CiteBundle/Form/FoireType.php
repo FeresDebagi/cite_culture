@@ -4,6 +4,8 @@ namespace CiteBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,12 +19,20 @@ class FoireType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('descriptionFoire')->add('imageFoire')->add('titreFoire')->
-        add('dateFoire')->add('heureFoire')->add('prixFoire')->add('salleFoire')->add('userNameFoire')
-            ->add('idStand', EntityType::class,array('class'=>'CiteBundle:Stand','choice_label'=> 'titreStand', 'multiple'=> false))
-
-
-
+        $builder->add('descriptionFoire')
+            ->add('titreFoire')
+            ->add('dateFoire', DateTimeType::class, array(
+                'required' => true,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ],
+            ))
+            ->add('prixFoire')
+            ->add('idStand', EntityType::class,array('class'=>'CiteBundle:Stand','choice_label'=> 'taille', 'multiple'=> false))
+            ->add('image',FileType::class,array('label'=>'Image','data_class'=>null))
             ->add('Submit', SubmitType::class,['attr' => ['formnovalidate' => 'formnovalidate']]);
     }/**
      * {@inheritdoc}

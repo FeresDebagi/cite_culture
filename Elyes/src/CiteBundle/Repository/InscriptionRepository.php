@@ -44,6 +44,63 @@ class InscriptionRepository extends EntityRepository
 
 
 
+    public function findInscriptionByIddC($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a
+       FROM CiteBundle:InscriptionConference
+       a WHERE a.iduser = :iduser"
+            )
+            ->setParameter('iduser', $id)
+            ->getResult();
+    }
+
+
+    public function findInscriptionCByIdd($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a
+       FROM CiteBundle:InscriptionConference
+       a WHERE a.idconference = :idconference"
+            )
+            ->setParameter('idconference', $id)
+            ->getResult();
+    }
+
+
+    public function findInscriptionByIddE($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a
+       FROM CiteBundle:InscriptionEvent
+       a WHERE a.iduser = :iduser"
+            )
+            ->setParameter('iduser', $id)
+            ->getResult();
+    }
+
+
+
+    public function findInscriptionEByIdd($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a
+       FROM CiteBundle:InscriptionEvent
+       a WHERE a.idevent = :idevent"
+            )
+            ->setParameter('idevent', $id)
+            ->getResult();
+    }
+
+
+
+
+
+
 
     /**
      * get one by id

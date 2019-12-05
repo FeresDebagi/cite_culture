@@ -67,6 +67,11 @@ class Formation
      */
     private $idsalle;
 
+
+
+
+
+
     /**
      * @return int
      */
@@ -178,6 +183,11 @@ class Formation
     {
         $this->idsalle = $idsalle;
     }
+
+
+
+
+
 
 
 }

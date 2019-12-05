@@ -5,14 +5,13 @@ namespace CiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Inscription
+ * InscriptionConference
  * @ORM\Entity(repositoryClass="CiteBundle\Repository\InscriptionRepository")
- * @ORM\Table(name="inscription", indexes={@ORM\Index(name="iduser", columns={"iduser"}),
- *     @ORM\Index(name="id_formation", columns={"id_formation"}),
+ * @ORM\Table(name="inscriptionConference", indexes={@ORM\Index(name="iduser", columns={"iduser"}),
+ *      @ORM\Index(name="id_conference", columns={"id_conference"})
  *     })
- *
  */
-class Inscription
+class InscriptionConference
 {
     /**
      * @var integer
@@ -23,16 +22,16 @@ class Inscription
      */
     private $idinscription;
 
-
     /**
-     * @var \Formation
+     * @var \Conference
      *
-     * @ORM\ManyToOne(targetEntity="Formation")
+     * @ORM\ManyToOne(targetEntity="Conference")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_formation",  referencedColumnName="id_formation")
+     *   @ORM\JoinColumn(name="id_conference",  referencedColumnName="id_conference")
      * })
      */
-    private $idformation;
+    private $idconference;
+
 
     /**
      * @var \User
@@ -78,23 +77,6 @@ class Inscription
 
 
     /**
-     * @return \Formation
-     */
-    public function getIdformation()
-    {
-        return $this->idformation;
-    }
-
-
-    /**
-     * @param \Formation $idformation
-     */
-    public function setIdformation($idformation)
-    {
-        $this->idformation = $idformation;
-    }
-
-    /**
      * @return \User
      */
     public function getIduser()
@@ -126,6 +108,21 @@ class Inscription
         $this->dateajout = $dateajout;
     }
 
+    /**
+     * @return \Conference
+     */
+    public function getIdconference()
+    {
+        return $this->idconference;
+    }
+
+    /**
+     * @param \Conference $idconference
+     */
+    public function setIdconference($idconference)
+    {
+        $this->idconference = $idconference;
+    }
 
 
 

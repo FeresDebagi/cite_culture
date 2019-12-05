@@ -33,7 +33,7 @@ class History
      *
      * @ORM\Column(name="image_history", type="string", length=255, nullable=true)
      */
-    private $imageHistory;
+    private $image;
 
     /**
      * @var string
@@ -89,17 +89,17 @@ class History
     /**
      * @return string
      */
-    public function getImageHistory()
+    public function getImage()
     {
-        return $this->imageHistory;
+        return $this->image;
     }
 
     /**
-     * @param string $imageHistory
+     * @param string $image
      */
-    public function setImageHistory($imageHistory)
+    public function setImage($image)
     {
-        $this->imageHistory = $imageHistory;
+        $this->image = $image;
     }
 
     /**

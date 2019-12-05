@@ -45,6 +45,12 @@ class FoireController extends Controller
         $form = $this->createForm(FoireType::class, $foire);
         $form = $form->handleRequest($request);
         if ($form->isValid()){
+            $file = $foire->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$fileName
+            );
+            $foire->setImage($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($foire);
             $em->flush();

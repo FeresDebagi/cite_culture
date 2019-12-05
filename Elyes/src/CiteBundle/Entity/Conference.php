@@ -15,7 +15,7 @@ class Conference
     /**
      * @var integer
      *
-     * @ORM\Column(name="idConference", type="integer", nullable=false)
+     * @ORM\Column(name="id_conference", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -61,6 +61,22 @@ class Conference
      * })
      */
     private $idspeaker;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nbr", type="integer", precision=10, scale=0, nullable=true)
+     */
+    private $nbrf;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_conference", type="string", length=255, nullable=true)
+     */
+    private $image;
+
 
     /**
      * @return int
@@ -158,6 +174,36 @@ class Conference
         $this->idspeaker = $idspeaker;
     }
 
+    /**
+     * @return float
+     */
+    public function getNbrf()
+    {
+        return $this->nbrf;
+    }
 
+    /**
+     * @param float $nbrf
+     */
+    public function setNbrf($nbrf)
+    {
+        $this->nbrf = $nbrf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 }
 

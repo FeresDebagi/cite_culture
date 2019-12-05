@@ -51,7 +51,7 @@ class HistoryController extends Controller
     }
 
 
-//-----------------------------------------------------Supression Evenement----------------------------------------------
+//-----------------------------------------------------Supression Historique----------------------------------------------
     public function DeleteHistoryAction($id){
         $em = $this->getDoctrine()->getManager();
         $event=$em->getRepository(History::class)->find($id);
@@ -81,7 +81,7 @@ class HistoryController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $history->setDescriptionHistory($event->getDescriptionEvent());
-        $history->setImageHistory($event->getImage());
+        $history->setImage($event->getImage());
         $history->setTitreHistory($event->getTitreEvent());
         $history->setIdcategorie($event->getIdcategorie());
         $em->persist($history);

@@ -92,6 +92,14 @@ class Evenement
      */
     private $imageFile;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr", type="integer", nullable=true)
+     */
+    private $nbrE;
+
+
 
 
 
@@ -260,6 +268,23 @@ class Evenement
     {
         $this->idcategorie = $idcategorie;
     }
+
+    /**
+     * @return int
+     */
+    public function getNbrE()
+    {
+        return $this->nbrE;
+    }
+
+    /**
+     * @param int $nbrE
+     */
+    public function setNbrE($nbrE)
+    {
+        $this->nbrE = $nbrE;
+    }
+
 
 
 

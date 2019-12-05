@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+    {% block content %}
+
+        <div class="panel-footer">
+        {{ form_start(f) }}
+        <div class="input-group">
+            {{ form_widget(
+                f.message, {'attr': {'
+                class': 'form-control input-sm','placeholder':'Type your message to send...','name': 'name','type':'text'}}) }}
+            <span class="input-group-btn">
+                {{ form_widget(f.send,{'attr': {'class': 'btn btn-warning btn-sm','id': 'btn-chat','type':'button'}}) }}
+
+                                  </span>
+        </div>
+        {{ form_end(f) }}
+
+    {% endblock %}

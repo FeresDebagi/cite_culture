@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{%  block content %}
+        <table border="1">
+            <tr>
+                <td>idStand</td>
+                <td>titreStand</td>
+                <td>proprietaireStand</td>
+                <td>typeMarchandise</td>
+                <td>taille</td>
+
+
+            </tr>
+            {% for entity in s   %}
+                <tr>
+                    <td>{{ entity.idStand }}</td>
+                    <td>{{ entity.titreStand }}</td>
+                    <td>{{ entity.proprietaireStand }}</td>
+                    <td>{{ entity.typeMarchandise }}</td>
+                    <td>{{ entity.taille }}</td>
+
+                    <td> <a href="{{ path('StandDelete',{'id':entity.idStand}) }}"><button>Delete</button></a> </td>
+                    <td> <a href="{{ path('StandUpdate',{'id':entity.idStand}) }}"><button>Update</button></a> </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+        <td> <a href="{{ path('StandCreate') }}"><button>Add</button></a> </td>
+
+{% endblock %}
+
+

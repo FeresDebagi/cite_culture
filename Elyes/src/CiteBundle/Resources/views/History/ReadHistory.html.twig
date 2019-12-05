@@ -5,19 +5,19 @@
                 <table class="table m-0">
                     <thead>
                     <tr>
-                        <td>description History</td>
-                        <td>image History</td>
-                        <td>titre History</td>
-                        <td>Categroie</td>
+                        <td>Title</td>
+                        <td>Description</td>
+                        <td>Type</td>
+                        <td>Image</td>
                     </tr>
                     </thead>
                     <tbody>
                     {% for entity in h   %}
                         <tr>
-                            <td>{{ entity.descriptionHistory}}</td>
                             <td>{{ entity.titreHistory }}</td>
-                            <td>{{ entity.imageHistory}}</td>
+                            <td>{{ entity.descriptionHistory}}</td>
                             <td><span class="badge badge-success">{{ entity.idcategorie.typecategorie }}</span></td>
+                            <td>{{ entity.image}}</td>
                             <td><a href="{{ path('HistoryDelete',{'id':entity.idHistory}) }}"
                                    class="btn btn-sm btn-secondary float-right">Delete</a></td>
                         </tr>

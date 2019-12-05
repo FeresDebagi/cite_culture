@@ -42,35 +42,15 @@ class Stand
      */
     private $typeMarchandise;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="date_debut_stand", type="string", length=255, nullable=false)
-     */
-    private $dateDebutStand;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="date_fin_stand", type="string", length=255, nullable=false)
+     * @ORM\Column(name="taille", type="integer", nullable=true)
      */
-    private $dateFinStand;
+    private $taille;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="PhotoStand", type="string", length=255, nullable=true)
-     */
-    private $photostand;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Actif", type="string", length=255, nullable=false)
-     */
-    private $actif;
-
-//------------------------------------------------------------ Getters and Setters -------------------------------------------
+//------------------------------------------------------------ Getters and Setters ---------------------------------------------
 
     /**
      * @return int
@@ -136,68 +116,21 @@ class Stand
         $this->typeMarchandise = $typeMarchandise;
     }
 
-    /**
-     * @return string
-     */
-    public function getDateDebutStand()
-    {
-        return $this->dateDebutStand;
-    }
-
-    /**
-     * @param string $dateDebutStand
-     */
-    public function setDateDebutStand($dateDebutStand)
-    {
-        $this->dateDebutStand = $dateDebutStand;
-    }
 
     /**
      * @return string
      */
-    public function getDateFinStand()
+    public function getTaille()
     {
-        return $this->dateFinStand;
-    }
-
-    /**
-     * @param string $dateFinStand
-     */
-    public function setDateFinStand($dateFinStand)
-    {
-        $this->dateFinStand = $dateFinStand;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhotostand()
-    {
-        return $this->photostand;
-    }
-
-    /**
-     * @param string $photostand
-     */
-    public function setPhotostand($photostand)
-    {
-        $this->photostand = $photostand;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActif()
-    {
-        return $this->actif;
+        return $this->taille;
     }
 
     /**
      * @param string $actif
      */
-    public function setActif($actif)
+    public function setTaille($taille)
     {
-        $this->actif = $actif;
+        $this->taille = $taille;
     }
 
 

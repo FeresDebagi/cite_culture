@@ -5,29 +5,30 @@
                 <table class="table m-0">
                     <thead>
                     <tr>
-                        <td>descriptionEvent</td>
-                        <td>titreEvent</td>
-                        <td>dateEvent</td>
-                        <td>prixEvent</td>
-                        <td>salleEvent</td>
-                        <td>Image</td>
+                        <td>Title</td>
+                        <td>Description</td>
                         <td>Type</td>
+                        <td>Dte</td>
+                        <td>Cost</td>
+                        <td>Room</td>
+                        <td>Image</td>
+                        <td>Participents</td>
                     </tr>
                     </thead>
                     <tbody>
                     {% for entity in events   %}
                         <tr>
-                            <td>{{ entity.descriptionEvent}}</td>
                             <td>{{ entity.titreEvent }}</td>
+                            <td>{{ entity.descriptionEvent}}</td>
+                            <td>{{ entity.idcategorie.typecategorie }}</td>
                             <td><span class="badge badge-success">{{ entity.dateEvent|date }}</span></td>
-                            <td>{{ entity.prixEvent}}</td>
+                            <td><span class="badge badge-success">{{ entity.prixEvent}}</td>
                             <td>{{ entity.salleEvent}}</td>
                             <td>{{ entity.image}}</td>
-                            <td><span class="badge badge-success">{{ entity.idcategorie.typecategorie }}</span></td>
+                            <td><span class="badge badge-success">{{ entity.nbre}}</td>
                             <td><a href="{{ path('EventsDelete',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Delete</a></td>
                             <td> <a href="{{ path('EventsUpdate',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Update</a> </td>
                             <td> <a href="{{ path('HistoryCreate',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Create History</a> </td>
-                            <!--<td> <a href="{{ path('MailSend',{'id':entity.idEvent}) }}" class="btn btn-sm btn-secondary float-right">Send Mail</a> </td>-->
                         </tr>
                     {% endfor %}
                     </tbody>

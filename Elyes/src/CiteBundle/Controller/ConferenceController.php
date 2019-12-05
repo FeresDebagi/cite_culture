@@ -2,11 +2,13 @@
 
 namespace CiteBundle\Controller;
 
+use CiteBundle\Entity\Evenement;
+use CiteBundle\Entity\Formation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use CiteBundle\Entity\Conference;
 use CiteBundle\Entity\User;
-use CiteBundle\Entity\Inscription;
+use CiteBundle\Entity\InscriptionConference;
 use CiteBundle\Form\ConferenceType;
 
 class ConferenceController extends Controller
@@ -26,6 +28,13 @@ class ConferenceController extends Controller
         $form = $this->createForm(ConferenceType::class,$conference);  //ta3ml form fergha
         $form = $form->handleRequest($request);
         if ($form->isValid()){
+            $file = $conference->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$fileName
+            );
+            $conference->setImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($conference);
             $em->flush();
@@ -41,8 +50,6 @@ class ConferenceController extends Controller
         return $this->render('@Cite/Conference/ReadF.html.twig',array('conf'=>$conferences));
     }
 
-
-
     public function InscriptionAction($idconference, $iduser)
     {   $inscription = new Inscription;
         $conf = $this->getDoctrine()->getRepository(Conference::class)->find(intval($idconference));
@@ -52,10 +59,41 @@ class ConferenceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($inscription);
         $em->flush();
-
         return $this->render('@Cite/Conference/confinscri.html.twig');
+    }
 
+    public function InscriAction($idconference, $iduser)
+    {
+        $inscriptionss=$this->getDoctrine()->getRepository(InscriptionConference::class)->findInscriptionById($iduser);
+        $inscriptionsss=$this->getDoctrine()->getRepository(InscriptionConference::class)->findInscriptionCByIdd($idconference);
+        $country = $this->getDoctrine()->getRepository(Conference::class)->find(intval($idconference));
+        $user = $this->getDoctrine()->getRepository(User::class)->find(intval($iduser));
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository(Conference::class)->find(intval($idconference));
+        $idd = $this->container->get('security.token_storage')->getToken()->getUser();
+        $idd->getId();
+        $nbr = $categorie->getNbrf();
+        if(($inscriptionss )&& ($inscriptionsss)) {
+            echo "<script language='javascript'>";
+            echo "if(!alert('tu es deja particper')){
+                 window.location.reload();}";
+            echo "</script>";
+        }elseif($nbr == 0){
+            echo "<script language='javascript'>";
+            echo "if(!alert('Full')){
+             window.location.reload();}";
+            echo "</script>";
+        }else{
+            $inscription = new InscriptionConference;
+            $inscription->setIdconference($country);
+            $inscription->setIduser($user);
+            $categorie->setNbrf($nbr - 1);
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inscription);
+            $em->flush();
+        }
+        return $this->render('@Cite/Conference/Inscri.html.twig', array( 'n' => $idconference,'app.user.id' =>$iduser));
     }
 
     public function deleteAction($id){
@@ -79,12 +117,9 @@ class ConferenceController extends Controller
             $em->flush();
             return $this->redirectToRoute('web_view');
         }
-
         return $this->render('@Cite/Conference/update.html.twig',array('f'=> $form->createView()));
 
     }
-
-
 
     public function ReadCMAction(){
         //fetching objects (clubs) from Database

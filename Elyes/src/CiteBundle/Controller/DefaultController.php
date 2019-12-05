@@ -11,17 +11,22 @@ use CiteBundle\Entity\Inscription;
 
 class DefaultController extends Controller
 {
+//-----------------------------------------------------Home Page Admin--------------------------------------------------
     public function indexAction()
     {
         $event=$this->getDoctrine()->getRepository(Evenement::class)->findAll();
         return $this->render('@Cite/Default/index.html.twig',array('events'=>$event));
     }
 
+//-----------------------------------------------------Home Page Member--------------------------------------------------
+
     public function indexMAction()
     {
         $event=$this->getDoctrine()->getRepository(Evenement::class)->findAll();
         return $this->render('@Cite/Default/indexM.html.twig',array('events'=>$event));
     }
+
+//-------------------------------------------------------Home Page Simple User------------------------------------------------
 
     public function indexUAction()
     {
@@ -30,21 +35,7 @@ class DefaultController extends Controller
     }
 
 
-    public function InscriAction($ideve, $iduser){
-        $country = $this->getDoctrine()->getRepository(Evenement::class)->find(intval($ideve));
-        $user = $this->getDoctrine()->getRepository(User::class)->find(intval($iduser));
-        $event=$this->getDoctrine()->getRepository(Evenement::class)->findBy(array('idEvent'=>$ideve));
-        $inscription = new inscription;
 
-        $inscription->setIdevent($country);
-        $inscription->setIduser($user);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($inscription);
-        $em->flush();
-
-        return $this->render('@Cite/Events/Read1EventsU.html.twig',array('events'=>$event,'id'=>$ideve));
-    }
 
     public function ProfilesAdiminAction()
     {

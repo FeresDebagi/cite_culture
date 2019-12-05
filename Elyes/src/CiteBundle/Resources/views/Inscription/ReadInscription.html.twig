@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <td>Formation</td>
+                    <td>Utilisateur</td>
+                    <td>Date inscription</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in formations   %}
+                    <tr>
+                        <td>{{ entity.idformation.formateurformation}}</td>
+                        <td><span class="badge badge-success">{{ entity.iduser}}</span></td>
+                        <td>{{ entity.dateAjout |date}}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table><br><br><br><br>
+
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <td>Conference</td>
+                    <td>Utilisateur</td>
+                    <td>Date inscription</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in conference   %}
+                    <tr>
+                        <td>{{ entity.idconference.titreConference}}</td>
+                        <td><span class="badge badge-success">{{ entity.iduser}}</span></td>
+                        <td>{{ entity.dateAjout |date}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table><br><br><br><br>
+
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <td>Evenement</td>
+                    <td>Utilisateur</td>
+                    <td>Date inscription</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in evenement   %}
+                    <tr>
+                        <td>{{ entity.idevent.titreEvent}}</td>
+                        <td><span class="badge badge-success">{{ entity.iduser}}</span></td>
+                        <td>{{ entity.dateAjout |date}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table><br><br><br><br>
+
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace CiteBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,9 +32,10 @@ class EvenementType extends AbstractType
                 ],
             ))
             ->add('prixEvent')
+            ->add('nbrE')
             ->add('salleEvent')
             ->add('idcategorie', EntityType::class,array('class'=>'CiteBundle:Categorie','choice_label'=> 'typecategorie', 'multiple'=> false))
-            ->add('imageFile',VichImageType::class)
+            ->add('image',FileType::class,array('label'=>'Image','data_class'=>null))
             ->add('Submit', SubmitType::class,['attr' => ['formnovalidate' => 'formnovalidate']]);
     }/**
      * {@inheritdoc}

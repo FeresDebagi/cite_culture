@@ -4,6 +4,7 @@ namespace CiteBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,9 @@ class ConferenceType extends AbstractType
     {
         $builder->add('titreconference')->add('descriptionconference')->add('dateconference')
             ->add('idsalle',EntityType::class,array('class'=>'CiteBundle:Salle','choice_label'=>'numsalle','multiple'=>false))
+            ->add('nbrf')
             ->add('idspeaker',EntityType::class,array('class'=>'CiteBundle:Speaker','choice_label'=>'nomspeaker','multiple'=>false))
+            ->add('image',FileType::class,array('label'=>'Image','data_class'=>null))
             ->add('save',SubmitType::class,['attr'=>['formnovalidate'=>'formnovalidate']]);
     }/**
      * {@inheritdoc}

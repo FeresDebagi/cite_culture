@@ -5,14 +5,13 @@ namespace CiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Inscription
+ * InscriptionEvent
  * @ORM\Entity(repositoryClass="CiteBundle\Repository\InscriptionRepository")
- * @ORM\Table(name="inscription", indexes={@ORM\Index(name="iduser", columns={"iduser"}),
- *     @ORM\Index(name="id_formation", columns={"id_formation"}),
+ * @ORM\Table(name="inscriptionEvent", indexes={@ORM\Index(name="iduser", columns={"iduser"}),
+ *     @ORM\Index(name="id_event", columns={"id_event"})
  *     })
- *
  */
-class Inscription
+class InscriptionEvent
 {
     /**
      * @var integer
@@ -23,16 +22,16 @@ class Inscription
      */
     private $idinscription;
 
-
     /**
-     * @var \Formation
+     * @var \Evenement
      *
-     * @ORM\ManyToOne(targetEntity="Formation")
+     * @ORM\ManyToOne(targetEntity="Evenement")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_formation",  referencedColumnName="id_formation")
+     *   @ORM\JoinColumn(name="id_event", referencedColumnName="id_event")
+     *
      * })
      */
-    private $idformation;
+    private $idevent;
 
     /**
      * @var \User
@@ -51,10 +50,7 @@ class Inscription
      */
     private $dateajout = 'CURRENT_TIMESTAMP';
 
-
 //------------------------------------------------------------ Getters and Setters ---------------------------------------------
-
-
     public function __construct() {
         $this->dateajout = new \DateTime();
     }
@@ -75,24 +71,22 @@ class Inscription
         $this->idinscription = $idinscription;
     }
 
-
-
     /**
-     * @return \Formation
+     * @return \Evenement
      */
-    public function getIdformation()
+    public function getIdevent()
     {
-        return $this->idformation;
+        return $this->idevent;
     }
 
-
     /**
-     * @param \Formation $idformation
+     * @param \Evenement $idevent
      */
-    public function setIdformation($idformation)
+    public function setIdevent($idevent)
     {
-        $this->idformation = $idformation;
+        $this->idevent = $idevent;
     }
+
 
     /**
      * @return \User
@@ -125,10 +119,4 @@ class Inscription
     {
         $this->dateajout = $dateajout;
     }
-
-
-
-
-
-
 }

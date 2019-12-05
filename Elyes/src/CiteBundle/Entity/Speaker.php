@@ -80,6 +80,15 @@ class Speaker
      */
     private $iduser;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_speaker", type="string", length=255, nullable=true)
+     */
+    private $image;
+
+
+
 
     /**
      * @return int
@@ -225,6 +234,20 @@ class Speaker
         $this->iduser = $iduser;
     }
 
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 }
 

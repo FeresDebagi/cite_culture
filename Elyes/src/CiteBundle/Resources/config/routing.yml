@@ -55,7 +55,7 @@ Event1ShowU:
 
 Event_inscri:
     path: /HomeM/EventsM/Inscri/{ideve}/{iduser}
-    defaults: {_controller: CiteBundle:Default:Inscri }
+    defaults: {_controller: CiteBundle:Evenement:Inscri }
 
 ################################################################ History ############################################################
 HistoryRead:
@@ -91,9 +91,9 @@ History1ShowU:
     defaults: { _controller: CiteBundle:History:Show1HistoryU }
 
 ################################################################ Mailing ############################################################
-MailSend:
-    path:     /Mail/{id}
-    defaults: { _controller: CiteBundle:Evenement:SendMail }
+sendMail:
+    path:     /HomeA/mail
+    defaults: { _controller: CiteBundle:Evenement:SendEmail }
 
 ################################################################ Categorie ############################################################
 CategorieRead:
@@ -209,8 +209,8 @@ web_viewUD:
 
 
 Conference_inscri:
-    path:     /HomeU/ConferenceU/details/{idconference}/{iduser}
-    defaults: { _controller: CiteBundle:Conference:Inscription}
+    path:     /HomeU/ConferenceU/Inscri/{idconference}/{iduser}
+    defaults: { _controller: CiteBundle:Conference:Inscri }
 
 
 
@@ -289,6 +289,38 @@ FormationReadUU1:
 
 
 Formation_inscri:
-    path:     /Inscri/{idform}/{iduser}
+    path:     HomeU/FormationU/Inscri/{idform}/{iduser}
     defaults: { _controller: CiteBundle:Formation:Inscri }
+
+######################################################## Inscription ##################################################################
+
+ALL_Inscriptions:
+    path:     /HomeA/AllInscriptions
+    defaults: { _controller: CiteBundle:Inscription:ReadInscription }
+
+
+My_Inscriptions:
+    path:     /HomeM/MyInscriptions
+    defaults: { _controller: CiteBundle:Inscription:ReadMyInscription }
+
+######################################################## Stand ##################################################################
+
+StandRead:
+    path:     /HomeA/Stand
+    defaults: { _controller: CiteBundle:Stand:ReadStand}
+
+StandCreate:
+    path:     /HomeA/Stand/create
+    defaults: { _controller: CiteBundle:Stand:CreateStand }
+
+StandUpdate:
+    path:     /HomeA/Stand/update/{id}
+    defaults: { _controller: CiteBundle:Stand:UpdateStand }
+
+StandDelete:
+    path:     /HomeA/Stand/delete/{id}
+    defaults: { _controller: CiteBundle:Stand:DeleteStand }
+
+
+
 

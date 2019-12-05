@@ -10,6 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="foire")
  * @ORM\Entity
  */
+
+/**
+ * Foire
+ *
+ * @ORM\Table(name="foire", indexes={@ORM\Index(name="idStand", columns={"idStand"})})
+ * @ORM\Entity
+ */
+
 class Foire
 {
     /**
@@ -37,7 +45,7 @@ class Foire
      *
      * @ORM\Column(name="image_foire", type="string", length=255, nullable=true)
      */
-    private $imageFoire;
+    private $image;
 
     /**
      * @var string
@@ -47,18 +55,11 @@ class Foire
     private $titreFoire;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="date_foire", type="string", length=255, nullable=true)
+     * @ORM\Column(name="DateFoire", type="datetime", nullable=true)
      */
     private $dateFoire;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="heure_foire", type="string", length=255, nullable=true)
-     */
-    private $heureFoire;
 
     /**
      * @var integer
@@ -67,19 +68,7 @@ class Foire
      */
     private $prixFoire;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="salle_foire", type="string", length=255, nullable=true)
-     */
-    private $salleFoire;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="user_name_foire", type="string", length=255, nullable=true)
-     */
-    private $userNameFoire;
 
     /**
      * @var \Stand
@@ -129,17 +118,17 @@ class Foire
     /**
      * @return string
      */
-    public function getImageFoire()
+    public function getImage()
     {
-        return $this->imageFoire;
+        return $this->image;
     }
 
     /**
-     * @param string $imageFoire
+     * @param string $image
      */
-    public function setImageFoire($imageFoire)
+    public function setImage($image)
     {
-        $this->imageFoire = $imageFoire;
+        $this->image = $image;
     }
 
     /**
@@ -158,37 +147,7 @@ class Foire
         $this->titreFoire = $titreFoire;
     }
 
-    /**
-     * @return string
-     */
-    public function getDateFoire()
-    {
-        return $this->dateFoire;
-    }
 
-    /**
-     * @param string $dateFoire
-     */
-    public function setDateFoire($dateFoire)
-    {
-        $this->dateFoire = $dateFoire;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHeureFoire()
-    {
-        return $this->heureFoire;
-    }
-
-    /**
-     * @param string $heureFoire
-     */
-    public function setHeureFoire($heureFoire)
-    {
-        $this->heureFoire = $heureFoire;
-    }
 
     /**
      * @return int
@@ -206,37 +165,7 @@ class Foire
         $this->prixFoire = $prixFoire;
     }
 
-    /**
-     * @return string
-     */
-    public function getSalleFoire()
-    {
-        return $this->salleFoire;
-    }
 
-    /**
-     * @param string $salleFoire
-     */
-    public function setSalleFoire($salleFoire)
-    {
-        $this->salleFoire = $salleFoire;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserNameFoire()
-    {
-        return $this->userNameFoire;
-    }
-
-    /**
-     * @param string $userNameFoire
-     */
-    public function setUserNameFoire($userNameFoire)
-    {
-        $this->userNameFoire = $userNameFoire;
-    }
 
     /**
      * @return \Stand
@@ -253,6 +182,23 @@ class Foire
     {
         $this->idStand = $idStand;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFoire()
+    {
+        return $this->dateFoire;
+    }
+
+    /**
+     * @param \DateTime $dateFoire
+     */
+    public function setDateFoire($dateFoire)
+    {
+        $this->dateFoire = $dateFoire;
+    }
+
 
 
 

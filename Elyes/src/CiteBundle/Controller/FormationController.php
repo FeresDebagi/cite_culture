@@ -3,12 +3,14 @@
 namespace CiteBundle\Controller;
 
 
+use CiteBundle\Entity\Conference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use CiteBundle\Entity\Formation;
 use CiteBundle\Entity\Inscription;
 use CiteBundle\Entity\User;
 use CiteBundle\Form\FormationType;
+use CiteBundle\Entity\Evenement;
 
 
 class FormationController extends Controller
@@ -95,34 +97,29 @@ class FormationController extends Controller
         $inscriptionss=$this->getDoctrine()->getRepository(Inscription::class)->findInscriptionById($iduser);
         //$inscriptionss = $this->getDoctrine()->getRepository(Inscription::class)->findBy(array('iduser' => $iduser));
         $inscriptionsss=$this->getDoctrine()->getRepository(Inscription::class)->findInscriptionByIdd($idform);
-
         $country = $this->getDoctrine()->getRepository(Formation::class)->find(intval($idform));
         $user = $this->getDoctrine()->getRepository(User::class)->find(intval($iduser));
         $em = $this->getDoctrine()->getManager();
-
-
         $categorie = $em->getRepository(Formation::class)->find(intval($idform));
         //$f = $this->createForm(categorieType::class,$categorie);
         //$f = $f->handleRequest($request);
-
         $idd = $this->container->get('security.token_storage')->getToken()->getUser();
         $idd->getId();
         //$iddd= $user->getId();
         $nbr = $categorie->getPrixformation();
+
         //$categorie->setPrixformation($nbr-1);
-
-
-
         if(($inscriptionss )&& ($inscriptionsss)) {
             echo "<script language='javascript'>";
             echo "if(!alert('tu es deja particper')){
           window.location.reload();}";
             echo "</script>";
-
-
-        }
-        else {
-
+        }elseif($nbr == 0){
+            echo "<script language='javascript'>";
+            echo "if(!alert('Full')){
+                         window.location.reload();}";
+            echo "</script>";
+        }else {
             $inscription = new Inscription;
             $inscription->setIdformation($country);
             $inscription->setIduser($user);
@@ -132,15 +129,10 @@ class FormationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($inscription);
             $em->flush();
-
-
-
         }
-
         return $this->render('@Cite/Formation/Inscri.html.twig', array( 'n' => $idform,'app.user.id' =>$iduser));
-
-
     }
+
     /**
      * @Route("/send-notification", name="send_notification")
      * @param Request $request

@@ -9,11 +9,13 @@
     <table class="table m-0">
         <thead>
     <tr>
-        <td>Titre Conference</td>
-        <td>Description Conference</td>
-        <td>Date Conference</td>
-        <td>Numero Salle</td>
-        <td>Nom Speaker</td>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Date</td>
+        <td>Room Number</td>
+        <td>Speaker Name</td>
+        <td>Participents</td>
+        <td>image</td>
         <td> <a href="{{ path('web_ajout') }}"><button>create</button></a> </td>
     </tr>
         </thead>
@@ -24,6 +26,8 @@
             <td>{{ entity.dateconference|date}}</td>
             <td><span class="badge badge-success">{{ entity.idsalle.numsalle }}</span></td>
             <td><span class="badge badge-success">{{ entity.idspeaker.nomspeaker}}</span></td>
+            <td><span class="badge badge-success">{{ entity.nbrf}}</span></td>
+            <td>{{ entity.image}}</span></td>
             <td> <a href="{{ path('delete',{'id':entity.idconference}) }}"><button>delete</button></a> </td>
             <td> <a href="{{ path('update',{'id':entity.idconference}) }}"><button>Update</button></a> </td>
         </tr>
