@@ -1,0 +1,84 @@
+web_homepage:
+    path:     /
+    defaults: { _controller: WebBundle:Default:index }
+
+web_user:
+    path:     /user
+    defaults: { _controller: WebBundle:Default:me }
+
+web_ajout:
+    path:     /ajout
+    defaults: { _controller: WebBundle:Default:create }
+
+web_view:
+    path:     /ReadF
+    defaults: { _controller: WebBundle:Default:ReadF }
+
+web_view1:
+    path:     /ReadFU
+    defaults: { _controller: WebBundle:Default:ReadUF }
+
+web_view2:
+    path:     /ReadFUD/{idformation}
+    defaults: { _controller: WebBundle:Default:ReadFUD }
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: WebBundle:Default:delete }
+
+update:
+    path:     /update/{id}
+    defaults: { _controller: WebBundle:Default:update }
+
+web_insci:
+  path:     /Inscri/{idform}/{iduser}
+  defaults: { _controller: WebBundle:Default:Inscri }
+########################################################################### Salle #####################
+
+web_ajoutS:
+    path:     /Salle/ajout
+    defaults: { _controller: WebBundle:Salle:create }
+
+web_viewS:
+    path:     /Salle/ReadF
+    defaults: { _controller: WebBundle:Salle:ReadF }
+
+deleteS:
+    path:     /Salle/delete/{id}
+    defaults: { _controller: WebBundle:Salle:delete }
+
+updateS:
+    path:     /Salle/update/{id}
+    defaults: { _controller: WebBundle:Salle:update }
+
+#############################################"Notification########################"
+
+web_listnot:
+  path:     /not
+  defaults: { _controller: WebBundle:Default:listnot }
+
+  #############################################Inscription######################"
+
+web_ReadI:
+  path:     /Inscription/ReadI
+  defaults: { _controller: WebBundle:Inscription:ReadI }
+
+web_ReadIU:
+  path:     /ReadIU
+  defaults: { _controller: WebBundle:Inscription:ReadIU }
+
+web_deleteinscri:
+  path:     /ReadIU/{idinscription}
+  defaults: { _controller: WebBundle:Inscription:deleteinscri }
+
+###########################################Mail###########
+sendMailAdmin:
+  path:     /mailAdmin
+  defaults: { _controller: WebBundle:Inscription:SendEmail1 }
+
+
+######################""feeed#########"
+
+feed:
+  path:     /feed
+  defaults: { _controller: WebBundle:Default:Feed }

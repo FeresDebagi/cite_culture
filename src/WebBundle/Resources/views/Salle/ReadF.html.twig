@@ -1,0 +1,27 @@
+{% extends 'Template.html.twig' %}
+
+{% block body %}
+
+
+
+
+<table border="1">
+    <tr>
+        <td>Numero Salle</td>
+
+
+
+    </tr>
+    {% for entity in salle   %}
+        <tr>
+            <td>{{ entity.numsalle}}</td>
+
+            <td> <a href="{{ path('deleteS',{'id':entity.idsalle}) }}"><button>Suprimer</button></a> </td>
+            <td> <a href="{{ path('updateS',{'id':entity.idsalle}) }}"><button>Update</button></a> </td>
+
+        </tr>
+    {% endfor %}
+</table>
+    <td> <a href="{{ path('web_ajoutS') }}"><button>Ajouter</button></a> </td>
+
+{% endblock %}
