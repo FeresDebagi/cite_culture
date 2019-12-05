@@ -1,0 +1,41 @@
+{% extends 'Template.html.twig' %}
+
+{% block body %}
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <td>Id Inscription</td>
+                    <td>Event</td>
+                    <td>Formation</td>
+                    <td>Utilisateur</td>
+                    <td>Date inscription</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in inscription   %}
+                    <tr>
+                        <td>{{ entity.idinscription}}</td>
+                        <td>{{ entity.idevent}}</td>
+                        <td>{{ entity.idformation.formateurformation}}</td>
+                        <td><span class="badge badge-success">{{ entity.iduser}}</span></td>
+                        <td>{{ entity.dateAjout |date}}</td>
+
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

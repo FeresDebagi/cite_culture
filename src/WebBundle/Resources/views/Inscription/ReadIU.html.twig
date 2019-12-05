@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="page-section" id="services">
+    <div class="container">
+    <h2 class="text-center mt-0">Formation dans laquelle vous etes inscri</h2>
+    <hr class="divider my-4">
+        {% for entity in formations   %}
+
+
+
+
+
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                    <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                    <h3 class="h4 mb-2">Formation: </h3>
+                    <h3 class="h4 mb-2">{{ entity.idformation.formateurformation}}</h3>
+                    <td><a href="{{ path('web_deleteinscri',{'idinscription':entity.idinscription}) }}" class="btn btn-sm btn-secondary float-right">Suprimer</a></td>
+
+                    <p class="text-muted mb-0"></p>
+
+
+                </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+ </section>
+
+
+
+
+
+
+
+
+
+{% endblock %}
