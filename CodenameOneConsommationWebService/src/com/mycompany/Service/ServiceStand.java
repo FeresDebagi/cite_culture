@@ -28,7 +28,6 @@ import java.util.Map;
  */
 public class ServiceStand {
 
-    
     public ArrayList<Stand> getlist() {
         ArrayList<Stand> listformations = new ArrayList<>();
         ConnectionRequest con = new ConnectionRequest();
@@ -112,7 +111,7 @@ public class ServiceStand {
 
             form.setIdStand((int) id);
             form.setProprietaireStand(obj.get("proprietaireStand").toString());
-            
+
             form.setTypeMarchandise(obj.get("typeMarchandise").toString());
             form.setTitreStand(obj.get("titreStand").toString());
             form.setTaille((int) tx);
@@ -157,12 +156,12 @@ public class ServiceStand {
 
     public void update(Stand r) {
         ConnectionRequest conn = new ConnectionRequest();
-        
-        String Url = "http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/newStand?" + r.getIdStand() 
-                + "&proprietaireStand=" + r.getProprietaireStand() + "&typeMarchandise=" + r.getTypeMarchandise() + "&titreStand="
-                + r.getTitreStand() + "&taille=" + r.getTaille();
+
+        String Url = "http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/ModifStand" + r.getIdStand()
+                + "?&titreStand=" + r.getTitreStand() + "&proprietaireStand=" + r.getProprietaireStand()
+                + "&typeMarchandise=" + r.getTypeMarchandise() + "&taille=" + r.getTaille();
         conn.setUrl(Url);
-        
+
         conn.addResponseListener((e) -> {
             String str = new String(conn.getResponseData());
 

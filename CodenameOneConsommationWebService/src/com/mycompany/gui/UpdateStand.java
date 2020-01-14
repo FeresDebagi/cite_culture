@@ -51,10 +51,7 @@ public class UpdateStand {
         Button btn = new Button("Save");
    
         TextField titre = new TextField("", "titreStand");
-        
-        ComboBox<String> cat=new ComboBox();
-     
-        TextArea prop = new TextArea( "proprietaireStand");
+        TextField prop = new TextField("", "proprietaireStand");
         TextField type = new TextField("", "typeMarchandise");
         TextField tx = new TextField("", "taille");
 
@@ -63,8 +60,6 @@ public class UpdateStand {
      
         int a = (int) data.get("idStand");
         titre.setText((String) data.get("titreStand"));                  
-        cat.addItem((String) data.get("proprietaireStand"));
-        
         
         System.out.println("aaaaaaaaaaaaaaaaaaa");
         
@@ -77,7 +72,6 @@ public class UpdateStand {
    
         Container c = new Container(BoxLayout.y());
         c.setScrollableY(true);
-        c.add(cat);
         c.add(titre);
         c.add(prop);
         c.add(type);
@@ -139,8 +133,7 @@ public class UpdateStand {
                     for (Stand re : sf.getDetails2(a)) {
                     SpanLabel titre = new SpanLabel("Titre :" + re.getTitreStand());
                     SpanLabel cat = new SpanLabel ("proprietaireStand:"+re.getProprietaireStand());
-                    SpanLabel  desc = new SpanLabel("typeMarchandise :" + re.getTypeMarchandise());
-                    SpanLabel lieu = new SpanLabel("titreStand :" + re.getTitreStand());
+                    SpanLabel desc = new SpanLabel("typeMarchandise :" + re.getTypeMarchandise());
                     SpanLabel nbpart = new SpanLabel("taille :" + re.getTaille());
                     df.getD().show();      
                     }
