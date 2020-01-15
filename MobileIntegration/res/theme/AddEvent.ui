@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="AddEvent" cloudDestinationProperty="AddEvent" rtl="true" layout="BoxLayout" boxLayoutAxis="Y" title="Ajouter evenement" >
+  <component type="TextField" name="description" cloudBoundProperty="text" cloudDestinationProperty="description" text="" hint="Description .." >
+  </component>
+  <component type="TextField" name="titre" cloudBoundProperty="text" cloudDestinationProperty="titre" text="" hint="Titre.." >
+  </component>
+  <component type="Picker" name="date" cloudDestinationProperty="date" text="31/12/19" >
+  </component>
+  <component type="TextField" name="prix" cloudBoundProperty="text" cloudDestinationProperty="prix" enabled="true" text="" constraint="5" hint="Prix.." >
+  </component>
+  <component type="TextField" name="nombre" cloudBoundProperty="text" cloudDestinationProperty="nombre" tensileDragEnabled="false" text="" constraint="5" hint="Nombre..." >
+  </component>
+  <component type="TextField" name="salle" cloudBoundProperty="text" cloudDestinationProperty="salle" text="" constraint="5" hint="Salle..." >
+  </component>
+  <component type="ComboBox" name="categorie" cloudDestinationProperty="categorie" >
+  </component>
+  <component type="Button" name="ajouter" cloudDestinationProperty="ajouter" text="Ajouter evenement    " icon="add.png" textPosition="1" >
+  </component>
+</component>
