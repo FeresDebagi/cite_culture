@@ -13,14 +13,14 @@ import java.util.Date;
  * @author Elyes
  */
 public class Foire {
-    int idFoire ;
-    String descriptionFoire ;
-    String imageFoire ;
-    String titreFoire ;
-    int prixFoire;
+
+    int idFoire;
+    String descriptionFoire;
+    String imageFoire;
+    String titreFoire;
     Stand idStand;
-    int user_id ;
-    Date  dateDeCreation ;
+    Date dateDeCreation;
+    int prixFoire;
 
     public int getIdFoire() {
         return idFoire;
@@ -54,28 +54,12 @@ public class Foire {
         this.titreFoire = titreFoire;
     }
 
-    public int getPrixFoire() {
-        return prixFoire;
-    }
-
-    public void setPrixFoire(int prixFoire) {
-        this.prixFoire = prixFoire;
-    }
-
     public Stand getIdStand() {
         return idStand;
     }
 
     public void setIdStand(Stand idStand) {
         this.idStand = idStand;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public Date getDateDeCreation() {
@@ -86,25 +70,22 @@ public class Foire {
         this.dateDeCreation = dateDeCreation;
     }
 
-    public Foire(int idFoire, String descriptionFoire, String imageFoire, String titreFoire, int prixFoire, Stand idStand, int user_id, Date dateDeCreation) {
+    public int getPrixFoire() {
+        return prixFoire;
+    }
+
+    public void setPrixFoire(int prixFoire) {
+        this.prixFoire = prixFoire;
+    }
+
+    public Foire(int idFoire, String descriptionFoire, String imageFoire, String titreFoire, Stand idStand, Date dateDeCreation, int prixFoire) {
         this.idFoire = idFoire;
         this.descriptionFoire = descriptionFoire;
         this.imageFoire = imageFoire;
         this.titreFoire = titreFoire;
-        this.prixFoire = prixFoire;
         this.idStand = idStand;
-        this.user_id = user_id;
         this.dateDeCreation = dateDeCreation;
-    }
-
-    public Foire(String descriptionFoire, String imageFoire, String titreFoire, int prixFoire, Stand idStand, int user_id, Date dateDeCreation) {
-        this.descriptionFoire = descriptionFoire;
-        this.imageFoire = imageFoire;
-        this.titreFoire = titreFoire;
         this.prixFoire = prixFoire;
-        this.idStand = idStand;
-        this.user_id = user_id;
-        this.dateDeCreation = dateDeCreation;
     }
 
     public Foire() {
@@ -112,11 +93,9 @@ public class Foire {
 
     @Override
     public String toString() {
-        return "Foire{" + "idFoire=" + idFoire + ", descriptionFoire=" + descriptionFoire + ", imageFoire=" + imageFoire + ", titreFoire=" + titreFoire + ", prixFoire=" + prixFoire + ", idStand=" + idStand + ", user_id=" + user_id + ", dateDeCreation=" + dateDeCreation + '}';
+        return "Foire{" + "idFoire=" + idFoire + ", descriptionFoire=" + descriptionFoire + ", imageFoire=" + imageFoire + ", titreFoire=" + titreFoire + ", idStand=" + idStand + ", dateDeCreation=" + dateDeCreation + ", prixFoire=" + prixFoire + '}';
     }
-
+    
     
 
-    
-   
 }

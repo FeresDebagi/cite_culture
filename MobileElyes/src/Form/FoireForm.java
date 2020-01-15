@@ -5,8 +5,10 @@
  */
 package Form;
 
-import DAO.StandDAO;
+import DAO.FoireDAO;
 import Entite.Stand;
+import Entite.Foire;
+import static Form.AddFoireForm.listCat;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
@@ -47,15 +49,14 @@ import java.util.Date;
  *
  * @author HP AYEDI
  */
-public class StandForm {
+public class FoireForm {
 
-    Form fo = new Form("Trainings", BoxLayout.y());
-    Form formDetailEvent = new Form("Trainings", BoxLayout.y());
-    Form formModifEvent = new Form("Trainings", BoxLayout.y());
+    Form f, formDetailEvent, formModifEvent;
     private Image img1, imgAdd, imgGroup, imgSearch, imgEdit, imgClose, imgSend, imgIdea;
-    Stand eventToEdit;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    Foire eventToEdit;
 
-    public StandForm(Resources theme) {
+    public FoireForm(Resources theme) {
         imgAdd = theme.getImage("add_group.png");
         imgGroup = theme.getImage("group.png");
         imgSearch = theme.getImage("search_group.png");
@@ -68,78 +69,79 @@ public class StandForm {
 
         UIBuilder ui = new UIBuilder();
 
-        
+        f = ui.createContainer(theme, "HomeEvent").getComponentForm();
 
-        fo.setTitle("Stand");
-        
+        f.setTitle("Evenement ");
+
 // ..........................les button a droite................................
-        fo.getToolbar().addCommandToOverflowMenu("Ajouter Stand", imgAdd, new ActionListener() {
+        f.getToolbar().addCommandToOverflowMenu("Ajouter Foire", imgAdd, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                AddStandForm grF = new AddStandForm(theme);
+                AddFoireForm grF = new AddFoireForm(theme);
                 grF.getF().show();
             }
         });
 
-
-        // .....................Affichage des Stand.............................................
-        StandDAO evenementDAO = new StandDAO();
+        // .....................Affichage des Foire.............................................
+        //  ArrayList<Evenement> listg = new ArrayList<>();
+        FoireDAO evenementDAO = new FoireDAO();
+        // listg=evenementDAO.ListerEvenement();
 
         ConnectionRequest con = new ConnectionRequest();
 
-        con.setUrl("http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/affichageStand");
-
+        con.setUrl("http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/affichageFoire");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                ArrayList<Stand> listEvent = new ArrayList<>();
-                listEvent = evenementDAO.getListEvent(new String(con.getResponseData()) + "");   
-         
+                ArrayList<Foire> listEvent = new ArrayList<>();
+                listEvent = evenementDAO.getListFoire(new String(con.getResponseData()) + "");
+
                 for (int i = 0; i < listEvent.size(); i++) {
-                    Stand e = new Stand();
+                    Foire e = new Foire();
                     e = listEvent.get(i);
 
                     ArrayList<Map<String, Object>> data1 = new ArrayList<>();
-                    data1.add((createListEntry("", "Titre : " + e.getTitreStand(), "Proprietaire  : " 
-                            + e.getProprietaireStand(),"typeMarchandise: " 
-                                    + e.getTypeMarchandise(),"taille: " + e.getTaille())));
+                    data1.add((createListEntry("", "titreFoire : " + e.getTitreFoire(), "descriptionFoire  : "
+                            + e.getDescriptionFoire(),
+                            "Date De Creation: " + e.getDateDeCreation(), "")));
 
                     DefaultListModel<Map<String, Object>> mdl1 = new DefaultListModel<>(data1);
 
                     MultiList ml1 = new MultiList(mdl1);
 
-                    Button btdetail = new Button("Détail Stand");
+                    Button btdetail = new Button("Détail Foire");
                     Button btModif = new Button("Modifier");
                     Button btquit = new Button("Supprimer");
 
-                    Label lb0 = new Label(listEvent.get(i).getIdStand() + "");
-                    Label lb1 = new Label(listEvent.get(i).getTitreStand() + "");
-                    Label lb2 = new Label(listEvent.get(i).getProprietaireStand() + "");
-                    Label lb3 = new Label(listEvent.get(i).getTypeMarchandise() + "");
-                    Label lb4 = new Label(listEvent.get(i).getTaille() + "");
+                    Label lb0 = new Label(listEvent.get(i).getIdFoire() + "");
+                    Label lb1 = new Label(listEvent.get(i).getTitreFoire() + "");
+                    Label lb2 = new Label(listEvent.get(i).getDescriptionFoire() + "");
+                    Label lb3 = new Label(listEvent.get(i).getDateDeCreation() + "");
+                    Label lb4 = new Label(listEvent.get(i).getImageFoire() + "");
+                    Label lb5 = new Label(listEvent.get(i).getPrixFoire() + "");
+                    Label lb7 = new Label(listEvent.get(i).getIdStand().getTitreStand() + "");
 
                     Container ct = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
                     Container ct1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
                     Container ct2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
-                    Label lbtitre = new Label("Titre : " + listEvent.get(i).getTitreStand() + "");
-                    Label lbDesc = new Label("Proprietaire : " + listEvent.get(i).getProprietaireStand() + "");
-
+                    Label lbtitre = new Label("titreFoire : " + listEvent.get(i).getTitreFoire() + "");
+                    Label lbDesc = new Label("descriptionFoire : " + listEvent.get(i).getDescriptionFoire() + "");
 
                     ct.add(lbtitre);
                     ct.add(lbDesc);
-                    fo.add(ct);
+                    f.addComponent(ct);
 
                     ct1.add(btdetail);
                     ct1.add(btModif);
                     ct1.add(btquit);
 
+                    f.addComponent(ct1);
+                    f.addComponent(ct2);
+                    f.refreshTheme();
 
-                    fo.addAll(ct1,ct2);
-                    fo.refreshTheme();
-
-                    ct.setLeadComponent(btdetail); // a chq fois on cliq sur conteanir a3mel traitement mta3 button
+                    ct.setLeadComponent(btdetail);
                     btdetail.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent evt) {
@@ -147,25 +149,29 @@ public class StandForm {
                             img1 = theme.getImage("back-command.png");
 
                             UIBuilder ui = new UIBuilder();
-                            formDetailEvent.setTitle("Detail Stand ");
+                            formDetailEvent = ui.createContainer(theme, "DetailEvent").getComponentForm();
+                            formDetailEvent.setTitle("Detail Foire ");
                             formDetailEvent.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
-                                    fo.show();
+                                    f.show();
                                 }
                             });
 
-
-                            Label lblTitre = new Label("Titre du Stand : " + lb1.getText());
-                            Label lblDesc = new Label("Proprietaire du Stand : " + lb2.getText());
-                            Label lblDate = new Label("Type du Marchandise: " + lb3.getText());
-                            Label lblPrix = new Label("Taille du Stand: " + lb4.getText());
+                            Label lblTitre = new Label("Titre du Foire : " + lb1.getText());
+                            Label lblDesc = new Label("deescription du Foire : " + lb2.getText());
+                            Label lblDate = new Label("Date de Creation: " + lb3.getText());
+                            Label lblPrix = new Label("Image Foire : " + lb4.getText());
+                            Label lblnbr = new Label("Prix Foire : " + lb5.getText());
+                            Label lb1Cat = new Label("Titre Stand  : " + lb7.getText());
 
                             Container ct = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                             ct.add(lblTitre);
                             ct.add(lblDesc);
                             ct.add(lblDate);
                             ct.add(lblPrix);
+                            ct.add(lblnbr);
+                            ct.add(lb1Cat);
 
                             formDetailEvent.addComponent(ct);
                             formDetailEvent.show();
@@ -173,7 +179,7 @@ public class StandForm {
                         }
                     });
 
-                    ct.setLeadComponent(btModif); 
+                    ct.setLeadComponent(btModif);
                     btModif.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent evt) {
@@ -181,71 +187,98 @@ public class StandForm {
                             img1 = theme.getImage("back-command.png");
 
                             UIBuilder ui = new UIBuilder();
-                            //formModifEvent = ui.createContainer(theme, "ModifEvent").getComponentForm();
+                            formModifEvent = ui.createContainer(theme, "ModifEvent").getComponentForm();
                             formModifEvent.setTitle("Modifier Stand ");
                             formModifEvent.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
-                                    fo.show();
+                                    f.show();
                                 }
                             });
 
                             System.out.println(Integer.parseInt(lb0.getText()));
                             TextField tfTitre = new TextField(lb1.getText());
                             TextField tfDesc = new TextField(lb2.getText());
-                            TextField pkDate = new TextField(lb3.getText());
-                            TextField tfPrix = new TextField(lb4.getText());                            
-                            
+                            Picker pkDate = new Picker();
+                            TextField tfPrix = new TextField(lb4.getText());
+                            TextField tfnbr = new TextField(lb5.getText());
+                            ComboBox ckCat = new ComboBox();
+
+                            FoireDAO evenementDAO = new FoireDAO();
+                            ConnectionRequest con = new ConnectionRequest();
+
+                            con.setUrl("http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/affichageStand");
+                            con.addResponseListener(new ActionListener<NetworkEvent>() {
+                                @Override
+                                public void actionPerformed(NetworkEvent evt) {
+                                    listCat = evenementDAO.getListCategorie(new String(con.getResponseData()) + "");
+                                    for (int i = 0; i < listCat.size(); i++) {
+                                        ckCat.addItem(listCat.get(i).getTitreStand());
+                                    }
+                                }
+                            });
+                            NetworkManager.getInstance().addToQueue(con);
+                            ////
+                            System.out.println(lb7.getText());
+
+                            ckCat.setSelectedItem((Object) lb7.getText());
                             Container ct = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                             ct.add(tfTitre);
                             ct.add(tfDesc);
                             ct.add(pkDate);
                             ct.add(tfPrix);
+                            ct.add(tfnbr);
+                            ct.add(ckCat);
 
-                            Button btModifEvent = new Button("Modifer Stand");
-
+                            Button btModifEvent = new Button("Modifer Foire");
                             ct.add(btModifEvent);
-
                             btModifEvent.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
 
-                                    eventToEdit = new Stand();
-                                    eventToEdit.setIdStand(Integer.parseInt(lb0.getText()));
-                                    eventToEdit.setProprietaireStand(tfDesc.getText());
-                                    eventToEdit.setTitreStand(tfTitre.getText());
-                                    eventToEdit.setTypeMarchandise(pkDate.getText());
-                                    eventToEdit.setTaille(Integer.parseInt(tfPrix.getText()));
+                                    eventToEdit = new Foire();
+                                    eventToEdit.setIdFoire(Integer.parseInt(lb0.getText()));
+                                    eventToEdit.setDescriptionFoire(tfDesc.getText());
+                                    eventToEdit.setTitreFoire(tfTitre.getText());
+                                    eventToEdit.setImageFoire(tfPrix.getText());
+                                    eventToEdit.setPrixFoire(Integer.parseInt(tfnbr.getText()));
 
+                                    String sDate1 = simpleDateFormat.format(pkDate.getDate());
+                                    try {
+                                        Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+                                    } catch (ParseException ex) {
+                                    }
+                                    Stand selectedCategorie = new Stand();
+                                    selectedCategorie.setTitreStand(ckCat.getSelectedItem() + "");
+                                    eventToEdit.setIdStand(selectedCategorie);
                                     System.out.println(eventToEdit);
-                                    StandDAO evenementDAO = new StandDAO();
-                                    evenementDAO.ModifierStand(eventToEdit, theme);
+                                    FoireDAO evenementDAO = new FoireDAO();
+                                    evenementDAO.ModifierFoire(eventToEdit, theme);
                                 }
                             });
-
                             formModifEvent.addComponent(ct);
                             formModifEvent.show();
                         }
                     });
 
-                    ct.setLeadComponent(btquit); 
+                    ct.setLeadComponent(btquit);
                     btquit.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent evt) {
 
-                            StandDAO evenementDAO = new StandDAO();
-                            evenementDAO.SupprimerStand(Integer.parseInt(lb0.getText()), theme);
+                            FoireDAO evenementDAO = new FoireDAO();
+                            evenementDAO.SupprimerFoire(Integer.parseInt(lb0.getText()), theme);
+
                         }
                     });
                 }
-
             }
         });
         NetworkManager.getInstance().addToQueue(con);
     }
 
     public Form getF() {
-        return fo;
+        return f;
     }
 
     private Map<String, Object> createListEntry(String name, String name1, String name2, String date, String date1) {

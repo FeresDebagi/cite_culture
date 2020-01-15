@@ -155,7 +155,5 @@ public class StandDAO {
         System.out.println("listFinal");
         System.out.println(listEvent.toString());
         return listEvent;
-
     }
-
 }
