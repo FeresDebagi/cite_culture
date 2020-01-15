@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  *
- * @author HP AYEDI
+ * @author ELYES
  */
 public class StandDAO {
 

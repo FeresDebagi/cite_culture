@@ -34,7 +34,7 @@ import java.util.Map;
 
 /**
  *
- * @author Oussama
+ * @author ELYES
  */
 public class authentification {
 
@@ -126,9 +126,16 @@ public class authentification {
                         }
                         /*FoireForm evenementForm = new FoireForm(theme);
                         evenementForm.getF().show();*/
+                        
+                        
+                        AcceuilClient a=new AcceuilClient();
+                        AcceuilClient ac = new AcceuilClient();
+                                   ac.acceuil(UserName);
+                                   ac.getF1().show();
+                        
 
-                        Welcome evenementForm = new Welcome(theme);
-                        evenementForm.getF().show();
+                        /*Welcome evenementForm = new Welcome(theme);
+                        evenementForm.getF().show();*/
                     }
 
                 }

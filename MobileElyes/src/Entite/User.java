@@ -7,7 +7,7 @@ package Entite;
 
 /**
  *
- * @author HP AYEDI
+ * @author ELYES
  */
 public class User {
     

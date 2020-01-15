@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  *
- * @author Oussama
+ * @author ELYES
  */
 public class Serviceauthentification {
     public fos_user parseUserJson(String json) throws ParseException {

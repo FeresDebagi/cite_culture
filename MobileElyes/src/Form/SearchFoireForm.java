@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author HP AYEDI
+ * @author ELYES
  */
 public class SearchFoireForm {
 

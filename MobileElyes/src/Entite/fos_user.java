@@ -9,7 +9,7 @@ package Entite;
 
 /**
  *
- * @author Loua
+ * @author ELYES
  */
 public class fos_user {
     private  int id;
