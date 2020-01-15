@@ -128,14 +128,14 @@ public class authentification {
                         evenementForm.getF().show();*/
                         
                         
-                        AcceuilClient a=new AcceuilClient();
+                        /*AcceuilClient a=new AcceuilClient();
                         AcceuilClient ac = new AcceuilClient();
                                    ac.acceuil(UserName);
-                                   ac.getF1().show();
+                                   ac.getF1().show();*/
                         
 
-                        /*Welcome evenementForm = new Welcome(theme);
-                        evenementForm.getF().show();*/
+                        Welcome evenementForm = new Welcome(theme);
+                        evenementForm.getF().show();
                     }
 
                 }

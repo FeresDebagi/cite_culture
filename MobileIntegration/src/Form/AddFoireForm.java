@@ -9,6 +9,7 @@ import DAO.FoireDAO;
 import DAO.StandDAO;
 import Entite.Stand;
 import Entite.Foire;
+import static Form.AddFoireForm.listCat;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
@@ -37,19 +38,14 @@ import java.util.Date;
  *
  * @author ELYES
  */
+
 public class AddFoireForm {
 
     Form f = new Form("Trainings", BoxLayout.y());
-    Stand evenementToAdd;
-
-    TextField tfdescription;
-    TextField tftitre;
-    TextField tfprix;
-    TextField tfnbre;
-    Picker pdate;
-    ComboBox categorie;
-    Button btnajout;
+    Foire evenementToAdd;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
     static ArrayList<Stand> listCat = new ArrayList<>();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public AddFoireForm(Resources theme) throws NumberFormatException {
 
@@ -58,6 +54,7 @@ public class AddFoireForm {
         UIBuilder ui = new UIBuilder();
         ui.registerCustomComponent("Picker", Picker.class);
 
+
         f.setTitle("Ajouter Foire ");
         f.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
             @Override
@@ -65,20 +62,28 @@ public class AddFoireForm {
                 FoireForm EvenementForm = new FoireForm(theme);
                 EvenementForm.getF().show();
             }
-
         });
         Image img2 = theme.getImage("back.jpg");
+        
+      
+        TextField tftitre = new TextField("", "TitreFoire");
+        TextField tfdescription = new TextField("", "descriptionStand");
+        Picker pdate = new Picker();
+        TextField tfprix = new TextField("", "Prix");
+        TextField tfnbre = new TextField("", "imageFoire");
+        ComboBox categorie = new ComboBox();
 
-        tftitre = new TextField("", "TitreFoire");
-        tfdescription = new TextField("", "descriptionStand");
-        tfprix = new TextField("", "prix");
-        tfnbre = new TextField("", "imageFoire");
-        categorie = new ComboBox("", "TitreStand");
-        pdate = new Picker();
-        btnajout = new Button("ajouter");
+        f.add(tftitre);
+        f.add(tfdescription);
+        f.add(pdate);
+        f.add(tfprix);
+        f.add(tfnbre);
+        f.add(categorie);
 
-        f.addAll(tftitre, tfdescription, tfprix, tfnbre, categorie, pdate, btnajout);
+        Button ajouter = new Button("Ajouter");
+        f.add(ajouter);
 
+        ///ALL_CATEGORIE et n7othom fel comboBox
         FoireDAO evenementDAO = new FoireDAO();
         ConnectionRequest con = new ConnectionRequest();
 
@@ -95,13 +100,35 @@ public class AddFoireForm {
         });
         NetworkManager.getInstance().addToQueue(con);
 
-        Stand selectedCategorie = new Stand();
-        selectedCategorie.setTitreStand(categorie.getSelectedItem() + "");
+        ajouter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
 
-        btnajout.addActionListener((e) -> {
-            Foire t = new Foire(0, tfdescription.getText(), tfnbre.getText(), tftitre.getText(),
-                    selectedCategorie, Integer.valueOf(tfprix.getText()));
-            evenementDAO.ajouterFoire(t, theme);
+                evenementToAdd = new Foire();
+                evenementToAdd.setDescriptionFoire(tfdescription.getText());
+                evenementToAdd.setTitreFoire(tftitre.getText());
+                evenementToAdd.setImageFoire(tfnbre.getText());
+                evenementToAdd.setPrixFoire(Integer.parseInt(tfprix.getText()));
+
+
+                /*try {
+                    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+                } catch (ParseException ex) {
+                }
+                evenementToAdd.setDateEvent(sDate1);*/
+
+                //categorie
+                Stand selectedCategorie = new Stand();
+                selectedCategorie.setTitreStand(categorie.getSelectedItem() + "");
+                evenementToAdd.setIdStand(selectedCategorie);
+
+                System.out.println(evenementToAdd);
+
+                FoireDAO evenementDAO = new FoireDAO();
+
+                evenementDAO.ajouterFoire(evenementToAdd, theme);
+
+            }
         });
 
     }

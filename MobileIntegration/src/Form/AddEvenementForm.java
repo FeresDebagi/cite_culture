@@ -58,22 +58,11 @@ public class AddEvenementForm {
                 EvenementForm EvenementForm = new EvenementForm(theme);
                 EvenementForm.getF().show();
             }
-            //  HomeGroupForm grF = new HomeGroupForm(theme);
-            //  grF.show();            }
+            
         });
         Image img2 = theme.getImage("back.jpg");
-       
-        // add(ct);
 
-        /*TextField tfdescription = (TextField) ui.findByName("description", f);
-        TextField tftitre = (TextField) ui.findByName("titre", f);
-        TextField tfprix = (TextField) ui.findByName("prix", f);
-        TextField tfnbre = (TextField) ui.findByName("nombre", f);
-        TextField tfsalle = (TextField) ui.findByName("salle", f);
-        Picker pdate = (Picker) ui.findByName("date", f);
-        Button ajouter = (Button) ui.findByName("ajouter", f);
-        ComboBox categorie = (ComboBox) ui.findByName("categorie", f);*/
-
+        
         TextField tftitre = new TextField("", "Titre");
         TextField tfdescription = new TextField("", "Description");
         Picker pdate = new Picker();
@@ -83,18 +72,17 @@ public class AddEvenementForm {
         TextField tfsalle = new TextField("", "Salle");
         ComboBox categorie = new ComboBox();
 
-        
         f.add(tftitre);
         f.add(tfdescription);
         f.add(pdate);
-f.add(tfprix);
-f.add(tfnbre);
-f.add(tfsalle);
-f.add(categorie);
+        f.add(tfprix);
+        f.add(tfnbre);
+        f.add(tfsalle);
+        f.add(categorie);
 
-   Button ajouter = new Button("Ajouter");
-f.add(ajouter);
-        
+        Button ajouter = new Button("Ajouter");
+        f.add(ajouter);
+
         ///ALL_CATEGORIE et n7othom fel comboBox
         EvenementDAO evenementDAO = new EvenementDAO();
         ConnectionRequest con = new ConnectionRequest();
@@ -116,7 +104,7 @@ f.add(ajouter);
         });
         NetworkManager.getInstance().addToQueue(con);
 
-   ajouter.addActionListener(new ActionListener() {
+        ajouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
 
@@ -140,7 +128,7 @@ f.add(ajouter);
                 evenementToAdd.setIdcategorie(selectedCategorie);
 
                 System.out.println(evenementToAdd);
-                
+
                 EvenementDAO evenementDAO = new EvenementDAO();
 
                 evenementDAO.ajouterEvenement(evenementToAdd, theme);
@@ -148,7 +136,6 @@ f.add(ajouter);
             }
         });
 
-       
     }
 
     public Form getF() {

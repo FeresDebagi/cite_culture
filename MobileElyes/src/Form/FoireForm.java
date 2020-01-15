@@ -67,6 +67,8 @@ public class FoireForm {
         imgClose = theme.getImage("close_group.png");
         imgSend = theme.getImage("send_group.png");
         imgIdea = theme.getImage("idea_group.png");
+        
+        
 
         img1 = theme.getImage("back-command.png");
 
@@ -82,7 +84,7 @@ public class FoireForm {
                 grF.getF().show();
             }
         });
-        
+
         f.getToolbar().addCommandToOverflowMenu("Rechercher Foire", imgAdd, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -285,7 +287,6 @@ public class FoireForm {
             }
 
         });
-
     }
 
     public Form getF() {

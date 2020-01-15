@@ -14,6 +14,7 @@ import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.l10n.SimpleDateFormat;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.util.Resources;
@@ -31,8 +32,7 @@ public class FoireDAO {
 
     public void ajouterFoire(Foire event, Resources theme) {
         ConnectionRequest req = new ConnectionRequest();
-               
-        
+
         String url = "http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/newFoire"
                 + "?descriptionFoire=" + event.getDescriptionFoire() + "&image=" + event.getImageFoire()
                 + "&titreFoire=" + event.getTitreFoire() + "&prixFoire=" + event.getPrixFoire() + "&dateDeCreation="
@@ -120,10 +120,9 @@ public class FoireDAO {
                 e.setImageFoire(obj.get("image").toString());
                 Map<String, Object> listDate = (Map<String, Object>) obj.get("dateEvent");
                 SimpleDateFormat sourceFormat = new SimpleDateFormat("d/m/Y");
-                
+
                 //Date d = new Date((long) (double) listDate.get("timestamp") * 1000);
                 //e.setDateDeCreation(d);
-                
                 Map<String, Object> listCat = (Map<String, Object>) obj.get("idStand");
                 Stand cat = new Stand();
                 cat.setIdStand((int) Float.parseFloat(listCat.get("idStand") + ""));
@@ -161,8 +160,6 @@ public class FoireDAO {
         return listEvent;
 
     }
-    
-    
 
     public ArrayList<Stand> getListCategorie(String json) {
         ArrayList<Stand> listCat = new ArrayList<>();
@@ -184,5 +181,16 @@ public class FoireDAO {
         return listCat;
 
     }
+
+    public void sendMail() {
+        Message m = new Message("<html><body>Check out <a href=\"https://www.codenameone.com/\">Codename One</a></body></html>");
+        m.setMimeType(Message.MIME_HTML);
+// notice that we provide a plain text alternative as well in the send method
+        boolean success = m.sendMessageViaCloudSync("Codename One", "hadhriraya@gmail.com", "Name Of User", "Message Subject",
+                "Check out Codename One at https://www.codenameone.com/");
+        System.out.println("success: " + success);
+    }
+
+    
 
 }
