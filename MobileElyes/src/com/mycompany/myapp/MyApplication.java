@@ -2,6 +2,7 @@ package com.mycompany.myapp;
 
 import Form.FoireForm;
 import Form.StandForm;
+import Form.authentification;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -51,8 +52,12 @@ public class MyApplication {
         /*StandForm evenementForm = new StandForm(theme);
         evenementForm.getF().show();*/
         
-        FoireForm evenementForm = new FoireForm(theme);
-        evenementForm.getF().show();
+        /*FoireForm evenementForm = new FoireForm(theme);
+        evenementForm.getF().show();*/
+        
+        authentification b=new authentification();
+        b.authentification(theme);
+        b.getF().show();
     }
 
     public void stop() {

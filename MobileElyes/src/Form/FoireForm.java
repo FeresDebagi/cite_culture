@@ -54,7 +54,7 @@ public class FoireForm {
     Form f = new Form("Trainings", BoxLayout.y());
     Form formDetailEvent = new Form("Trainings", BoxLayout.y());
     Form formModifEvent = new Form("Trainings", BoxLayout.y());
-    
+
     private Image img1, imgAdd, imgGroup, imgSearch, imgEdit, imgClose, imgSend, imgIdea;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
     Foire eventToEdit;
@@ -71,7 +71,6 @@ public class FoireForm {
         img1 = theme.getImage("back-command.png");
 
         UIBuilder ui = new UIBuilder();
-
 
         f.setTitle("Foire ");
 
@@ -98,8 +97,8 @@ public class FoireForm {
                     e = listEvent.get(i);
                     ArrayList<Map<String, Object>> data1 = new ArrayList<>();
                     data1.add((createListEntry("", "descriptionFoire : " + e.getDescriptionFoire(), "imageFoire  : "
-                            + e.getImageFoire(), "titreFoire: " + e.getTitreFoire(), "Titre Stand" 
-                                    + e.getIdStand().getTitreStand(),"Prix: " + e.getPrixFoire())));
+                            + e.getImageFoire(), "titreFoire: " + e.getTitreFoire(), "Titre Stand"
+                            + e.getIdStand().getTitreStand(), "Prix: " + e.getPrixFoire())));
 
                     DefaultListModel<Map<String, Object>> mdl1 = new DefaultListModel<>(data1);
 
@@ -269,6 +268,16 @@ public class FoireForm {
             }
         });
         NetworkManager.getInstance().addToQueue(con);
+
+        f.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Welcome evenementForm = new Welcome(theme);
+                evenementForm.getF().show();
+            }
+
+        });
+
     }
 
     public Form getF() {

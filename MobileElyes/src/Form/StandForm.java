@@ -242,6 +242,17 @@ public class StandForm {
             }
         });
         NetworkManager.getInstance().addToQueue(con);
+        
+         fo.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Welcome evenementForm = new Welcome(theme);
+                evenementForm.getF().show();
+            }
+
+        });
+        
+        
     }
 
     public Form getF() {
