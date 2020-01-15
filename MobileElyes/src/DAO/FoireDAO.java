@@ -31,10 +31,12 @@ public class FoireDAO {
 
     public void ajouterFoire(Foire event, Resources theme) {
         ConnectionRequest req = new ConnectionRequest();
+               
+        
         String url = "http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/newFoire"
-                + "?descriptionFoire=" + event.getDescriptionFoire() + "&imageFoire=" + event.getImageFoire()
+                + "?descriptionFoire=" + event.getDescriptionFoire() + "&image=" + event.getImageFoire()
                 + "&titreFoire=" + event.getTitreFoire() + "&prixFoire=" + event.getPrixFoire() + "&dateDeCreation="
-                + event.getDateDeCreation() + "&idStand=" + event.getIdStand().getTitreStand();
+                + event.getDateDeCreation() + "&titreStand=" + event.getIdStand().getTitreStand();
         req.setUrl(url);
 
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -59,9 +61,9 @@ public class FoireDAO {
         ConnectionRequest req = new ConnectionRequest();
 
         String url = "http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/ModifFoire" + r.getIdFoire()
-                + "?&titreFoire=" + r.getTitreFoire() + "&imageFoire=" + r.getImageFoire()
+                + "?&titreFoire=" + r.getTitreFoire() + "&image=" + r.getImageFoire()
                 + "&descriptionFoire=" + r.getDescriptionFoire() + "&dateDeCreation=" + r.getDateDeCreation()
-                + "&prixFoire=" + r.getPrixFoire() + "&typecategorie=" + r.getIdStand().getTitreStand();
+                + "&prixFoire=" + r.getPrixFoire() + "&titreStand=" + r.getIdStand().getTitreStand();
         req.setUrl(url);
 
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -115,11 +117,13 @@ public class FoireDAO {
                 e.setTitreFoire(obj.get("titreFoire").toString());
                 e.setDescriptionFoire(obj.get("descriptionFoire").toString());
                 e.setPrixFoire((int) Float.parseFloat(obj.get("prixFoire").toString()));
-                //e.setImageFoire(obj.get("imageFoire").toString());
+                e.setImageFoire(obj.get("image").toString());
                 Map<String, Object> listDate = (Map<String, Object>) obj.get("dateEvent");
                 SimpleDateFormat sourceFormat = new SimpleDateFormat("d/m/Y");
+                
                 //Date d = new Date((long) (double) listDate.get("timestamp") * 1000);
                 //e.setDateDeCreation(d);
+                
                 Map<String, Object> listCat = (Map<String, Object>) obj.get("idStand");
                 Stand cat = new Stand();
                 cat.setIdStand((int) Float.parseFloat(listCat.get("idStand") + ""));

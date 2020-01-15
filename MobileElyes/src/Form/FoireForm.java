@@ -145,7 +145,6 @@ public class FoireForm {
                             img1 = theme.getImage("back-command.png");
 
                             UIBuilder ui = new UIBuilder();
-                            formDetailEvent = ui.createContainer(theme, "DetailEvent").getComponentForm();
                             formDetailEvent.setTitle("Detail Foire ");
                             formDetailEvent.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
                                 @Override
@@ -183,7 +182,6 @@ public class FoireForm {
                             img1 = theme.getImage("back-command.png");
 
                             UIBuilder ui = new UIBuilder();
-                            formModifEvent = ui.createContainer(theme, "ModifEvent").getComponentForm();
                             formModifEvent.setTitle("Modifier Stand ");
                             formModifEvent.getToolbar().addCommandToLeftBar("Back", img1, new ActionListener() {
                                 @Override
