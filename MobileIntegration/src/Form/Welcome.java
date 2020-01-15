@@ -43,10 +43,11 @@ public class Welcome {
 
     Button Stand = new Button("Stand");
     Button Foire = new Button("Foire");
+    Button Evenet = new Button("Evenement");
     static ArrayList<Stand> listCat = new ArrayList<>();
 
     public Welcome(Resources theme) throws NumberFormatException {
-        f.addAll(Stand, Foire);
+        f.addAll(Stand, Foire, Evenet);
         Stand.addActionListener((e) -> {
             StandForm evenementForm = new StandForm(theme);
             evenementForm.getF().show();
@@ -54,6 +55,11 @@ public class Welcome {
 
         Foire.addActionListener((e) -> {
             FoireForm evenementForm = new FoireForm(theme);
+            evenementForm.getF().show();
+        });
+
+        Evenet.addActionListener((e) -> {
+            EvenementForm evenementForm = new EvenementForm(theme);
             evenementForm.getF().show();
         });
 

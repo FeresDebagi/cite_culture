@@ -57,13 +57,13 @@ public class MyApplication {
         evenementForm.getF().show();*/
         
         
-        EvenementForm evenementForm =new EvenementForm(theme);
-     evenementForm.getF().show();
+        /*EvenementForm evenementForm =new EvenementForm(theme);
+     evenementForm.getF().show();*/
         
         
-        /*authentification b=new authentification();
+        authentification b=new authentification();
         b.authentification(theme);
-        b.getF().show();*/
+        b.getF().show();
     }
 
     public void stop() {
