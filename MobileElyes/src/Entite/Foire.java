@@ -88,6 +88,17 @@ public class Foire {
         this.prixFoire = prixFoire;
     }
 
+    public Foire(int idFoire, String descriptionFoire, String imageFoire, String titreFoire, Stand idStand, int prixFoire) {
+        this.idFoire = idFoire;
+        this.descriptionFoire = descriptionFoire;
+        this.imageFoire = imageFoire;
+        this.titreFoire = titreFoire;
+        this.idStand = idStand;
+        this.prixFoire = prixFoire;
+    }
+    
+    
+
     public Foire() {
     }
 

@@ -51,7 +51,10 @@ import java.util.Date;
  */
 public class FoireForm {
 
-    Form f, formDetailEvent, formModifEvent;
+    Form f = new Form("Trainings", BoxLayout.y());
+    Form formDetailEvent = new Form("Trainings", BoxLayout.y());
+    Form formModifEvent = new Form("Trainings", BoxLayout.y());
+    
     private Image img1, imgAdd, imgGroup, imgSearch, imgEdit, imgClose, imgSend, imgIdea;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
     Foire eventToEdit;
@@ -69,9 +72,8 @@ public class FoireForm {
 
         UIBuilder ui = new UIBuilder();
 
-        f = ui.createContainer(theme, "HomeEvent").getComponentForm();
 
-        f.setTitle("Evenement ");
+        f.setTitle("Foire ");
 
 // ..........................les button a droite................................
         f.getToolbar().addCommandToOverflowMenu("Ajouter Foire", imgAdd, new ActionListener() {
@@ -83,27 +85,21 @@ public class FoireForm {
         });
 
         // .....................Affichage des Foire.............................................
-        //  ArrayList<Evenement> listg = new ArrayList<>();
         FoireDAO evenementDAO = new FoireDAO();
-        // listg=evenementDAO.ListerEvenement();
-
         ConnectionRequest con = new ConnectionRequest();
-
         con.setUrl("http://localhost/CiteDeLaCulture/web/app_dev.php/mobile/affichageFoire");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 ArrayList<Foire> listEvent = new ArrayList<>();
                 listEvent = evenementDAO.getListFoire(new String(con.getResponseData()) + "");
-
                 for (int i = 0; i < listEvent.size(); i++) {
                     Foire e = new Foire();
                     e = listEvent.get(i);
-
                     ArrayList<Map<String, Object>> data1 = new ArrayList<>();
-                    data1.add((createListEntry("", "titreFoire : " + e.getTitreFoire(), "descriptionFoire  : "
-                            + e.getDescriptionFoire(),
-                            "Date De Creation: " + e.getDateDeCreation(), "")));
+                    data1.add((createListEntry("", "descriptionFoire : " + e.getDescriptionFoire(), "imageFoire  : "
+                            + e.getImageFoire(), "titreFoire: " + e.getTitreFoire(), "Titre Stand" 
+                                    + e.getIdStand().getTitreStand(),"Prix: " + e.getPrixFoire())));
 
                     DefaultListModel<Map<String, Object>> mdl1 = new DefaultListModel<>(data1);
 
@@ -281,13 +277,14 @@ public class FoireForm {
         return f;
     }
 
-    private Map<String, Object> createListEntry(String name, String name1, String name2, String date, String date1) {
+    private Map<String, Object> createListEntry(String name, String name1, String name2, String date, String date1, String date2) {
         Map<String, Object> entry = new HashMap<>();
         entry.put("Line1", name);
         entry.put("Line2", name1);
         entry.put("Line3", name2);
         entry.put("Line4", date);
         entry.put("Line5", date1);
+        entry.put("Line6", date2);
         return entry;
     }
 

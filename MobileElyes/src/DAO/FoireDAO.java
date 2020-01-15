@@ -115,11 +115,11 @@ public class FoireDAO {
                 e.setTitreFoire(obj.get("titreFoire").toString());
                 e.setDescriptionFoire(obj.get("descriptionFoire").toString());
                 e.setPrixFoire((int) Float.parseFloat(obj.get("prixFoire").toString()));
-                e.setImageFoire(obj.get("imageFoire").toString());
+                //e.setImageFoire(obj.get("imageFoire").toString());
                 Map<String, Object> listDate = (Map<String, Object>) obj.get("dateEvent");
                 SimpleDateFormat sourceFormat = new SimpleDateFormat("d/m/Y");
-                Date d = new Date((long) (double) listDate.get("timestamp") * 1000);
-                e.setDateDeCreation(d);
+                //Date d = new Date((long) (double) listDate.get("timestamp") * 1000);
+                //e.setDateDeCreation(d);
                 Map<String, Object> listCat = (Map<String, Object>) obj.get("idStand");
                 Stand cat = new Stand();
                 cat.setIdStand((int) Float.parseFloat(listCat.get("idStand") + ""));

@@ -62,16 +62,7 @@ public class AddStandForm {
 
         });
         Image img2 = theme.getImage("back.jpg");
-        //f.getAllStyles().setBgImage(img2);
-        //f.getAllStyles().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
-
-
-        /*TextField tfdescription = (TextField) ui.findByName("proprietaireStand", f);
-        TextField tftitre = (TextField) ui.findByName("titreStand", f);
-        TextField tfprix = (TextField) ui.findByName("typeMarchandise", f);
-        TextField tftaille = (TextField) ui.findByName("taille", f);
-      
-        Button ajouter = (Button) ui.findByName("ajouter", f);*/
+        
         tTitre = new TextField("", "TitreStand");
         tproprietaire = new TextField("", "proprietaireStand");
         ttypeMarchandise = new TextField("", "typeMarchandise");
@@ -90,22 +81,7 @@ public class AddStandForm {
         });
         
 
-        /*btnajout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-
-                evenementToAdd = new Stand();
-                evenementToAdd.setProprietaireStand(tfdescription.getText());
-                evenementToAdd.setTitreStand(tftitre.getText());
-                evenementToAdd.setTypeMarchandise(tfprix.getText());
-                evenementToAdd.setTaille(Integer.parseInt(tftaille.getText()));
-
-                System.out.println(evenementToAdd);
-                StandDAO evenementDAO = new StandDAO();
-                evenementDAO.ajouterStand(evenementToAdd, theme);
-
-            }
-        });*/
+        
     }
 
     public Form getF() {
