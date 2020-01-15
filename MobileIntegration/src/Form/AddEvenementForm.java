@@ -62,20 +62,38 @@ public class AddEvenementForm {
             //  grF.show();            }
         });
         Image img2 = theme.getImage("back.jpg");
-        f.getAllStyles().setBgImage(img2);
-        f.getAllStyles().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
+       
         // add(ct);
 
-        TextField tfdescription = (TextField) ui.findByName("description", f);
+        /*TextField tfdescription = (TextField) ui.findByName("description", f);
         TextField tftitre = (TextField) ui.findByName("titre", f);
         TextField tfprix = (TextField) ui.findByName("prix", f);
-      //  tfprix.setConstraint(TextField.DECIMAL);
         TextField tfnbre = (TextField) ui.findByName("nombre", f);
         TextField tfsalle = (TextField) ui.findByName("salle", f);
         Picker pdate = (Picker) ui.findByName("date", f);
         Button ajouter = (Button) ui.findByName("ajouter", f);
-        ComboBox categorie = (ComboBox) ui.findByName("categorie", f);
+        ComboBox categorie = (ComboBox) ui.findByName("categorie", f);*/
 
+        TextField tftitre = new TextField("", "Titre");
+        TextField tfdescription = new TextField("", "Description");
+        Picker pdate = new Picker();
+
+        TextField tfprix = new TextField("", "Prix");
+        TextField tfnbre = new TextField("", "Nombre de place");
+        TextField tfsalle = new TextField("", "Salle");
+        ComboBox categorie = new ComboBox();
+
+        
+        f.add(tftitre);
+        f.add(tfdescription);
+        f.add(pdate);
+f.add(tfprix);
+f.add(tfnbre);
+f.add(tfsalle);
+f.add(categorie);
+
+   Button ajouter = new Button("Ajouter");
+f.add(ajouter);
         
         ///ALL_CATEGORIE et n7othom fel comboBox
         EvenementDAO evenementDAO = new EvenementDAO();
@@ -98,7 +116,7 @@ public class AddEvenementForm {
         });
         NetworkManager.getInstance().addToQueue(con);
 
-        ajouter.addActionListener(new ActionListener() {
+   ajouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
 

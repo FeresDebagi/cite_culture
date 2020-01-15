@@ -32,7 +32,7 @@ public class EvenementDAO {
     public void ajouterEvenement(Evenement event, Resources theme) {
         ConnectionRequest req = new ConnectionRequest();
 
-        String url = "http://localhost/CiteDeLaCulture/web/app_dev.php/HomeA/Events/create"
+        String url = "http://localhost/CiteDeLaCulture/web/app_dev.php/HomeA/EventsMo/createM"
                 + "?descriptionEvent=" + event.getDescriptionEvent() + "&titreEvent=" + event.getTitreEvent()
                 + "&prixEvent=" + event.getPrixEvent() + "&salleEvent=" + event.getSalleEvent() + "&nbrE=" + event.getNbrE()
                 + "&dateEvent="+event.getDateEvent() +"&typecategorie="+event.getIdcategorie().getTypecategorie();
