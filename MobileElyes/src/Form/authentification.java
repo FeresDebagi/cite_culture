@@ -6,7 +6,7 @@
 package Form;
 
 import com.codename1.io.CharArrayReader;
-import com.mycompany.Entite.fos_user;
+import Entite.fos_user;
 import DAO.Serviceauthentification;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;

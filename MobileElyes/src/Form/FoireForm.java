@@ -82,6 +82,14 @@ public class FoireForm {
                 grF.getF().show();
             }
         });
+        
+        f.getToolbar().addCommandToOverflowMenu("Rechercher Foire", imgAdd, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                SearchFoireForm evenementForm = new SearchFoireForm(theme);
+                evenementForm.getF().show();
+            }
+        });
 
         // .....................Affichage des Foire.............................................
         FoireDAO evenementDAO = new FoireDAO();

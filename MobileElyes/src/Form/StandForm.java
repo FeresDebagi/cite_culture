@@ -238,7 +238,6 @@ public class StandForm {
                         }
                     });
                 }
-
             }
         });
         NetworkManager.getInstance().addToQueue(con);
@@ -249,10 +248,7 @@ public class StandForm {
                 Welcome evenementForm = new Welcome(theme);
                 evenementForm.getF().show();
             }
-
         });
-        
-        
     }
 
     public Form getF() {

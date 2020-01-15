@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import com.mycompany.Entite.fos_user;
+import Entite.fos_user;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -75,6 +75,73 @@ public class Serviceauthentification {
         
          */
         return listUsers.get(0);
+    }
+    
+    
+    public void updateProfil(fos_user c) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/SmartStart_test/web/app_dev.php/profileFUP/2?username="+c.getUsername()+"&email="+c.getEmail()+"&nom="+c.getNom()+"&prenom="+c.getPrenom();
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);// Ajout de notre demande de connexion à la file d'attente du NetworkManager
+    }
+    
+    public ArrayList<fos_user> getList1(fos_user c) {
+        ArrayList<fos_user> listTasks = new ArrayList<>();
+        ConnectionRequest con = new ConnectionRequest();
+        
+        con.setUrl("http://localhost/SmartStart_test/web/app_dev.php/profileF/"+c.getId());
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                //listTasks = getListTask(new String(con.getResponseData()));
+                JSONParser jsonp = new JSONParser();
+                
+                try {
+                    Map<String, Object> tasks = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
+                   // System.out.println(tasks);
+                    //System.out.println(tasks);
+                   
+                    List<Map<String, Object>> list = (List<Map<String, Object>>) tasks.get("root");
+                for (Map<String, Object> obj : list) {
+                        fos_user task = new fos_user();
+                                             
+                      
+                       float id = Float.parseFloat(obj.get("id").toString());
+                       
+                       task.setId((int) id);
+                       task.setUsername(obj.get("username").toString());
+                       task.setNom(obj.get("nom").toString());
+                       task.setPrenom(obj.get("prenom").toString());
+                       //task.setMail(obj.get("password").toString());
+                       //task.setPassword("oussama");
+                       task.setEmail(obj.get("email").toString());
+
+                       //******************************
+                       
+                            //System.out.println(map.get("timestamp"));
+                       //*******************
+                     //  System.out.println("eeee"+task.getEmail()+"ddd"+task.getId()+"task."+task.getNom()+"erererer"+task.getPrenom()+"ererrerer"+task.getUsername()+"rrr"+task.getPassword());
+                      // hm.put(obj.get("username").toString(),obj.get("mail").toString());
+                     // System.out.println("service"+task);
+                        listTasks.add(task);
+                }
+                      
+
+                    
+                     //   System.out.println(listTasks);
+                } catch (IOException ex) {
+                }
+
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        
+        return listTasks;
     }
 
 }

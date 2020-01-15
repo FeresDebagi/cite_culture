@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 import Form.FoireForm;
+import Form.SearchFoireForm;
 import Form.StandForm;
 import Form.authentification;
 import static com.codename1.ui.CN.*;
@@ -53,6 +54,9 @@ public class MyApplication {
         evenementForm.getF().show();*/
         
         /*FoireForm evenementForm = new FoireForm(theme);
+        evenementForm.getF().show();*/
+        
+        /*SearchFoireForm evenementForm = new SearchFoireForm(theme);
         evenementForm.getF().show();*/
         
         authentification b=new authentification();
