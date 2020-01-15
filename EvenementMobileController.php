@@ -48,13 +48,12 @@ class EvenementMobileController extends Controller
         $serializer = new Serializer([new ObjectNormalizer()]) ;
         $formatted = $serializer->normalize($event);
         return new JsonResponse($formatted);
-        // return $this->render('@Cite/Events/createEvent.html.twig',array('f'=> $form->createView()));
+
     }
 
     //-----------------------------------------------------Modification Evenement----------------------------------------------
     public function UpdateEventMAction(Request $request, $id)
     {
-
         $em = $this->getDoctrine()->getManager();
         // $event = new Evenement();
         $event = $em->getRepository(Evenement::class)->find($id);
